@@ -55,7 +55,6 @@ function date_teste() {
 }
 date_teste();
 
-echo"Carregando dependências e verificando atualizações...";
 
 function comandos() {
     logM("\n                                                 COMANDOS:                                              
@@ -71,6 +70,7 @@ function comandos() {
 $debug = false;
 $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
+echo"Carregando dependências e verificando atualizações...";
 login($ig);
 function login($ig) {    
     logM("\nDigite os dados de acesso a conta no instagram.");
