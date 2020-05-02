@@ -66,6 +66,10 @@ function comandos() {
     #--------------------------------------------------------------------------------------------------------#");
 }
 
+require __DIR__.'/vendor/autoload.php';
+use InstagramAPI\Instagram;
+use InstagramAPI\Request\Live;
+
 $debug = false;
 $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
