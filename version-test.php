@@ -6,7 +6,6 @@ if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP! Se você executou isso na linha de comando, informe: \"".php_sapi_name()."\" ao repositório do sistema!");
 }
 function title () {
-    global $texto_title;
     echo "\e[H\e[J";
     logM("Bem vindo(a) ao");
     logM(" _____              _           _      _                  _____         _      _  
