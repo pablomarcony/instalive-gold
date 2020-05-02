@@ -55,9 +55,6 @@ function date_teste() {
 }
 date_teste();
 
-echo"Carregando dependências e verificando atualizações...";
-sleep(2);
-
 function comandos() {
     logM("\n                                                 COMANDOS:                                              
     #--------------------------------------------------------------------------------------------------------#
