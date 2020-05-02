@@ -66,13 +66,6 @@ function comandos() {
     #--------------------------------------------------------------------------------------------------------#");
 }
 
-echo"Carregando dependências e verificando atualizações...";
-sleep(2);
-//O carregamento depende do compositor...
-require __DIR__.'/vendor/autoload.php';
-use InstagramAPI\Instagram;
-use InstagramAPI\Request\Live;
-
 $debug = false;
 $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
@@ -106,7 +99,6 @@ function login($ig) {
         $line = trim(fgets($handle));
         if ($line == "sim" || $line == "SIM") {
             echo chr(27).chr(91).'H'.chr(27).chr(91).'J';
-            title();
             login($ig);
         } else {
             exit(0);
