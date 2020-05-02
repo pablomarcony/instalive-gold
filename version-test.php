@@ -50,7 +50,7 @@ function date_teste() {
         exit(0);
     } else {
         title();
-        logM("VERSÃO DE TESTE. DATA LIMITE: $limite.\n");
+        logM("VERSÃO DE TESTE. DATA LIMITE: $limite.");
     }
 }
 date_teste();
