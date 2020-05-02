@@ -55,7 +55,6 @@ function date_teste() {
 }
 date_teste();
 
-
 function comandos() {
     logM("\n                                                 COMANDOS:                                              
     #--------------------------------------------------------------------------------------------------------#
@@ -66,6 +65,13 @@ function comandos() {
     |  \"9\" ou \"PARAR\" - Interrompe a transmissão                                                             |
     #--------------------------------------------------------------------------------------------------------#");
 }
+
+echo"Carregando dependências e verificando atualizações...";
+sleep(2);
+//O carregamento depende do compositor...
+require __DIR__.'/vendor/autoload.php';
+use InstagramAPI\Instagram;
+use InstagramAPI\Request\Live;
 
 $debug = false;
 $truncatedDebug = false;
