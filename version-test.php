@@ -6,6 +6,7 @@ if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP! Se você executou isso na linha de comando, informe: \"".php_sapi_name()."\" ao repositório do sistema!");
 }
 function title () {
+    global $texto_title;
     echo "\e[H\e[J";
     logM("Bem vindo(a) ao");
     logM(" _____              _           _      _                  _____         _      _  
@@ -57,6 +58,9 @@ date_teste();
 echo"Carregando dependências e verificando atualizações...";
 sleep(2);
 //O carregamento depende do compositor...
+require __DIR__.'/vendor/autoload.php';
+use InstagramAPI\Instagram;
+use InstagramAPI\Request\Live;
 
 function comandos() {
     logM("\n                                                 COMANDOS:                                              
