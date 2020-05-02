@@ -54,9 +54,6 @@ function date_teste() {
     }
 }
 date_teste();
-
-echo"Carregando dependências e verificando atualizações...";
-sleep(2);
 //O carregamento depende do compositor...
 require __DIR__.'/vendor/autoload.php';
 use InstagramAPI\Instagram;
