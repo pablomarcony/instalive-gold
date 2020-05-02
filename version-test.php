@@ -33,7 +33,7 @@ function date_teste() {
     $code = trim(fgets($handle));
     $limite = null;
     $date = date("d/m/Y H:i:s");
-    include '../test-list.php';
+    @include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     if ($limite == null){
         logM("Por favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         system("PAUSE >nul");
@@ -58,7 +58,7 @@ date_teste();
 echo"Carregando dependências e verificando atualizações...";
 sleep(2);
 //O carregamento depende do compositor...
-require __DIR__.'/vendor/autoload.php';
+include '/vendor/autoload.php';
 use InstagramAPI\Instagram;
 use InstagramAPI\Request\Live;
 
