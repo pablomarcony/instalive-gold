@@ -55,9 +55,6 @@ function date_teste() {
 }
 date_teste();
 
-echo"Carregando dependências e verificando atualizações...";
-sleep(2);
-//O carregamento depende do compositor...
 
 function comandos() {
     logM("\n                                                 COMANDOS:                                              
@@ -69,10 +66,6 @@ function comandos() {
     |  \"9\" ou \"PARAR\" - Interrompe a transmissão                                                             |
     #--------------------------------------------------------------------------------------------------------#");
 }
-
-$debug = false;
-$truncatedDebug = false;
-$ig = new Instagram($debug, $truncatedDebug);
 login($ig);
 function login($ig) {    
     logM("\nDigite os dados de acesso a conta no instagram.");
