@@ -58,7 +58,7 @@ date_teste();
 echo"Carregando dependências e verificando atualizações...";
 sleep(2);
 //O carregamento depende do compositor...
-include '/vendor/autoload.php';
+require '/vendor/autoload.php';
 use InstagramAPI\Instagram;
 use InstagramAPI\Request\Live;
 
