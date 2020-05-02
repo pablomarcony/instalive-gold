@@ -235,7 +235,7 @@ function cmd_sair ($ig,$ig_username) {
 /**
  * O manipulador para interpretar os comandos transmitidos pela linha de comando.
  */
-function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_username,$hora_inicio,$hora_fim,$status_live,$status_cmts) {
+function newCommand($live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_username,$hora_inicio,$hora_fim,$status_live,$status_cmts) {
     print "\n> ";
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
