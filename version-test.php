@@ -106,6 +106,7 @@ function login($ig) {
         $line = trim(fgets($handle));
         if ($line == "sim" || $line == "SIM") {
             echo chr(27).chr(91).'H'.chr(27).chr(91).'J';
+            title();
             login($ig);
         } else {
             exit(0);
