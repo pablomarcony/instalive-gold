@@ -1,4 +1,11 @@
 <?php
+
+echo"Carregando dependências e verificando atualizações...";
+sleep(2);
+//O carregamento depende do compositor...
+require __DIR__.'/vendor/autoload.php';
+use InstagramAPI\Instagram;
+use InstagramAPI\Request\Live;
 system('title InstaLive Gold');
 system('break off');
 echo "\e[H\e[J";
