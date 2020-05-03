@@ -243,7 +243,7 @@ function cmd_sair ($ig,$ig_username) {
         new_tunel($ig, $ig_username);
     }else {
         logM("Comando inválido. Por favor, digite novamente!");
-        cmd_sair();
+        cmd_sair($ig,$ig_username);
     }
 }
 
