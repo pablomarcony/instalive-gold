@@ -79,11 +79,12 @@ $ig = new Instagram($debug, $truncatedDebug);
 login($ig);
 function login($ig) {    
     logM("\nDigite os dados de acesso a conta no instagram.");
-    usuario();
-    //Login to Instagram
+    //Login no Instagram
+    $ig_username = usuario();
+    $ig_password = senha();
     logM("\nFazendo login no Instagram...");
     try {
-        $loginResponse = $ig->login(IG_USERNAME, IG_PASS);
+        $loginResponse = $ig->login($ig_username, $ig_password);
 
         if ($loginResponse !== null && $loginResponse->isTwoFactorRequired()) {
             logM("Confirmação de acesso necessários! Por favor, verifique o código SMS recebido em seu telefone!");
@@ -118,25 +119,25 @@ function usuario() {
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if ($line != "") {
-        define('IG_USERNAME', $line);
-        senha();
+        $ig_username= $line;
     } else {
         logM("Digite o usuário corretamente.");
         usuario();
     }
+    return $ig_username;
 }
 function senha () {
     print "Senha: ";
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if ($line != "") {    
-        define('IG_PASS', $line);
+        $ig_password = $line;
     } else {
         logM("Digite a senha corretamente.");
         senha();
     }
+    return $ig_password;
 }
-$ig_username = IG_USERNAME;
 
 // Bloco responsável por criar a transmissão ao vivo.
 function new_tunel($ig, $ig_username) {
