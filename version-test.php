@@ -30,7 +30,7 @@ function contato() {
 title();
 logM("\nEsta é uma versão de teste! Por favor, digite sua chave de acesso:");
 function date_teste() {
-    print "\n> ";
+    print "> ";
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
     $limite = null;
