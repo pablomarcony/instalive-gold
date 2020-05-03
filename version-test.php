@@ -85,11 +85,12 @@ $ig = new Instagram($debug, $truncatedDebug);
 function login($ig) {    
     logM("\nDigite os dados de acesso a conta no instagram.");
     //Login no Instagram
-    $ig_username = usuario();
-    $ig_password = senha();
-    echo $ig_username;
-    echo $ig_password;
-    system("PAUSE >nul");
+    print "\nUsuário: ";
+    $handle = fopen ("php://stdin","r");
+    $ig_username = trim(fgets($handle));
+    print "Senha: ";
+    $handle = fopen ("php://stdin","r");
+    $ig_password = trim(fgets($handle));
 
     echo "\nFazendo login no Instagram...\r";
     try {
@@ -124,29 +125,6 @@ function login($ig) {
     logado($ig,$ig_username);
 }
 login($ig);
-
-function usuario() {
-    print "\nUsuário: ";
-    $handle = fopen ("php://stdin","r");
-    $ig_username = trim(fgets($handle));
-    if ($ig_username == "") {
-        logM("Digite o usuário corretamente.");
-        usuario();
-    } else {
-        return $ig_username;
-    }
-}
-function senha () {
-    print "Senha: ";
-    $handle = fopen ("php://stdin","r");
-    $ig_password = trim(fgets($handle));
-    if ($ig_password == "") {
-        logM("Digite a senha corretamente.");
-        senha();
-    } else {
-        return $ig_password;
-    }
-}
 
 // Bloco responsável por criar a transmissão ao vivo.
 function new_tunel($ig, $ig_username) {
