@@ -1,7 +1,7 @@
 <?php
 switch ($code) {
     case "#Z319N5": // Usuário: Pablo Marcony        
-        $limite = "02/05/2022 17:40:00";
+        $limite = "02-05-2022";
         $limite = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
     break;
     case "#Z320V1": // Usuário: Pablo Marcony        
