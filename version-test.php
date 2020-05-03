@@ -132,8 +132,9 @@ function usuario() {
     if ($ig_username == "") {
         logM("Digite o usuário corretamente.");
         usuario();
+    } else {
+        return $ig_username;
     }
-    return $ig_username;
 }
 function senha () {
     print "Senha: ";
@@ -142,8 +143,9 @@ function senha () {
     if ($ig_password == "") {
         logM("Digite a senha corretamente.");
         senha();
+    } else {
+        return $ig_password;
     }
-    return $ig_password;
 }
 
 // Bloco responsável por criar a transmissão ao vivo.
