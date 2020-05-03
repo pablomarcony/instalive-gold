@@ -29,6 +29,11 @@ function contato() {
 }
 title();
 logM("\nEsta é uma versão de teste! Por favor, digite sua chave de acesso:");
+function novo_limite ($limite) {
+    $limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
+    $limite_fim = date_format($limite_fim, 'YmdHis');
+    return $limite_fim;
+}
 function date_teste() {
     print "> ";
     $handle = fopen ("php://stdin","r");
