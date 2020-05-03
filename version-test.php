@@ -25,7 +25,7 @@ date_default_timezone_set('America/Sao_Paulo');
 function contato() {
     logM("\nCONTATOS:");
     logM("Telefone: +55 98 98348-6439");
-    logM("Email: pablomarconyjf@gmail.com\n");
+    logM("Email: pablomarconyjf@gmail.com");
 }
 title();
 logM("\nEsta é uma versão de teste! Por favor, digite sua chave de acesso:");
