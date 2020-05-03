@@ -76,7 +76,7 @@ use InstagramAPI\Request\Live;
 $debug = false;
 $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
-login($ig);
+$ig_username = login($ig);
 function login($ig) {    
     logM("\nDigite os dados de acesso a conta no instagram.");
     //Login no Instagram
@@ -112,6 +112,7 @@ function login($ig) {
             exit(0);
         }
     }
+    return $ig_username;
 }
 
 function usuario() {
