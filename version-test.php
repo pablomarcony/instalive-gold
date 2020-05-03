@@ -38,7 +38,7 @@ function date_teste() {
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     echo "\n".$date;
     echo "\n".$limite;
-    echo "\n".$date - $limite;
+    echo "\n\n".$date - $limite;
 
     system("PAUSE >nul");
     if ($limite == "padron"){
@@ -48,7 +48,7 @@ function date_teste() {
         exit(0);
     } elseif ($limite == "c-invalido"){
         title();
-        logM("\NCódigo de acesso invalido.Por favor, Tente novamente.");
+        logM("\nCódigo de acesso invalido.Por favor, Tente novamente.");
         date_teste();
     } elseif ($limite <= $date){
         title();
