@@ -111,7 +111,7 @@ function login($ig) {
             exit(0);
         }
     }
-    logado($ig,$ig_username)
+    logado($ig,$ig_username);
 }
 login($ig);
 
