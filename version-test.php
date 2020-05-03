@@ -39,7 +39,7 @@ function date_teste() {
     echo "\n".$date;
     echo "\n".$limite;
     echo strtotime($date);
-    echo strtotime($limite)
+    echo strtotime($limite);
     echo "\n".$date - $limite;
     system("PAUSE >nul");
     if ($limite == "padron"){
