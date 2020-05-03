@@ -5,6 +5,7 @@ echo "\e[H\e[J";
 if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP! Se você executou isso na linha de comando, informe: \"".php_sapi_name()."\" ao repositório do sistema!");
 }
+$texto_title = "oi";
 function title () {
     global $texto_title;
     echo "\e[H\e[J";
@@ -17,6 +18,7 @@ function title () {
  \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| Versão de teste
     ");
     logM("Copyright © 2020 - Todos os direitos reservados - Pablo Marcony");
+    echo $texto_title;
 }
 set_time_limit(0);
 date_default_timezone_set('America/Sao_Paulo');
@@ -51,9 +53,11 @@ function date_teste() {
     } else {
         title();
         logM("VERSÃO DE TESTE. DATA LIMITE: $limite.");
+        define(TEXTO_TITLE, "VERSÃO DE TESTE. DATA LIMITE:". $limite .);
     }
 }
 date_teste();
+$texto_title = TEXTO_TITLE;
 
 function comandos() {
     logM("\n                                                 COMANDOS:                                              
@@ -95,12 +99,12 @@ function login($ig) {
             exit();
         }
         echo 'Erro ao fazer login no Instagram: '.$e->getMessage()."\n";
-        logM("Deseja tentar novamente? \"SIM\" para confirmar \ \"NAO\" para sair do sistema.");
+        logM("\nDeseja tentar novamente? \"SIM\" para confirmar \ \"NAO\" para sair do sistema.");
         print "> ";
         $handle = fopen ("php://stdin","r");
         $line = trim(fgets($handle));
         if ($line == "sim" || $line == "SIM") {
-            echo chr(27).chr(91).'H'.chr(27).chr(91).'J';
+            title();
             login($ig);
         } else {
             exit(0);
