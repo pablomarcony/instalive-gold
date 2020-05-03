@@ -38,8 +38,6 @@ function date_teste() {
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     echo "\n".$date;
     echo "\n".$limite;
-    echo strtotime($date);
-    echo strtotime($limite);
     echo "\n".$date - $limite;
     system("PAUSE >nul");
     if ($limite == "padron"){
