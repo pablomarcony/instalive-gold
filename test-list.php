@@ -5,7 +5,7 @@ switch ($code) {
         $limite_fim = novo_limite($limite);
     break;
     case "#Z320V1": // Usuário: Pablo Marcony        
-        $limite = "14/05/2020 00:00:00";
+        $limite = "01/05/2020 00:00:00";
         $limite_fim = novo_limite($limite);
     break;
     default:
