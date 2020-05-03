@@ -101,7 +101,7 @@ function login($ig) {
             exit();
         }
         echo 'Falha no login. Verifique suas credenciais.';
-        logM("\nDeseja tentar novamente? \"SIM\" para confirmar \ \"NAO\" para sair do sistema.");
+        logM("\nDeseja tentar novamente? \"SIM\" \ \"NAO\"");
         print "> ";
         $handle = fopen ("php://stdin","r");
         $line = trim(fgets($handle));
