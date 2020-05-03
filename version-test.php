@@ -92,7 +92,7 @@ function login($ig) {
             $handle = fopen ("php://stdin","r");
             $verificationCode = trim(fgets($handle));
             logM("Fazendo login com o código de confirmação...");
-            $ig->finishTwoFactorLogin($ig_username, $ig_password, $twoFactorIdentifier, $verificationCode);
+            $ig->finishTwoFactorLogin(IG_USERNAME, IG_PASS, $twoFactorIdentifier, $verificationCode);
         }
     } catch (\Exception $e) {
         if (strpos($e->getMessage(), "Challenge") !== false) {
@@ -111,16 +111,16 @@ function login($ig) {
             exit(0);
         }
     }
-    return $ig_username;
+    logado($ig,$ig_username)
 }
-$ig_username = login($ig);
+login($ig);
 
 function usuario() {
     print "\nUsuário: ";
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if ($line != "") {
-        $ig_username = $line;
+        $ig_username= $line;
     } else {
         logM("Digite o usuário corretamente.");
         usuario();
@@ -175,7 +175,6 @@ function new_tunel($ig, $ig_username) {
     $ig->live->end($broadcastId);
     return $status_live;
 }
-
 function logado($ig,$ig_username) {
     try {
         if (!$ig->isMaybeLoggedIn) {
@@ -196,7 +195,6 @@ function logado($ig,$ig_username) {
         echo 'Erro ao criar transmissão ao vivo: '.$e->getMessage()."\n";
     }
 }
-
 
 function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live) {
     title();
