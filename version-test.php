@@ -33,10 +33,10 @@ function date_teste() {
     print "> ";
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
-    $limite = null;
+    $limite = "padron";
     $date = date("d/m/Y H:i");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
-    if ($limite == null){
+    if ($limite == "padron"){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();
         system("PAUSE >nul");
