@@ -38,7 +38,7 @@ function date_teste() {
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     echo "\n".$date;
     echo "\n".$limite;
-    $limite = DateTime::createFromFormat('Y/m/d H:i:s', $limite);
+    $limite = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
     $limite = date_format($limite, 'Y/m/d H:i:s');
     $limite_final = str_replace("/", "", $limite);
     $limite_final = str_replace(":", "", $limite_final);
