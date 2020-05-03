@@ -128,8 +128,9 @@ login($ig);
 function usuario() {
     print "\nUsuário: ";
     $handle = fopen ("php://stdin","r");
-    $ig_username = trim(fgets($handle));
-    if ($ig_username != "") {
+    $line = trim(fgets($handle));
+    if ($line != "") {
+        $ig_username = $line;
         return $ig_username;
     } else {
         logM("Digite o usuário corretamente.");
@@ -139,8 +140,9 @@ function usuario() {
 function senha () {
     print "Senha: ";
     $handle = fopen ("php://stdin","r");
-    $ig_password = trim(fgets($handle));
-    if ($ig_password != "") {
+    $line = trim(fgets($handle));
+    if ($line != "") {
+        $ig_password = $line;
         return $ig_password;
     } else {
         logM("Digite a senha corretamente.");
