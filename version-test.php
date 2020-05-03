@@ -38,8 +38,6 @@ function date_teste() {
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     $limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
     $limite_fim = date_format($limite_fim, 'YmdHis');
-
-    system("PAUSE >nul");
     if ($limite == null){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();
