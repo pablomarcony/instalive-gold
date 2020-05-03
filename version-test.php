@@ -100,7 +100,7 @@ function login($ig) {
             exit();
         }
         echo 'Erro ao fazer login no Instagram: '.$e->getMessage()."\n";
-        logM("Deseja tentar novamente? \"SIM\" para confirmar \ \"NAO\" para sair do sistema.");
+        logM("\nDeseja tentar novamente? \"SIM\" para confirmar \ \"NAO\" para sair do sistema.");
         print "> ";
         $handle = fopen ("php://stdin","r");
         $line = trim(fgets($handle));
