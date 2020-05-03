@@ -76,7 +76,6 @@ use InstagramAPI\Request\Live;
 $debug = false;
 $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
-$ig_username = login($ig);
 function login($ig) {    
     logM("\nDigite os dados de acesso a conta no instagram.");
     //Login no Instagram
@@ -100,7 +99,7 @@ function login($ig) {
             logM("Conta sinalizada: saia de todos os telefones e tente fazer login no instagram.com neste computador antes de tentar executar este sistema novamente!");
             exit();
         }
-        echo 'Erro ao fazer login no Instagram. Verifique os dados e tente novamente.';
+        echo 'Falha no login. Verifique suas credenciais.';
         logM("\nDeseja tentar novamente? \"SIM\" para confirmar \ \"NAO\" para sair do sistema.");
         print "> ";
         $handle = fopen ("php://stdin","r");
@@ -114,6 +113,7 @@ function login($ig) {
     }
     return $ig_username;
 }
+$ig_username = login($ig);
 
 function usuario() {
     print "\nUsuário: ";
@@ -175,6 +175,7 @@ function new_tunel($ig, $ig_username) {
     $ig->live->end($broadcastId);
     return $status_live;
 }
+
 try {
     if (!$ig->isMaybeLoggedIn) {
         logM("Não foi possível entrar! Saindo...");
