@@ -99,7 +99,7 @@ function login($ig) {
             logM("Conta sinalizada: saia de todos os telefones e tente fazer login no instagram.com neste computador antes de tentar executar este sistema novamente!");
             exit();
         }
-        echo 'Erro ao fazer login no Instagram: '.$e->getMessage()."\n";
+        echo 'Erro ao fazer login no Instagram. Verifique os dados e tente novamente.;
         logM("\nDeseja tentar novamente? \"SIM\" para confirmar \ \"NAO\" para sair do sistema.");
         print "> ";
         $handle = fopen ("php://stdin","r");
