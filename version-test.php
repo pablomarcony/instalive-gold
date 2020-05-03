@@ -109,7 +109,8 @@ function login($ig) {
         if (strpos($e->getMessage(), "Challenge") !== false) {
             logM("Conta sinalizada: saia de todos os telefones e tente fazer login no instagram.com neste computador antes de tentar executar este sistema novamente!");
             system("PAUSE >nul");
-            exit();
+            title();
+            login($ig);
         }
         echo 'Falha no login. Verifique suas credenciais.';
         logM("\nDeseja tentar novamente? \"SIM\" \ \"NAO\"");
