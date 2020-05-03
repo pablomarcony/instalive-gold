@@ -128,11 +128,11 @@ function usuario() {
     $line = trim(fgets($handle));
     if ($line != "") {
         $ig_username= $line;
+        return $ig_username;
     } else {
         logM("Digite o usuário corretamente.");
         usuario();
     }
-    return $ig_username;
 }
 function senha () {
     print "Senha: ";
@@ -140,11 +140,11 @@ function senha () {
     $line = trim(fgets($handle));
     if ($line != "") {    
         $ig_password = $line;
+        return $ig_password;
     } else {
         logM("Digite a senha corretamente.");
         senha();
     }
-    return $ig_password;
 }
 
 // Bloco responsável por criar a transmissão ao vivo.
