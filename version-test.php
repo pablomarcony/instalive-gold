@@ -34,10 +34,11 @@ function date_teste() {
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
     $limite = null;
-    $date = date("dmYHis");
+    $date = date("YmdHis");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     echo "\n".$date;
     echo "\n".$limite;
+    $limite = DateTime::createFromFormat ('Y/m/d H:i:s', $limite);
     $limite_final = str_replace("/", "", $limite);
     $limite_final = str_replace(":", "", $limite_final);
     $limite_final = str_replace(" ", "", $limite_final);
