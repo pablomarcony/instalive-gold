@@ -34,16 +34,22 @@ function date_teste() {
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
     $limite = "padron";
-    $date = date("dmY His");
+    $date = date("d/m/Y H:i:s");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
+    $dia_limite = substr($limite, 0, 2);
+    $mes_limite = substr($limite, 3, 2);
+    $ano_limite = substr($limite, 6, 4);
+    $hora_limite = substr($limite, 11, 2);
+    $minu_limite = substr($limite, 14, 2);
+    $segu_limite = substr($limite, 17, 2);
     echo "\n".$date;
     echo "\n".$limite;
-    $limite_final = DateTime::createFromFormat ('dmY His', $limite);
-    echo "\n".$date - $limite_final;
-    $date_final = DateTime::createFromFormat ('d/m/Y H:i:s', $date);
-    echo "\n".$date_final;
-    echo "\n".$limite_final;
-    
+    echo "\n".$dia_limite;
+    echo "\n".$mes_limite;
+    echo "\n".$ano_limite;
+    echo "\n".$hora_limite;
+    echo "\n".$minu_limite;
+    echo "\n".$segu_limite;
     system("PAUSE >nul");
     if ($limite == "padron"){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
