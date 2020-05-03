@@ -130,7 +130,6 @@ function usuario() {
         return $ig_username;
     } else {
         logM("Digite o usuário corretamente.");
-        return $ig_username;
         usuario();
     }
 }
@@ -142,7 +141,6 @@ function senha () {
         return $ig_password;
     } else {
         logM("Digite a senha corretamente.");
-        return $ig_password;
         senha();
     }
 }
