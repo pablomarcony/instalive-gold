@@ -79,11 +79,11 @@ $ig = new Instagram($debug, $truncatedDebug);
 function login($ig) {    
     logM("\nDigite os dados de acesso a conta no instagram.");
     //Login no Instagram
-    $ig_username = usuario();
-    $ig_password = senha();
+    $GLOBALS['ig_username'] = usuario();
+    $GLOBALS['ig_password'] = senha();
     logM("\nFazendo login no Instagram...");
     try {
-        $loginResponse = $ig->login($ig_username, $ig_password);
+        $loginResponse = $ig->login($GLOBALS['ig_username'], $GLOBALS['ig_password']);
 
         if ($loginResponse !== null && $loginResponse->isTwoFactorRequired()) {
             logM("Confirmação de acesso necessários! Por favor, verifique o código SMS recebido em seu telefone!");
@@ -92,7 +92,7 @@ function login($ig) {
             $handle = fopen ("php://stdin","r");
             $verificationCode = trim(fgets($handle));
             logM("Fazendo login com o código de confirmação...");
-            $ig->finishTwoFactorLogin(IG_USERNAME, IG_PASS, $twoFactorIdentifier, $verificationCode);
+            $ig->finishTwoFactorLogin($GLOBALS['ig_username'], $GLOBALS['ig_password'], $twoFactorIdentifier, $verificationCode);
         }
     } catch (\Exception $e) {
         if (strpos($e->getMessage(), "Challenge") !== false) {
@@ -113,7 +113,7 @@ function login($ig) {
     }
     return $ig_username;
 }
-$ig_username = login($ig);
+$ig_username = $GLOBALS['ig_username'];
 
 function usuario() {
     print "\nUsuário: ";
@@ -176,24 +176,27 @@ function new_tunel($ig, $ig_username) {
     return $status_live;
 }
 
-try {
-    if (!$ig->isMaybeLoggedIn) {
-        logM("Não foi possível entrar! Saindo...");
-        exit();
-    }
+function logado($ig,$ig_username) {
+    try {
+        if (!$ig->isMaybeLoggedIn) {
+            logM("Não foi possível entrar! Saindo...");
+            exit();
+        }
+        
+        $data = date("d/m/Y H:i:s");
+        title();
+        logM("Login efetuado com sucesso!");
+        logM("\nUsuário: ". $ig_username);
+        logM("Acesso: ". $data);
     
-    $data = date("d/m/Y H:i:s");
-    title();
-    logM("Login efetuado com sucesso!");
-    logM("\nUsuário: ". $ig_username);
-    logM("Acesso: ". $data);
-
-    print "\nPressione qualquer tecla para iniciar a transmissão.";
-    system("PAUSE >nul");
-    new_tunel($ig, $ig_username);
-} catch (\Exception $e) {
-    echo 'Erro ao criar transmissão ao vivo: '.$e->getMessage()."\n";
+        print "\nPressione qualquer tecla para iniciar a transmissão.";
+        system("PAUSE >nul");
+        new_tunel($ig, $ig_username);
+    } catch (\Exception $e) {
+        echo 'Erro ao criar transmissão ao vivo: '.$e->getMessage()."\n";
+    }
 }
+
 
 function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live) {
     title();
