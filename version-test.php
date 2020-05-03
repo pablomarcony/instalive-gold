@@ -33,19 +33,19 @@ function date_teste() {
     print "> ";
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
-    $limite = "padron";
+    $limite = null;
     $date = date("dmYHis");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     echo "\n".$date;
-    echo "\n".$limite."\n";
-    $limite = str_replace("/", "", $limite);
-    $limite = str_replace(":", "", $limite);
-    $limite = str_replace(" ", "", $limite);
-    echo "\n".$limite."\n";
-    echo $date - $limite;
+    echo "\n".$limite;
+    $limite_final = str_replace("/", "", $limite);
+    $limite_final = str_replace(":", "", $limite);
+    $limite_final = str_replace(" ", "", $limite);
+    echo "\n".$limite_final."\n";
+    echo $date - $limite_final;
 
     system("PAUSE >nul");
-    if ($limite == "padron"){
+    if ($limite == null){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();
         system("PAUSE >nul");
@@ -54,7 +54,7 @@ function date_teste() {
         title();
         logM("\nCódigo de acesso invalido.Por favor, Tente novamente.");
         date_teste();
-    } elseif ($limite <= $date){
+    } elseif ($limite_final <= $date){
         title();
         logM("\nEsta versão de teste expirou! Por favor, adquira uma nova versão com os desenvolvedores.");
         contato();
