@@ -37,7 +37,7 @@ function date_teste() {
     $date = date("d/m/Y H:i:s");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     if ($limite == null){
-        logM("\NPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
+        logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();
         system("PAUSE >nul");
         exit(0);
