@@ -65,6 +65,12 @@ function comandos() {
     |  \"9\" ou \"PARAR\" - Interrompe a transmissão                                                             |
     #--------------------------------------------------------------------------------------------------------#");
 }
+
+use InstagramAPI\Instagram;
+use InstagramAPI\Request\Live;
+$debug = false;
+$truncatedDebug = false;
+$ig = new Instagram($debug, $truncatedDebug);
 login($ig);
 function login($ig) {    
     logM("\nDigite os dados de acesso a conta no instagram.");
