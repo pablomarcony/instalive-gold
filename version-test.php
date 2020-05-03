@@ -128,26 +128,22 @@ login($ig);
 function usuario() {
     print "\nUsuário: ";
     $handle = fopen ("php://stdin","r");
-    $line = trim(fgets($handle));
-    if ($line != "") {
-        $ig_username = $line;
-        return $ig_username;
-    } else {
+    $ig_username = trim(fgets($handle));
+    if ($ig_username == "") {
         logM("Digite o usuário corretamente.");
         usuario();
     }
+    return $ig_username;
 }
 function senha () {
     print "Senha: ";
     $handle = fopen ("php://stdin","r");
-    $line = trim(fgets($handle));
-    if ($line != "") {
-        $ig_password = $line;
-        return $ig_password;
-    } else {
+    $ig_password = trim(fgets($handle));
+    if ($ig_password == "") {
         logM("Digite a senha corretamente.");
         senha();
     }
+    return $ig_password;
 }
 
 // Bloco responsável por criar a transmissão ao vivo.
