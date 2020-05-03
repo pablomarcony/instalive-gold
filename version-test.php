@@ -37,8 +37,8 @@ function date_teste() {
     $date = date("dmYHis");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     echo "\n".$date;
-    echo "\n".$limite;
-    echo "\n\n".$date - $limite;
+    echo "\n".$limite."\n";
+    echo $date - $limite;
 
     system("PAUSE >nul");
     if ($limite == "padron"){
