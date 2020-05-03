@@ -79,11 +79,11 @@ $ig = new Instagram($debug, $truncatedDebug);
 function login($ig) {    
     logM("\nDigite os dados de acesso a conta no instagram.");
     //Login no Instagram
-    $GLOBALS['ig_username'] = usuario();
-    $GLOBALS['ig_password'] = senha();
+    $ig_username = usuario();
+    $ig_password = senha();
     logM("\nFazendo login no Instagram...");
     try {
-        $loginResponse = $ig->login($GLOBALS['ig_username'], $GLOBALS['ig_password']);
+        $loginResponse = $ig->login($ig_username, $ig_password);
 
         if ($loginResponse !== null && $loginResponse->isTwoFactorRequired()) {
             logM("Confirmação de acesso necessários! Por favor, verifique o código SMS recebido em seu telefone!");
@@ -92,7 +92,7 @@ function login($ig) {
             $handle = fopen ("php://stdin","r");
             $verificationCode = trim(fgets($handle));
             logM("Fazendo login com o código de confirmação...");
-            $ig->finishTwoFactorLogin($GLOBALS['ig_username'], $GLOBALS['ig_password'], $twoFactorIdentifier, $verificationCode);
+            $ig->finishTwoFactorLogin($ig_username, $ig_password, $twoFactorIdentifier, $verificationCode);
         }
     } catch (\Exception $e) {
         if (strpos($e->getMessage(), "Challenge") !== false) {
@@ -113,13 +113,14 @@ function login($ig) {
     }
     return $ig_username;
 }
+$ig_username = login($ig);
 
 function usuario() {
     print "\nUsuário: ";
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if ($line != "") {
-        $ig_username= $line;
+        $ig_username = $line;
     } else {
         logM("Digite o usuário corretamente.");
         usuario();
@@ -185,7 +186,7 @@ function logado($ig,$ig_username) {
         $data = date("d/m/Y H:i:s");
         title();
         logM("Login efetuado com sucesso!");
-        logM("\nUsuário: ". $GLOBALS['ig_username']);
+        logM("\nUsuário: ". $ig_username);
         logM("Acesso: ". $data);
     
         print "\nPressione qualquer tecla para iniciar a transmissão.";
