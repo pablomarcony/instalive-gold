@@ -39,6 +39,7 @@ function date_teste() {
     echo $date;
     echo $limite;
     echo $date - $limite;
+    system("PAUSE >nul");
     if ($limite == "padron"){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();
