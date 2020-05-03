@@ -39,7 +39,7 @@ function date_teste() {
     echo "\n".$date;
     echo "\n".$limite;
     $limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
-    $limite_fim = date_format($limite_fim, 'Y/m/d H:i:s');
+    $limite_fim = date_format($limite_fim, 'YmdHis');
     echo "\n".$limite_fim."\n";
     echo $date - $limite_fim;
 
