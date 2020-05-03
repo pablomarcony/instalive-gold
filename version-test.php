@@ -39,8 +39,8 @@ function date_teste() {
     echo "\n".$date;
     echo "\n".$limite;
     $limite_final = str_replace("/", "", $limite);
-    $limite_final = str_replace(":", "", $limite);
-    $limite_final = str_replace(" ", "", $limite);
+    $limite_final = str_replace(":", "", $limite_final);
+    $limite_final = str_replace(" ", "", $limite_final);
     echo "\n".$limite_final."\n";
     echo $date - $limite_final;
 
