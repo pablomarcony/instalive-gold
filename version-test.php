@@ -53,7 +53,7 @@ function date_teste() {
     } else {
         title();
         logM("VERSÃO DE TESTE. DATA LIMITE: $limite");
-        $texto_title = "VERSÃO DE TESTE. DATA LIMITE: " $limite;
+        $texto_title = "VERSÃO DE TESTE. DATA LIMITE: " . $limite;
         define('TEXTO_TITLE', $texto_title);
     }
 }
