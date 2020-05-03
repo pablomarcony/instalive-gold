@@ -37,12 +37,13 @@ function date_teste() {
     $date = date("d/m/Y H:i:s");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     if ($limite == null){
-        logM("Por favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
+        logM("\NPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
+        contato();
         system("PAUSE >nul");
         exit(0);
     } elseif ($limite == "c-invalido"){
         title();
-        logM("Código de acesso invalido.Por favor, Tente novamente.");
+        logM("\NCódigo de acesso invalido.Por favor, Tente novamente.");
         date_teste();
     } elseif ($limite <= $date){
         title();
