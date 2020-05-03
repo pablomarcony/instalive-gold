@@ -128,11 +128,11 @@ function usuario() {
     $line = trim(fgets($handle));
     if ($line != "") {
         $ig_username= $line;
+        return $ig_username;
     } else {
         logM("Digite o usuário corretamente.");
         usuario();
     }
-    return $ig_username;
 }
 function senha () {
     print "Senha: ";
