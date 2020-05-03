@@ -34,7 +34,7 @@ function date_teste() {
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
     $limite = "padron";
-    $date = date("d-m-Y");
+    $date = date("dmY His");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     echo "\n".$date;
     echo "\n".$limite;
