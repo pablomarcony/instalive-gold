@@ -99,7 +99,7 @@ function login($ig) {
             $handle = fopen ("php://stdin","r");
             $verificationCode = trim(fgets($handle));
             logM("Fazendo login com o código de confirmação...");
-            $ig->finishTwoFactorLogin(IG_USERNAME, IG_PASS, $twoFactorIdentifier, $verificationCode);
+            $ig->finishTwoFactorLogin($ig_username, $ig_password, $twoFactorIdentifier, $verificationCode);
         }
     } catch (\Exception $e) {
         if (strpos($e->getMessage(), "Challenge") !== false) {
@@ -128,11 +128,11 @@ function usuario() {
     $line = trim(fgets($handle));
     if ($line != "") {
         $ig_username= $line;
-        return $ig_username;
     } else {
         logM("Digite o usuário corretamente.");
         usuario();
     }
+    return $ig_username;
 }
 function senha () {
     print "Senha: ";
