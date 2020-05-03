@@ -34,7 +34,7 @@ function date_teste() {
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
     $limite = "padron";
-    $date = date("d/m/Y H:i:s");
+    $date = date("dmYHis");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     $dia_limite = substr($limite, 0, 2);
     $mes_limite = substr($limite, 3, 2);
@@ -50,6 +50,7 @@ function date_teste() {
     echo "\n".$hora_limite;
     echo "\n".$minu_limite;
     echo "\n".$segu_limite;
+
     system("PAUSE >nul");
     if ($limite == "padron"){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
