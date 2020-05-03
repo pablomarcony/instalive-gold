@@ -38,6 +38,8 @@ function date_teste() {
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
     echo "\n".$date;
     echo "\n".$limite."\n";
+    $limite = DateTime::createFromFormat('dmYHi', $limite);
+    echo "\n".$limite."\n";
     echo $date - $limite;
 
     system("PAUSE >nul");
