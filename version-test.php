@@ -66,7 +66,7 @@ function comandos() {
     |  \"3\" ou \"URL\" - Mostra a URL da transmissão         \"4\" ou \"CHAVE\" - Mostra a chave da transmissão     |
     |  \"5\" ou \"DESATIVAR C\" - Desativa os comentários     \"6\" ou \"ATIVAR C\" - Ativa os comentários           |
     |  \"7\" ou \"VIEWERS\" - Espectadores atuais             \"8\" ou \"LIMPAR\" - Limpa a tela do sistema          |
-    |  \"9\" ou \"PARAR\" - Interrompe a transmissão                                                             |
+    |  \"9\" ou \"PARAR\" - Interrompe a transmissão          \"10\" ou \"CONTATO\" - Contato dos desenvolvedores    |
     #--------------------------------------------------------------------------------------------------------#");
 }
 
@@ -306,6 +306,9 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
     } elseif ($line == 'ajuda' || $line == 'AJUDA' || $line == '1') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+    } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
+        corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        contato();        
     } else {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\nComando inválido. Digite \"AJUDA\" para obter ajuda!");
