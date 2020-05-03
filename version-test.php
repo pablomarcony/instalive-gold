@@ -113,7 +113,6 @@ function login($ig) {
     }
     return $ig_username;
 }
-$ig_username = $GLOBALS['ig_username'];
 
 function usuario() {
     print "\nUsuário: ";
@@ -186,7 +185,7 @@ function logado($ig,$ig_username) {
         $data = date("d/m/Y H:i:s");
         title();
         logM("Login efetuado com sucesso!");
-        logM("\nUsuário: ". $ig_username);
+        logM("\nUsuário: ". $GLOBALS['ig_username']);
         logM("Acesso: ". $data);
     
         print "\nPressione qualquer tecla para iniciar a transmissão.";
