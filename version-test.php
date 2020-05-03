@@ -36,20 +36,9 @@ function date_teste() {
     $limite = "padron";
     $date = date("dmYHis");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
-    $dia_limite = substr($limite, 0, 2);
-    $mes_limite = substr($limite, 3, 2);
-    $ano_limite = substr($limite, 6, 4);
-    $hora_limite = substr($limite, 11, 2);
-    $minu_limite = substr($limite, 14, 2);
-    $segu_limite = substr($limite, 17, 2);
     echo "\n".$date;
     echo "\n".$limite;
-    echo "\n".$dia_limite;
-    echo "\n".$mes_limite;
-    echo "\n".$ano_limite;
-    echo "\n".$hora_limite;
-    echo "\n".$minu_limite;
-    echo "\n".$segu_limite;
+    echo "\n".$date - $limite;
 
     system("PAUSE >nul");
     if ($limite == "padron"){
