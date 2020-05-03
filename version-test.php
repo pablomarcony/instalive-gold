@@ -39,6 +39,11 @@ function date_teste() {
     echo "\n".$date;
     echo "\n".$limite;
     echo "\n".$date - $limite;
+    $date_final = DateTime::createFromFormat ('d/m/Y H:i:s', $date);
+    $limite_final = DateTime::createFromFormat ('d/m/Y H:i:s', $limite);
+    echo "\n".$date_final;
+    echo "\n".$limite_final;
+    
     system("PAUSE >nul");
     if ($limite == "padron"){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
