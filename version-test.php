@@ -81,7 +81,7 @@ function login($ig) {
     //Login no Instagram
     $ig_username = usuario();
     $ig_password = senha();
-    logM("\nFazendo login no Instagram...");
+    logM("\nFazendo login no Instagram...\r");
     try {
         $loginResponse = $ig->login($ig_username, $ig_password);
 
