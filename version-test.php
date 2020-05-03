@@ -36,12 +36,8 @@ function date_teste() {
     $limite = null;
     $date = date("YmdHis");
     include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
-    echo "\n".$date;
-    echo "\n".$limite;
     $limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
     $limite_fim = date_format($limite_fim, 'YmdHis');
-    echo "\n".$limite_fim."\n";
-    echo $date - $limite_fim;
 
     system("PAUSE >nul");
     if ($limite == null){
@@ -53,7 +49,7 @@ function date_teste() {
         title();
         logM("\nCódigo de acesso invalido.Por favor, Tente novamente.");
         date_teste();
-    } elseif ($limite_final <= $date){
+    } elseif ($limite_fim <= $date){
         title();
         logM("\nEsta versão de teste expirou! Por favor, adquira uma nova versão com os desenvolvedores.");
         contato();
