@@ -3,7 +3,7 @@ system('title InstaLive Gold Trial');
 system('break off');
 echo "\e[H\e[J";
 if (php_sapi_name() !== "cli") {
-    die("Você só pode executar isso dentro da linha de comando do PHP! Se você executou isso na linha de comando, informe: \"".php_sapi_name()."\" ao repositório do sistema!");
+    die("Você só pode executar isso dentro da linha de comando do PHP!");
 }
 $texto_title = "";
 function title () {
@@ -27,13 +27,13 @@ function contato() {
     logM("Telefone: +55 98 98348-6439");
     logM("Email: pablomarconyjf@gmail.com");
 }
-title();
-logM("\nEsta é uma versão de teste! Por favor, digite sua chave de acesso:");
 function novo_limite ($limite) {
     $limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
     $limite_fim = date_format($limite_fim, 'YmdHis');
     return $limite_fim;
 }
+title();
+logM("\nEsta é uma versão de teste! Por favor, digite sua chave de acesso:");
 function date_teste() {
     print "> ";
     $handle = fopen ("php://stdin","r");
@@ -48,7 +48,7 @@ function date_teste() {
         exit(0);
     } elseif ($limite == "c-invalido"){
         title();
-        logM("\nCódigo de acesso invalido.Por favor, Tente novamente.");
+        logM("\nChave de acesso invalida. Por favor, Tente novamente.");
         date_teste();
     } elseif ($limite_fim <= $date){
         title();
