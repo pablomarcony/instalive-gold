@@ -58,7 +58,7 @@ function date_teste() {
         exit(0);
     } else {
         title();
-        logM("VERSÃO DE TESTE VALIDA ATÉ: $limite.");
+        logM("VERSÃO DE TESTE VALIDA ATÉ: $limite");
         $texto_title = "VERSÃO DE TESTE VALIDA ATÉ: ". $limite ."\n";
         define("TEXTO_TITLE", $texto_title);
     }
