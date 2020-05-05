@@ -1,5 +1,5 @@
 <?php
-system('title InstaLive Gold');
+system('title InstaLive Gold Trial');
 system('break off');
 echo "\e[H\e[J";
 if (php_sapi_name() !== "cli") {
