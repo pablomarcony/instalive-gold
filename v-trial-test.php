@@ -114,7 +114,8 @@ $debug = false;
 $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
 
-    static function dump(string $exception = null)
+
+function dump(string $exception = null)
     {
         clearstatcache();
         logM("===========BEGIN DUMP===========");
