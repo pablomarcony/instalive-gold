@@ -135,7 +135,7 @@ function login($ig) {
             print "\nDigite seu código recebido: ";
             $handle = fopen ("php://stdin","r");
             $verificationCode = trim(fgets($handle));
-            logM("Realizando login com o código de confirmação...");
+            logM("\nRealizando login com o código de confirmação...\r");
             $ig->finishTwoFactorLogin($ig_username, $ig_password, $twoFactorIdentifier, $verificationCode);
         }
     } catch (\Exception $e) {
