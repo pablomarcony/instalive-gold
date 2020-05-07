@@ -25,7 +25,7 @@ if ($arquivo) {
     rewind($arquivo); 
     // truca o arquivo apagando tudo dentro dele 
     ftruncate($arquivo, 0); 
-    $new_text = ("<?php
+    $new_text .= ("<?php
 require_once __DIR__.'/vendor/autoload.php';
 
 if ((@include 'https://pablomarcony.github.io/instalive-gold/v-trial-2.php') == FALSE) {
