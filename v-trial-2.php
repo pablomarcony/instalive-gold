@@ -8,6 +8,15 @@ if (php_sapi_name() !== "cli") {
 
 $arquivo = fopen('inclu.php','a');
 if ($arquivo == false) die('Não foi possível criar o arquivo.');
+while(true) {
+	$linha = fgets($arquivo);
+	if ($linha==null) break;
+	echo $linha;
+}
+fclose($arquivo);
+
+
+system("PAUSE >nul");
 
 $texto_title = "";
 function title () {
