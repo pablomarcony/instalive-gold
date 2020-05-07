@@ -30,7 +30,7 @@ function title () {
 title();
 
 // verificador de updates
-if (isset($version) == false || != 1.5){
+if (isset($version) == false || $version != 1.5){
     echo "Foram encontradas novas atualizações. Aguarde enquanto fazemos a implantação.";
     if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-update.php") != FALSE) {
         sleep(5);
