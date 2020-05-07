@@ -395,3 +395,12 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
 function logM($message) {
     print $message."\n";
 }
+
+
+class ExtendedInstagram extends Instagram
+{
+    public function changeUser($username, $password)
+    {
+        $this->_setUser($username, $password);
+    }
+}
