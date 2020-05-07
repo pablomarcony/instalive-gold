@@ -22,7 +22,7 @@ function title () {
   | |   _ __   ___ | |_   __ _ | |     _ __   __  ___    | |  \/  ___  | |  __| | 
   | |  | '_ \ / __|| __| / _` || |    | |\ \ / / / _ \   | | __  / _ \ | | / _` | 
  _| |_ | | | |\__ \| |_ | (_| || |____| | \ V / |  __/   | |_\ \| (_) || || (_| | 
- \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| Versão de pre-teste 2.0
+ \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| Versão de teste 1.7
     ");
     logM("Copyright © 2020 - Todos os direitos reservados - Pablo Marcony");
     echo $texto_title;
@@ -30,7 +30,7 @@ function title () {
 title();
 
 // verificador de updates
-if (isset($version) == false || $version != 1.7){
+if (isset($version) == false || $version != 1.8){
     echo "\nForam encontradas novas atualizações. Aguarde enquanto fazemos a implantação.";
     if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-update-test.php") == FALSE) {
         $erro_update = true;

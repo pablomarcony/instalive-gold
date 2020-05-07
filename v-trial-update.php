@@ -10,12 +10,12 @@ if ($arquivo != false) {
     // dados a serem colocados no arquivo
     $new_text = '<?php
 require_once __DIR__."/vendor/autoload.php";
-$version = 1.7;
+$version = 1.8;
 
 if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial.php") == FALSE) {
     echo "\e[H\e[J";
     echo "\nFalha no carregamento! Por favor, verifique sua conexão a internet para utilizar o sistema.";
-    echo "\nCaso o erro persista, entre em contato com dos desenvolvedores.";
+    echo "\nCaso o erro persista, entre em contato com os desenvolvedores.";
     system("PAUSE >nul");
 }
     ';
