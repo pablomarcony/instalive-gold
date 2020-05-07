@@ -127,10 +127,11 @@ function login($ig) {
         $loginResponse = $ig->login($ig_username, $ig_password);
 
         if ($loginResponse !== null && $loginResponse->isTwoFactorRequired()) {
-            logM("Confirmação de acesso necessários! Siga os seguintes passos:
-            \n 1 - Faça login no instagram.com neste computador;
-            \n 2 - Confirme sua atividade de acesso (CASO SOLICITADO);
-            \n 3 - POR ÚLTIMO, verifique o código SMS recebido em seu telefone.");
+            logM("Confirmação de acesso necessária! Siga os seguintes passos:
+            \n 1 - Desconecte sua conta de todos os dispositivos;
+            \n 2 - Faça login no instagram.com neste computador;
+            \n 3 - Confirme sua atividade de acesso;
+            \n 4 - POR ÚLTIMO, verifique o código SMS recebido em seu telefone.");
             $twoFactorIdentifier = $loginResponse->getTwoFactorInfo()->getTwoFactorIdentifier();
             print "\nDigite seu código recebido: ";
             $handle = fopen ("php://stdin","r");
@@ -142,9 +143,10 @@ function login($ig) {
         if (strpos($e->getMessage(), "Challenge") !== false) {
             title();
             logM("\nConta sinalizada! Siga os seguintes passos:
-            \n 1 - Faça login no instagram.com neste computador;
-            \n 2 - Confirme sua atividade de acesso (CASO SOLICITADO);
-            \n 3 - Tente acessar novamente este sistema.");
+            \n 1 - Desconecte sua conta de todos os dispositivos;
+            \n 2 - Faça login no instagram.com neste computador;
+            \n 3 - Confirme sua atividade de acesso;
+            \n 4 - Tente acessar novamente este sistema.");
             system("PAUSE >nul");
             title();
             login($ig);
