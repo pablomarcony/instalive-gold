@@ -92,6 +92,8 @@ function date_teste() {
     } else {
         $texto_title = "VERSÃO TRIAL VALIDA ATÉ: \n";
         title();
+        echo $limite_2;
+        echo $date_2;
         echo $limite_2->diff($date_2)->format('Faltam %Y Anos %m Mês, %d dias e %h horas %i minutos');
         define("TEXTO_TITLE", $texto_title);
     }
