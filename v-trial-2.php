@@ -1,4 +1,7 @@
 <?php
+setlocale(LC_ALL,'pt_BR.UTF8');
+mb_internal_encoding('UTF8'); 
+mb_regex_encoding('UTF8');
 
 // abre o arquivo colocando o ponteiro de escrita no final 
 $arquivo = fopen('../dir/inclu.php','r+');
