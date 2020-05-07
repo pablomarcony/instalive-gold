@@ -70,6 +70,11 @@ function date_teste() {
     $code = trim(fgets($handle));
     $limite = null;
     $date = date("YmdHis");
+    $_date = strtotime(date("d-m-Y"));
+    $_limite = strtotime(date_format($limite, 'd-m-Y'));
+    $dias_left = ($_date - $_limite) /86400;
+    $dias_left = $dias_left * -1;
+    
     include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
     if ($limite == null){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
@@ -87,10 +92,6 @@ function date_teste() {
         system("PAUSE >nul");
         exit(0);
     } else {
-        $_date = strtotime(date("d-m-Y"));
-        $_limite = strtotime(date_format($_limite_fim, 'd-m-Y'));
-        $dias_left = ($_date - $_limite) /86400;
-        $dias_left = $dias_left * -1;
         
         $date_2 = new DateTime();
         $limite_2 =  new DateTime($limite);
