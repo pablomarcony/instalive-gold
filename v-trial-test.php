@@ -194,12 +194,15 @@ function login($ig) {
 
                     if (@$customResponse['status'] === 'ok' && @$customResponse['logged_in_user']['pk'] !== null) {
                         logM("Confirmação provavelmente realizada!");
-                        exit(1);
+                        system("PAUSE >nul");
+                        title();
+                        login($ig);
                     }
                 } catch (Exception $ex) {
                     logM("Falha na confirmação da conta. Por favor, tente novamente.");
-                    dump($ex->getMessage());
-                    exit(1);
+                    system("PAUSE >nul");
+                    title();
+                    login($ig);
                 }
             }
         } catch (LazyJsonMapperException $mapperException) {
