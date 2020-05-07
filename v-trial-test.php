@@ -45,7 +45,7 @@ if (isset($version) == false || $version != 1.9){
     } else {
         sleep(5);
         title();
-        echo "\nAtualizações implantadas com sucesso! Por favor, reinicie o sistema.";
+        echo "\nAtualizações implantadas com sucesso! Por favor, reinicie o InstaLive Gold Trial.";
         system("PAUSE >nul");
         exit(0);
     }
@@ -93,6 +93,7 @@ function date_teste() {
         $dias_left = (($_date - $_limite) /86400) *-1;
         $texto_title = "ESTA É UMA VERSÃO TRIAL. VOCÊ TEM ". $dias_left ." DIAS RESTANTES.\n";
         title();
+
         echo $texto_title;
         define("TEXTO_TITLE", $texto_title);
     }
