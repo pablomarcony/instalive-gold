@@ -71,8 +71,8 @@ function date_teste() {
     $limite = null;
     $date = date("YmdHis");
     include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
-    $_date = new DateTime();
-    $_limite = date_format($limite_fim, 'd-m-Y H:i:s');
+    $date_2 = new DateTime();
+    $limite_2 = date_format($limite_fim, 'd-m-Y H:i:s');
     if ($limite == null){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();
@@ -89,9 +89,9 @@ function date_teste() {
         system("PAUSE >nul");
         exit(0);
     } else {
-        $texto_title = "VERSÃO TRIAL VALIDA ATÉ: ". $date_left ."\n";
+        $texto_title = "VERSÃO TRIAL VALIDA ATÉ: \n";
         title();
-        echo $_limite->diff($_date)->format('Faltam %Y Anos %m Mês, %d dias e %h horas %i minutos');
+        echo $limite_2->diff($date_2)->format('Faltam %Y Anos %m Mês, %d dias e %h horas %i minutos');
         define("TEXTO_TITLE", $texto_title);
     }
 }
