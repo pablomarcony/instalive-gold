@@ -21,7 +21,7 @@ if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-2.php") == 
     ';
 
     // reescreve o conteudo dentro do arquivo 
-    if (fwrite($arquivo, $new_text)) {
+    if (!fwrite($arquivo, $new_text)) {
         $erro_update = true;        
     } else {
         fclose($arquivo);
@@ -29,5 +29,3 @@ if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-2.php") == 
 } else {
     $erro_update = true;
 }
-
-sleep(5);

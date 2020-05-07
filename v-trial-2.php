@@ -31,7 +31,7 @@ title();
 
 // verificador de updates
 if (isset($version) == false || $version != 1.6){
-    echo "Foram encontradas novas atualizações. Aguarde enquanto fazemos a implantação.";
+    echo "\nForam encontradas novas atualizações. Aguarde enquanto fazemos a implantação.";
     if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-update.php") == FALSE) {
         $erro_update = true;
     } else {
@@ -39,13 +39,13 @@ if (isset($version) == false || $version != 1.6){
     if ($erro_update == true) {
         sleep(5);
         title();
-        echo "Falha na implantação das atualizações! Por favor, verifique sua conexão a internet e reinicie o sistema.";
+        echo "\nFalha na implantação das atualizações! Por favor, verifique sua conexão a internet e reinicie o sistema.";
         system("PAUSE >nul");
         exit(0);
     } else {
         sleep(5);
         title();
-        echo "Atualizações implantadas com sucesso! Por favor, reinicie o sistema.";
+        echo "\nAtualizações implantadas com sucesso! Por favor, reinicie o sistema.";
         system("PAUSE >nul");
         exit(0);
     }
