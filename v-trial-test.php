@@ -92,13 +92,7 @@ function date_teste() {
     } else {
         $texto_title = "VERSÃO TRIAL VALIDA ATÉ: ". $date_left ."\n";
         title();
-        echo sprintf("%d Anos %d Mês, %d dias, %d horas, %d minutos e %s segundos",
-        $date_left->y,
-        $date_left->m,
-        $date_left->d,
-        $date_left->h,
-        $date_left->m,
-        $date_left->s);
+        echo $date_left->format('Faltam %Y Anos %m Mês, %d dias e %h horas %i minutos');
         define("TEXTO_TITLE", $texto_title);
     }
 }
