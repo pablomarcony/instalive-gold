@@ -70,10 +70,17 @@ function date_teste() {
     $code = trim(fgets($handle));
     $limite = null;
     $date = date("YmdHis");
+    include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
     $_date = new DateTime("Y/m/d H:i:s");
     $_limite = new DateTime($limite);
-    $date_left = $_limite->diff($_date)->format('%Y Anos %m Mês, %d dias, %h horas e %i minutos');
-    include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
+    $date_left = $_limite->diff($_date);
+    echo sprintf("%Y Anos %m Mês, %d dias, %h horas e %m minutos",
+    $date_left->y,
+    $date_left->m,
+    $date_left->d,
+    $date_left->h,
+    $date_left->m,
+    $date_left->s);
     if ($limite == null){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();
