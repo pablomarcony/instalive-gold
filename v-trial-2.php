@@ -24,7 +24,7 @@ function title () {
 
 
 
-$arquivo = fopen('inclu.php','r');
+$arquivo = fopen('inclsu.php','r');
 if ($arquivo == false) die('Não foi possível criar o arquivo.');
 while(true) {
 	$linha = fgets($arquivo);
