@@ -24,7 +24,7 @@ switch ($code) {
         // Contato: 65 99247 0790 
         // Limite: 5 dias (05/05/2020)  
 
-        $limite = "23/05/2020 00:00:00";
+        $limite = "13/05/2020 00:00:00";
         $limite_fim = novo_limite($limite);
     break;
     default:
