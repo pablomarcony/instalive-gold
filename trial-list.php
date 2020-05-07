@@ -18,6 +18,15 @@ switch ($code) {
         $limite = "15/05/2020 00:00:00";
         $limite_fim = novo_limite($limite);
     break;
+    case "#d7m50790":
+
+        // Usuário: Stage3 Audiovisual
+        // Contato: 98 98565 0742  
+        // Limite: 5 dias (05/05/2020)  
+
+        $limite = "23/05/2020 00:00:00";
+        $limite_fim = novo_limite($limite);
+    break;
     default:
         $limite = "c-invalido";
     break;
