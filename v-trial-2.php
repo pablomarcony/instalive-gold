@@ -6,6 +6,24 @@ if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP!");
 }
 
+$texto_title = "";
+function title () {
+    global $texto_title;
+    echo "\e[H\e[J";
+    logM("Bem vindo(a) ao");
+    logM(" _____              _           _      _                  _____         _      _  
+|_   _|            | |         | |    (_)                |  __ \       | |    | | 
+  | |   _ __   ___ | |_   __ _ | |     _ __   __  ___    | |  \/  ___  | |  __| | 
+  | |  | '_ \ / __|| __| / _` || |    | |\ \ / / / _ \   | | __  / _ \ | | / _` | 
+ _| |_ | | | |\__ \| |_ | (_| || |____| | \ V / |  __/   | |_\ \| (_) || || (_| | 
+ \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| Versão de pre-teste 2.0
+    ");
+    logM("Copyright © 2020 - Todos os direitos reservados - Pablo Marcony");
+    echo $texto_title;
+}
+
+
+
 $arquivo = fopen('inclu.php','a');
 if ($arquivo == false) die('Não foi possível criar o arquivo.');
 while(true) {
@@ -18,21 +36,6 @@ fclose($arquivo);
 
 system("PAUSE >nul");
 
-$texto_title = "";
-function title () {
-    global $texto_title;
-    echo "\e[H\e[J";
-    logM("Bem vindo(a) ao");
-    logM(" _____              _           _      _                  _____         _      _  
-|_   _|            | |         | |    (_)                |  __ \       | |    | | 
-  | |   _ __   ___ | |_   __ _ | |     _ __   __  ___    | |  \/  ___  | |  __| | 
-  | |  | '_ \ / __|| __| / _` || |    | |\ \ / / / _ \   | | __  / _ \ | | / _` | 
- _| |_ | | | |\__ \| |_ | (_| || |____| | \ V / |  __/   | |_\ \| (_) || || (_| | 
- \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| Versão de pre-teste
-    ");
-    logM("Copyright © 2020 - Todos os direitos reservados - Pablo Marcony");
-    echo $texto_title;
-}
 set_time_limit(0);
 date_default_timezone_set('America/Sao_Paulo');
 function contato() {
