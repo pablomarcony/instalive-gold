@@ -70,10 +70,6 @@ function date_teste() {
     $code = trim(fgets($handle));
     $limite = null;
     $date = date("YmdHis");
-    $_date = strtotime(date("d-m-Y"));
-    $_limite = strtotime(date_format($limite, 'd-m-Y'));
-    $dias_left = ($_date - $_limite) /86400;
-    $dias_left = $dias_left * -1;
     
     include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
     if ($limite == null){
@@ -92,13 +88,12 @@ function date_teste() {
         system("PAUSE >nul");
         exit(0);
     } else {
-        
-        $date_2 = new DateTime();
-        $limite_2 =  new DateTime($limite);
-        $texto_title = $limite_2->diff($date_2)->format('%Y Anos %m Mês, %d dias e %h horas %i minutos');
+        $_date = strtotime(date("d-m-Y"));
+        $_limite = strtotime(date_format(DateTime::createFromFormat('d/m/Y H:i:s', $limite), 'd-m-Y'));
+        $dias_left = (($_date - $_limite) /86400) *-1;
+        $texto_title = "ESTA É UMA VERSÃO TRIAL. VOCÊ TEM ". $dias_left ." DIAS RESTANTES.\n";
         title();
-        echo "VERSÃO TRIAL VALIDA ATÉ:". $texto_title ." \n";
-        echo $dias_left;
+        echo $texto_title;
         define("TEXTO_TITLE", $texto_title);
     }
 }
