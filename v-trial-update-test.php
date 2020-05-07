@@ -12,7 +12,7 @@ if ($arquivo != false) {
 require_once __DIR__."/vendor/autoload.php";
 $version = 1.8;
 
-if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-teste.php") == FALSE) {
+if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-test.php") == FALSE) {
     echo "\e[H\e[J";
     echo "\nFalha no carregamento! Por favor, verifique sua conexão a internet para utilizar o sistema.";
     echo "\nCaso o erro persista, entre em contato com os desenvolvedores.";
