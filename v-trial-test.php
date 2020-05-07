@@ -17,11 +17,12 @@ function title () {
     global $texto_title;
     echo "\e[H\e[J";
     logM("Bem vindo(a) ao");
-    logM("____  _/___  | / /__  ___/___  __/___    |___  / ____  _/__ |  / /___  ____/       __  ____/__  __ \___  / ___  __ \
-    __  /  __   |/ / _____ \ __  /   __  /| |__  /   __  /  __ | / / __  __/          _  / __  _  / / /__  /  __  / / /
-   __/ /   _  /|  /  ____/ / _  /    _  ___ |_  /_____/ /   __ |/ /  _  /___          / /_/ /  / /_/ / _  /____  /_/ / 
-   /___/   /_/ |_/   /____/  /_/     /_/  |_|/_____//___/   _____/   /_____/          \____/   \____/  /_____//_____/  
-                                                                                                                        Versão de teste 1.9
+    logM(" _____              _           _      _                  _____         _      _  
+|_   _|            | |         | |    (_)                |  __ \       | |    | | 
+  | |   _ __   ___ | |_   __ _ | |     _ __   __  ___    | |  \/  ___  | |  __| | 
+  | |  | '_ \ / __|| __| / _` || |    | |\ \ / / / _ \   | | __  / _ \ | | / _` | 
+ _| |_ | | | |\__ \| |_ | (_| || |____| | \ V / |  __/   | |_\ \| (_) || || (_| | 
+ \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| Versão de teste 1.9
     ");
     logM("Copyright © 2020 - Todos os direitos reservados - Pablo Marcony");
     echo $texto_title;
@@ -65,7 +66,7 @@ function novo_limite ($limite) {
 logM("\nEsta é uma versão de teste! Por favor, digite sua chave de acesso:");
 function date_teste() {
     print "> ";
-
+    
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
     $limite = null;
