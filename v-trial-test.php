@@ -114,13 +114,6 @@ $debug = false;
 $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
 
-
-
-
-    /**
-     * Logs information about the current environment.
-     * @param string $exception Exception message to log.
-     */
     public static function dump(string $exception = null)
     {
         clearstatcache();
