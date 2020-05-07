@@ -71,7 +71,7 @@ function date_teste() {
     $limite = null;
     $date = date("YmdHis");
     include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
-    $_date = new DateTime("Y/m/d H:i:s");
+    $_date = new date("Y/m/d H:i:s");
     $_limite = new DateTime($limite);
     $date_left = $_limite->diff($_date);
     echo sprintf("%Y Anos %m Mês, %d dias, %h horas e %m minutos",
