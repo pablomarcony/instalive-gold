@@ -1,4 +1,10 @@
 <?php
+setlocale(LC_ALL,'pt_BR.UTF8');
+mb_internal_encoding('UTF8'); 
+mb_regex_encoding('UTF8');
+set_time_limit(0);
+date_default_timezone_set('America/Sao_Paulo');
+
 system('title InstaLive Gold Trial');
 system('break off');
 echo "\e[H\e[J";
@@ -21,8 +27,33 @@ function title () {
     logM("Copyright © 2020 - Todos os direitos reservados - Pablo Marcony");
     echo $texto_title;
 }
-set_time_limit(0);
-date_default_timezone_set('America/Sao_Paulo');
+title();
+
+
+
+// verificador de updates
+if (isset($version) == false || $version != 1.7){
+    echo "\nForam encontradas novas atualizações. Aguarde enquanto fazemos a implantação.";
+    if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-update.php") == FALSE) {
+        $erro_update = true;
+    } else {
+    }
+    if ($erro_update == true) {
+        sleep(5);
+        title();
+        echo "\nFalha na implantação das atualizações! Por favor, verifique sua conexão a internet e reinicie o sistema.";
+        system("PAUSE >nul");
+        exit(0);
+    } else {
+        sleep(5);
+        title();
+        echo "\nAtualizações implantadas com sucesso! Por favor, reinicie o sistema.";
+        system("PAUSE >nul");
+        exit(0);
+    }
+}
+
+
 function contato() {
     logM("\nCONTATOS:");
     logM("Telefone: +55 98 98348-6439");
@@ -33,7 +64,7 @@ function novo_limite ($limite) {
     $limite_fim = date_format($limite_fim, 'YmdHis');
     return $limite_fim;
 }
-title();
+
 logM("\nEsta é uma versão de teste! Por favor, digite sua chave de acesso:");
 function date_teste() {
     print "> ";
