@@ -72,7 +72,7 @@ function date_teste() {
     $date = date("YmdHis");
     include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
     $_date = new DateTime();
-    $_limite = date_format($limite_fim, 'd/m/Y H:i:s');
+    $_limite = date_format($limite_fim, 'd-m-Y H:i:s');
     if ($limite == null){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();
