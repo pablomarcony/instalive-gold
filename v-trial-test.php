@@ -87,9 +87,8 @@ function date_teste() {
         system("PAUSE >nul");
         exit(0);
     } else {
+        $texto_title = "VERSÃO TRIAL VALIDA ATÉ: ". $limite ."\n";
         title();
-        logM("VERSÃO DE TESTE VALIDA ATÉ: $limite");
-        $texto_title = "VERSÃO DE TESTE VALIDA ATÉ: ". $limite ."\n";
         define("TEXTO_TITLE", $texto_title);
     }
 }
