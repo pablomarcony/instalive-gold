@@ -71,7 +71,8 @@ function date_teste() {
     $limite = null;
     $date = date("YmdHis");
     $_date = date("Y/m/d H:i:s");
-    $date_left = $limite->diff($_date)->format('%Y Anos %m Mês, %d dias, %h horas e %i minutos');
+    $_limite = new DateTime($limite);
+    $date_left = $_limite->diff($_date)->format('%Y Anos %m Mês, %d dias, %h horas e %i minutos');
     include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
     if ($limite == null){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
