@@ -70,7 +70,7 @@ function date_teste() {
     $code = trim(fgets($handle));
     $limite = null;
     $date = date("YmdHis");
-    $_date = date("Y/m/d H:i:s");
+    $_date = new DateTime("Y/m/d H:i:s");
     $_limite = new DateTime($limite);
     $date_left = $_limite->diff($_date)->format('%Y Anos %m Mês, %d dias, %h horas e %i minutos');
     include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
