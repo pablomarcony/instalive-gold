@@ -106,7 +106,6 @@ function comandos() {
     #--------------------------------------------------------------------------------------------------------#");
 }
 
-
 use InstagramAPI\Exception\ChallengeRequiredException;
 use InstagramAPI\Instagram;
 use InstagramAPI\Request\Live;
@@ -114,6 +113,35 @@ use LazyJsonMapper\Exception\LazyJsonMapperException;
 $debug = false;
 $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
+
+
+
+
+    /**
+     * Logs information about the current environment.
+     * @param string $exception Exception message to log.
+     */
+    public static function dump(string $exception = null)
+    {
+        clearstatcache();
+        logM("===========BEGIN DUMP===========");
+        logM("InstagramLive-PHP Version: " . scriptVersion);
+        logM("InstagramLive-PHP Flavor: " . scriptFlavor);
+        logM("Instagram-API Version: " . @json_decode(file_get_contents('composer.json'), true)['require']['mgp25/instagram-php']);
+        logM("Operating System: " . PHP_OS);
+        logM("PHP Version: " . PHP_VERSION);
+        logM("PHP Runtime: " . php_sapi_name());
+        logM("PHP Binary: " . PHP_BINARY);
+        logM("Bypassing OS-Check: " . (bypassCheck == true ? "true" : "false"));
+        logM("Composer Lock: " . (file_exists("composer.lock") == true ? "true" : "false"));
+        logM("Vendor Folder: " . (file_exists("vendor/") == true ? "true" : "false"));
+        if ($exception !== null) {
+            logM("Exception: " . $exception);
+        }
+        logM("============END DUMP============");
+    }
+
+
 function login($ig) {    
     logM("\nDigite os dados de acesso a conta no instagram.");
     //Login no Instagram
