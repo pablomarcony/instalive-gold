@@ -181,7 +181,7 @@ function login($ig) {
                     logM("Digite o código que você recebeu via " . ($verification_method ? 'EMAIL' : 'SMS') . "...");
                     $handle = fopen ("php://stdin","r");
                     $cCode = trim(fgets($handle));
-                    $ig->changeUser($ig_username, $ig_password);
+                    $ig->login($ig_username, $ig_password);
                     $customResponse = $ig->request($checkApiPath)
                         ->setNeedsAuth(false)
                         ->addPost('security_code', $cCode)
