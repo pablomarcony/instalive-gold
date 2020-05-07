@@ -53,7 +53,8 @@ if (isset($version) == false || $version != 1.9){
 
 
 function avisos() {
-    logM("\n                                                AVISO DE MANUTENÇÃO:                                              
+    title();
+    logM("\n\n                                                AVISO DE MANUTENÇÃO:                                              
     #--------------------------------------------------------------------------------------------------------#
               NOSSO SERVIDOR PASSARÁ POR MANUTENÇÃO DE MELHORIAS NO DIA 08/05/2020 AS 04:00H COM 
               DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER 
@@ -106,8 +107,8 @@ function date_teste() {
         $_limite = strtotime(date_format(DateTime::createFromFormat('d/m/Y H:i:s', $limite), 'd-m-Y'));
         $dias_left = (($_date - $_limite) /86400) *-1;
         $texto_title = "ESTA É UMA VERSÃO TRIAL. VOCÊ TEM ". $dias_left ." DIAS RESTANTES.\n";
+        avisos();
         title();
-
         echo $texto_title;
         define("TEXTO_TITLE", $texto_title);
     }
