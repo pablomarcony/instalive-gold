@@ -39,7 +39,7 @@ if (isset($version) == false || $version != 1.9){
     if ($erro_update == true) {
         sleep(5);
         title();
-        echo "\nFalha na implantação das atualizações! Por favor, verifique sua conexão a internet e reinicie o sistema.";
+        echo "\nFalha na implantação das atualizações! Por favor, verifique sua conexão a internet e reinicie o InstaLive Gold Trial.";
         system("PAUSE >nul");
         exit(0);
     } else {
@@ -66,6 +66,7 @@ function novo_limite ($limite) {
 logM("\nEsta é uma versão de teste! Por favor, digite sua chave de acesso:");
 function date_teste() {
     print "> ";
+    
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
     $limite = null;
@@ -73,7 +74,7 @@ function date_teste() {
     
     include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
     if ($limite == null){
-        logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
+        logM("\nPor favor, verifique sua conexão a internet para utilizar o InstaLive Gold Trial. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();
         system("PAUSE >nul");
         exit(0);
@@ -318,7 +319,7 @@ function save_live($live, $broadcastId) {
 
 
 function cmd_sair ($ig,$ig_username) {
-    logM("\nDeseja sair do sistema ou iniciar uma nova transmissão? \"SAIR\" para sair \ \"NOVA LIVE\" para iniciar nova transmissão");
+    logM("\nDeseja sair do InstaLive Gold Trial ou iniciar uma nova transmissão? \"SAIR\" \ \"NOVA LIVE\"");
     print "> ";
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
