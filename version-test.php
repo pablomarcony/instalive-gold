@@ -5,6 +5,10 @@ echo "\e[H\e[J";
 if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP!");
 }
+
+$arquivo = fopen('inclu.php','a');
+if ($arquivo == false) die('Não foi possível criar o arquivo.');
+
 $texto_title = "";
 function title () {
     global $texto_title;
