@@ -399,8 +399,8 @@ function logM($message) {
 
 class ExtendedInstagram extends Instagram
 {
-    public function changeUser($username, $password)
+    public function changeUser($ig_username, $ig_password)
     {
-        $this->_setUser($username, $password);
+        $this->_setUser($ig_username, $ig_password);
     }
 }
