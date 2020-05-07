@@ -2,49 +2,8 @@
 setlocale(LC_ALL,'pt_BR.UTF8');
 mb_internal_encoding('UTF8'); 
 mb_regex_encoding('UTF8');
-
-
-// abre o arquivo colocando o ponteiro de escrita no final 
-$arquivo = fopen('../dir/inclu.php','r+');
-if ($arquivo) { 
-    /*
-    while(true) { 
-        $linha = fgets($arquivo); 
-        if ($linha==null) break; 
-        // busca na linha atual o conteudo que vai ser alterado 
-        if(preg_match("/José da Silva:/", $linha)) { 
-            $string .= str_replace("José da Silva: 27 anos", "José da Silva: 28 anos", $linha); 
-        } else { 
-            // vai colocando tudo numa nova string 
-            $string.= $linha; 
-        } 
-    } 
-    */
-
-    // move o ponteiro para o inicio pois o ftruncate() nao fara isso 
-    rewind($arquivo); 
-    // truca o arquivo apagando tudo dentro dele 
-    ftruncate($arquivo, 0); 
-    $new_text = '<?php
-require_once __DIR__."/vendor/autoload.php";
-
-if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-2.php") == FALSE) {
-    echo "\e[H\e[J";
-    echo "\nFalha no carregamento! Por favor, verifique sua conexão a internet para utilizar o sistema.";
-    echo "\nCaso o erro persista, entre em contato com dos desenvolvedores.";
-    system("PAUSE >nul");
-}
-    ';
-    // reescreve o conteudo dentro do arquivo 
-    if (!fwrite($arquivo, $new_text)) die('Não foi possível atualizar o arquivo.'); 
-    echo 'Arquivo atualizado com sucesso'; fclose($arquivo); 
-}
-
-
-
-system("PAUSE >nul");
-
-
+set_time_limit(0);
+date_default_timezone_set('America/Sao_Paulo');
 
 system('title InstaLive Gold Trial');
 system('break off');
@@ -68,9 +27,27 @@ function title () {
     logM("Copyright © 2020 - Todos os direitos reservados - Pablo Marcony");
     echo $texto_title;
 }
+title();
 
-set_time_limit(0);
-date_default_timezone_set('America/Sao_Paulo');
+// verificador de updates
+if (isset($version) == false || != 1.5){
+    echo "Foram encontradas novas atualizações. Aguarde enquanto fazemos a implantação.";
+    if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-update.php") != FALSE) {
+        sleep(5);
+        title();
+        echo "Atualizações implantadas com sucesso! Por favor, reinicie o sistema.";
+        system("PAUSE >nul");
+        exit(0);
+    } else {
+        sleep(5);
+        title();
+        echo "Falha na implantação das atualizações! Por favor, verifique sua conexão a internet e reinicie o sistema.";
+        system("PAUSE >nul");
+        exit(0);
+    }
+}
+
+
 function contato() {
     logM("\nCONTATOS:");
     logM("Telefone: +55 98 98348-6439");
@@ -81,7 +58,7 @@ function novo_limite ($limite) {
     $limite_fim = date_format($limite_fim, 'YmdHis');
     return $limite_fim;
 }
-title();
+
 logM("\nEsta é uma versão de teste! Por favor, digite sua chave de acesso:");
 function date_teste() {
     print "> ";
