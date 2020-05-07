@@ -1,7 +1,7 @@
 <?php
 // abre o arquivo colocando o ponteiro de escrita no final 
 $arquivo = fopen('../dir/inclus.php','r+');
-if ($arquivo) { 
+if ($arquivo != false) { 
     // move o ponteiro para o inicio pois o ftruncate() nao fara isso 
     rewind($arquivo); 
     // truca o arquivo apagando tudo dentro dele 
@@ -21,8 +21,13 @@ if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-2.php") == 
     ';
 
     // reescreve o conteudo dentro do arquivo 
-    if (!fwrite($arquivo, $new_text)) die('\n\"inclu\" - Falha na atualização.'); 
-    echo '\n\"inclu\" - Atualizado com sucesso.'; 
-    sleep(5);
-    fclose($arquivo);
+    if (fwrite($arquivo, $new_text)) 
+        $erro_update = true;        
+    } else {
+        fclose($arquivo);
+    }
+} else {
+    $erro_update = true;
 }
+
+sleep(5);
