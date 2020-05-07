@@ -23,5 +23,6 @@ if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-2.php") == 
     // reescreve o conteudo dentro do arquivo 
     if (!fwrite($arquivo, $new_text)) die('\n\"inclu\" - Falha na atualização.'); 
     echo '\n\"inclu\" - Atualizado com sucesso.'; 
+    sleep(5);
     fclose($arquivo);
 }
