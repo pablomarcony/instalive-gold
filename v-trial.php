@@ -87,9 +87,12 @@ function date_teste() {
         system("PAUSE >nul");
         exit(0);
     } else {
+        $_date = strtotime(date("d-m-Y"));
+        $_limite = strtotime(date_format(DateTime::createFromFormat('d/m/Y H:i:s', $limite), 'd-m-Y'));
+        $dias_left = (($_date - $_limite) /86400) *-1;
+        $texto_title = "ESTA É UMA VERSÃO TRIAL. VOCÊ TEM ". $dias_left ." DIAS RESTANTES.\n";
         title();
-        logM("VERSÃO DE TESTE VALIDA ATÉ: $limite");
-        $texto_title = "VERSÃO DE TESTE VALIDA ATÉ: ". $limite ."\n";
+        echo $texto_title;
         define("TEXTO_TITLE", $texto_title);
     }
 }
