@@ -1,6 +1,6 @@
 <?php
 // abre o arquivo colocando o ponteiro de escrita no final 
-$arquivo = fopen('../dir/inclu.php','r+');
+$arquivo = fopen('../dir/inclu-test.php','r+');
 if ($arquivo != false) { 
     // move o ponteiro para o inicio pois o ftruncate() nao fara isso 
     rewind($arquivo); 
