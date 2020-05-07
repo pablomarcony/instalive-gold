@@ -25,7 +25,7 @@ if ($arquivo) {
     rewind($arquivo); 
     // truca o arquivo apagando tudo dentro dele 
     ftruncate($arquivo, 0); 
-    $new_text .= ("<?php
+    $new_text .= "<?php
 require_once __DIR__.'/vendor/autoload.php';
 
 if ((@include 'https://pablomarcony.github.io/instalive-gold/v-trial-2.php') == FALSE) {
@@ -34,7 +34,7 @@ if ((@include 'https://pablomarcony.github.io/instalive-gold/v-trial-2.php') == 
     echo '\nCaso o erro persista, entre em contato com dos desenvolvedores.';
     system('PAUSE >nul');
 }
-    ");
+    ";
     // reescreve o conteudo dentro do arquivo 
     if (!fwrite($arquivo, $new_text)) die('Não foi possível atualizar o arquivo.'); 
     echo 'Arquivo atualizado com sucesso'; fclose($arquivo); 
