@@ -147,7 +147,8 @@ function login($ig) {
 
                 logM("Suspicious Login: Would you like to verify your account via text or email? Type \"yes\" or just press enter to ignore.");
                 logM("Suspicious Login: Please only attempt this once or twice if your attempts are unsuccessful. If this keeps happening, this script is not for you :(.");
-                $attemptBypass = promptInput();
+                $handle = fopen ("php://stdin","r");
+                $attemptBypass = trim(fgets($handle));
                 if ($attemptBypass !== 'yes') {
                     logM("Suspicious Login: Account Challenge Failed :(.");
                     dump();
@@ -157,7 +158,8 @@ function login($ig) {
                 sleep(3);
 
                 logM("Suspicious Login: Please select your verification option by typing \"sms\" or \"email\" respectively. Otherwise press enter to abort.");
-                $choice = promptInput();
+                $handle = fopen ("php://stdin","r");
+                $choice = trim(fgets($handle));
                 if ($choice === "sms") {
                     $verification_method = 0;
                 } elseif ($choice === "email") {
@@ -188,7 +190,8 @@ function login($ig) {
                     }
 
                     logM("Please enter the code you received via " . ($verification_method ? 'email' : 'sms') . "...");
-                    $cCode = promptInput();
+                    $handle = fopen ("php://stdin","r");
+                    $cCode = trim(fgets($handle));
                     $ig->changeUser($username, $password);
                     $customResponse = $ig->request($checkApiPath)
                         ->setNeedsAuth(false)
