@@ -1,4 +1,19 @@
 <?php
+
+
+$arquivo = fopen('inclu.php','r');
+if ($arquivo == false) die('Não foi possível abrir o arquivo.');
+while(true) {
+	$linha = fgets($arquivo);
+	if ($linha==null) break;
+	echo $linha;
+}
+fclose($arquivo);
+
+system("PAUSE >nul");
+
+
+
 system('title InstaLive Gold Trial');
 system('break off');
 echo "\e[H\e[J";
@@ -21,20 +36,6 @@ function title () {
     logM("Copyright © 2020 - Todos os direitos reservados - Pablo Marcony");
     echo $texto_title;
 }
-
-
-
-$arquivo = fopen('inclsu.php','r');
-if ($arquivo == false) die('Não foi possível criar o arquivo.');
-while(true) {
-	$linha = fgets($arquivo);
-	if ($linha==null) break;
-	echo $linha;
-}
-fclose($arquivo);
-
-
-system("PAUSE >nul");
 
 set_time_limit(0);
 date_default_timezone_set('America/Sao_Paulo');
