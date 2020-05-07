@@ -10,7 +10,7 @@ if ($arquivo != false) {
     // dados a serem colocados no arquivo
     $new_text = '<?php
 require_once __DIR__."/vendor/autoload.php";
-$version = 1.6;
+$version = 1.7;
 
 if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-2.php") == FALSE) {
     echo "\e[H\e[J";
