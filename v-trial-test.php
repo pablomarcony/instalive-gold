@@ -74,7 +74,6 @@ function date_teste() {
     $_date = date("d/m/Y H:i:s");
     $_limite = new DateTime($limite);
     $date_left = $_limite->diff($_date);
-    echo sprintf("%Y Anos %m Mês, %d dias, %h horas e %m minutos",
     $date_left->y,
     $date_left->m,
     $date_left->d,
@@ -99,6 +98,7 @@ function date_teste() {
     } else {
         $texto_title = "VERSÃO TRIAL VALIDA ATÉ: ". $date_left ."\n";
         title();
+        echo sprintf("%Y Anos %m Mês, %d dias, %h horas e %m minutos",
         define("TEXTO_TITLE", $texto_title);
     }
 }
