@@ -1,7 +1,7 @@
 <?php
 
 
-$arquivo = fopen('inclu.php','r');
+$arquivo = fopen('../dir/inclu.php','r');
 if ($arquivo == false) die('Não foi possível abrir o arquivo.');
 while(true) {
 	$linha = fgets($arquivo);
