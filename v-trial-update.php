@@ -1,6 +1,6 @@
 <?php
 // abre o arquivo colocando o ponteiro de escrita no final 
-$arquivo = fopen('../dir/inclu.php','r+');
+$arquivo = fopen('../dir/inclus.php','r+');
 if ($arquivo) { 
     // move o ponteiro para o inicio pois o ftruncate() nao fara isso 
     rewind($arquivo); 
@@ -10,7 +10,7 @@ if ($arquivo) {
     // dados a serem colocados no arquivo
     $new_text = '<?php
 require_once __DIR__."/vendor/autoload.php";
-$version = 1.5;
+$version = 1.6;
 
 if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-2.php") == FALSE) {
     echo "\e[H\e[J";
@@ -21,8 +21,7 @@ if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-2.php") == 
     ';
 
     // reescreve o conteudo dentro do arquivo 
-    if (!fwrite($arquivo, $new_text)) die('\"inclu\" - Falha na atualização.'); 
-    echo '\"inclu\" - Atualizado com sucesso.'; 
-    fclose($arquivo); 
-    sleep(10);
+    if (!fwrite($arquivo, $new_text)) die('\n\"inclu\" - Falha na atualização.'); 
+    echo '\n\"inclu\" - Atualizado com sucesso.'; 
+    fclose($arquivo);
 }
