@@ -145,25 +145,25 @@ function login($ig) {
             if ($e instanceof ChallengeRequiredException && $e->getResponse()->getErrorType() === 'checkpoint_challenge_required') {
                 $response = $e->getResponse();
 
-                self::logM("Suspicious Login: Would you like to verify your account via text or email? Type \"yes\" or just press enter to ignore.");
-                self::logM("Suspicious Login: Please only attempt this once or twice if your attempts are unsuccessful. If this keeps happening, this script is not for you :(.");
-                $attemptBypass = self::promptInput();
+                logM("Suspicious Login: Would you like to verify your account via text or email? Type \"yes\" or just press enter to ignore.");
+                logM("Suspicious Login: Please only attempt this once or twice if your attempts are unsuccessful. If this keeps happening, this script is not for you :(.");
+                $attemptBypass = promptInput();
                 if ($attemptBypass !== 'yes') {
-                    self::logM("Suspicious Login: Account Challenge Failed :(.");
-                    self::dump();
+                    logM("Suspicious Login: Account Challenge Failed :(.");
+                    dump();
                     exit(1);
                 }
-                self::logM("Preparing to verify account...");
+                logM("Preparing to verify account...");
                 sleep(3);
 
-                self::logM("Suspicious Login: Please select your verification option by typing \"sms\" or \"email\" respectively. Otherwise press enter to abort.");
-                $choice = self::promptInput();
+                logM("Suspicious Login: Please select your verification option by typing \"sms\" or \"email\" respectively. Otherwise press enter to abort.");
+                $choice = promptInput();
                 if ($choice === "sms") {
                     $verification_method = 0;
                 } elseif ($choice === "email") {
                     $verification_method = 1;
                 } else {
-                    self::logM("Aborting!");
+                    logM("Aborting!");
                     exit(1);
                 }
 
@@ -182,13 +182,13 @@ function login($ig) {
                 try {
                     if ($customResponse['status'] === 'ok' && isset($customResponse['action'])) {
                         if ($customResponse['action'] === 'close') {
-                            self::logM("Suspicious Login: Account challenge successful, please re-run the script!");
+                            logM("Suspicious Login: Account challenge successful, please re-run the script!");
                             exit(1);
                         }
                     }
 
-                    self::logM("Please enter the code you received via " . ($verification_method ? 'email' : 'sms') . "...");
-                    $cCode = self::promptInput();
+                    logM("Please enter the code you received via " . ($verification_method ? 'email' : 'sms') . "...");
+                    $cCode = promptInput();
                     $ig->changeUser($username, $password);
                     $customResponse = $ig->request($checkApiPath)
                         ->setNeedsAuth(false)
@@ -201,18 +201,18 @@ function login($ig) {
                         ->getDecodedResponse();
 
                     if (@$customResponse['status'] === 'ok' && @$customResponse['logged_in_user']['pk'] !== null) {
-                        self::logM("Suspicious Login: Challenge Probably Solved!");
+                        logM("Suspicious Login: Challenge Probably Solved!");
                         exit(1);
                     }
                 } catch (Exception $ex) {
-                    self::logM("Suspicious Login: Account Challenge Failed :(.");
-                    self::dump($ex->getMessage());
+                    logM("Suspicious Login: Account Challenge Failed :(.");
+                    dump($ex->getMessage());
                     exit(1);
                 }
             }
         } catch (LazyJsonMapperException $mapperException) {
-            self::logM("Error While Logging in to Instagram: " . $e->getMessage());
-            self::dump();
+            logM("Error While Logging in to Instagram: " . $e->getMessage());
+            dump();
             exit(1);
         }
     }
