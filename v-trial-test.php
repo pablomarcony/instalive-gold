@@ -107,8 +107,10 @@ function comandos() {
 }
 
 
+use InstagramAPI\Exception\ChallengeRequiredException;
 use InstagramAPI\Instagram;
 use InstagramAPI\Request\Live;
+use LazyJsonMapper\Exception\LazyJsonMapperException;
 $debug = false;
 $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
