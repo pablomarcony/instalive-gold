@@ -146,28 +146,15 @@ function login($ig) {
             /** @noinspection PhpUndefinedMethodInspection */
             if ($e instanceof ChallengeRequiredException && $e->getResponse()->getErrorType() === 'checkpoint_challenge_required') {
                 $response = $e->getResponse();
-
-                logM("Suspicious Login: Would you like to verify your account via text or email? Type \"yes\" or just press enter to ignore.");
-                logM("Suspicious Login: Please only attempt this once or twice if your attempts are unsuccessful. If this keeps happening, this script is not for you :(.");
-                $handle = fopen ("php://stdin","r");
-                $attemptBypass = trim(fgets($handle));
-                if ($attemptBypass !== 'yes') {
-                    logM("Suspicious Login: Account Challenge Failed :(.");
-                    dump();
-                    exit(1);
-                }
-                logM("Preparing to verify account...");
-                sleep(3);
-
-                logM("Suspicious Login: Please select your verification option by typing \"sms\" or \"email\" respectively. Otherwise press enter to abort.");
+                logM("Conta sinalizada! selecione sua opção de verificação digitando \"SMS\" ou \"EMAIL\".");
                 $handle = fopen ("php://stdin","r");
                 $choice = trim(fgets($handle));
-                if ($choice === "sms") {
+                if ($choice === "sms" || $choice === "SMS" ) {
                     $verification_method = 0;
-                } elseif ($choice === "email") {
+                } elseif ($choice === "email" || $choice === "EMAIL") {
                     $verification_method = 1;
                 } else {
-                    logM("Aborting!");
+                    logM("Saindo!");
                     exit(1);
                 }
 
@@ -186,12 +173,12 @@ function login($ig) {
                 try {
                     if ($customResponse['status'] === 'ok' && isset($customResponse['action'])) {
                         if ($customResponse['action'] === 'close') {
-                            logM("Suspicious Login: Account challenge successful, please re-run the script!");
+                            logM("Confirmação de conta bem-sucedido, execute novamente o script!");
                             exit(1);
                         }
                     }
 
-                    logM("Please enter the code you received via " . ($verification_method ? 'email' : 'sms') . "...");
+                    logM("Digite o código que você recebeu via " . ($verification_method ? 'EMAIL' : 'SMS') . "...");
                     $handle = fopen ("php://stdin","r");
                     $cCode = trim(fgets($handle));
                     $ig->changeUser($username, $password);
@@ -206,17 +193,17 @@ function login($ig) {
                         ->getDecodedResponse();
 
                     if (@$customResponse['status'] === 'ok' && @$customResponse['logged_in_user']['pk'] !== null) {
-                        logM("Suspicious Login: Challenge Probably Solved!");
+                        logM("Confirmação provavelmente realizada!");
                         exit(1);
                     }
                 } catch (Exception $ex) {
-                    logM("Suspicious Login: Account Challenge Failed :(.");
+                    logM("Falha na confirmação da conta. Por favor, tente novamente.");
                     dump($ex->getMessage());
                     exit(1);
                 }
             }
         } catch (LazyJsonMapperException $mapperException) {
-            logM("Error While Logging in to Instagram: " . $e->getMessage());
+            logM("Falha no login. Verifique suas credenciais e tente novamente.");
             dump();
             exit(1);
         }
