@@ -52,6 +52,19 @@ if (isset($version) == false || $version != 1.9){
 }
 
 
+function avisos() {
+    logM("\n                                                AVISO DE MANUTENÇÃO:                                              
+    #--------------------------------------------------------------------------------------------------------#
+              NOSSO SERVIDOR PASSARÁ POR MANUTENÇÃO DE MELHORIAS NO DIA 08/05/2020 AS 04:00H COM 
+              DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER 
+              INSTABILIDADES AO UTILIZAR O SISTEMA.
+    #--------------------------------------------------------------------------------------------------------#");
+    
+    print "\nPressione \"ENTER\" para continuar.";
+    system("PAUSE >nul");
+}
+
+
 function contato() {
     logM("\nCONTATOS:");
     logM("Telefone: +55 98 98348-6439");
