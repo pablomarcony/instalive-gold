@@ -58,8 +58,8 @@ function contato() {
     logM("Email: pablomarconyjf@gmail.com");
 }
 function novo_limite ($limite) {
-    $limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
-    $limite_fim = date_format($limite_fim, 'YmdHis');
+    $_limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
+    $limite_fim = date_format($_limite_fim, 'YmdHis');
     return $limite_fim;
 }
 
@@ -87,11 +87,17 @@ function date_teste() {
         system("PAUSE >nul");
         exit(0);
     } else {
+        $_date = strtotime(date("d-m-Y"));
+        $_limite = strtotime(date_format($_limite_fim, 'd-m-Y'));
+        $dias_left = ($_date - $_limite) /86400;
+        $dias_left = $dias_left * -1;
+        
         $date_2 = new DateTime();
         $limite_2 =  new DateTime($limite);
         $texto_title = $limite_2->diff($date_2)->format('%Y Anos %m Mês, %d dias e %h horas %i minutos');
         title();
         echo "VERSÃO TRIAL VALIDA ATÉ:". $texto_title ." \n";
+        echo $dias_left;
         define("TEXTO_TITLE", $texto_title);
     }
 }
