@@ -116,10 +116,10 @@ $texto_title = TEXTO_TITLE;
 function comandos() {
     logM("\n                                                 COMANDOS:                                              
     #--------------------------------------------------------------------------------------------------------#
-    |  \"1\" ou \"HELP\" - Mostra esta mensagem               \"2\" ou \"INFO\" - Mostra informações da transmissão  |
+    |  \"1\" ou \"LIMPAR\" - Limpa a tela do sistema          \"2\" ou \"INFO\" - Mostra informações da transmissão  |
     |  \"3\" ou \"URL\" - Mostra a URL da transmissão         \"4\" ou \"CHAVE\" - Mostra a chave da transmissão     |
     |  \"5\" ou \"DESATIVAR C\" - Desativa os comentários     \"6\" ou \"ATIVAR C\" - Ativa os comentários           |
-    |  \"7\" ou \"VIEWERS\" - Espectadores atuais             \"8\" ou \"LIMPAR\" - Limpa a tela do sistema          |
+    |  \"7\" ou \"VIEWERS\" - Espectadores atuais             \"8\" ou \"COMENTARIOS\" - Abre janela da comentários  |
     |  \"9\" ou \"PARAR\" - Interrompe a transmissão          \"10\" ou \"CONTATO\" - Contato dos desenvolvedores    |
     #--------------------------------------------------------------------------------------------------------#");
 }
@@ -202,7 +202,7 @@ function new_tunel($ig, $ig_username) {
     $hora_inicio = date("d/m/Y H:i:s");
     $hora_fim = date('d/m/Y H:i:s', strtotime('+1 Hours'));
     title();
-    logM("Túnel de transmissão iniciado!");
+    logM("\nTúnel de transmissão iniciado!");
     $status_live = "ativada";
     $status_cmts = "Ativados";
     logM("\nUsuário: ". $ig_username);
@@ -220,6 +220,7 @@ function new_tunel($ig, $ig_username) {
     $ig->live->end($broadcastId);
     return $status_live;
 }
+
 function logado($ig,$ig_username) {
     try {
         if (!$ig->isMaybeLoggedIn) {
@@ -229,7 +230,7 @@ function logado($ig,$ig_username) {
         
         $data = date("d/m/Y H:i:s");
         title();
-        logM("Login efetuado com sucesso!");
+        logM("\nLogin efetuado com sucesso!");
         logM("\nUsuário: ". $ig_username);
         logM("Acesso: ". $data);
     
@@ -241,6 +242,24 @@ function logado($ig,$ig_username) {
     }
 }
 
+function open_coments($ig_username) {
+    $chrome = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe';
+    $edge = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe';
+    $firefox = 'C:\Program Files\Mozilla Firefox\firefox.exe';
+    $iexplore = 'C:\Program Files\Internet Explorer\iexplore.exe';
+    If (file_exists($chrome)){
+        shell_exec("start chrome /incognito --app=https://instagram.com/". $ig_username ."/live");
+    } elseif (file_exists($edge)) {
+        shell_exec("start shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge -private https://instagram.com/".$ig_username."/live");
+    } elseif (file_exists($firefox)) {
+        shell_exec("start firefox -private-window https://instagram.com/". $ig_username ."/live");
+    } elseif (file_exists($iexplore)) {
+        shell_exec("start iexplore -private https://instagram.com/". $ig_username ."/live");
+    }else {
+        shell_exec("start https://instagram.com/". $ig_username ."/live");
+    }
+}
+
 function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live) {
     title();
     if ($status_live == "desativada") {
@@ -248,14 +267,13 @@ function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live
         logM("\nInicio: ". $hora_inicio);
         logM("Fim: ". $hora_final_live);
     }else{
-        logM("Túnel de transmissão em andamento!");
+        logM("\nTúnel de transmissão em andamento!");
         logM("\nUsuário: ". $ig_username);
         logM("Inicio: ". $hora_inicio);
         logM("Limite do Instagram: ". $hora_fim);
         comandos();
     }
 }
-
 
 function save_live($live, $broadcastId) {
     logM("\nDeseja manter a transmissão arquivada por 24 horas? \"SIM\" \ \"NAO\"");
@@ -272,7 +290,6 @@ function save_live($live, $broadcastId) {
         save_live($live, $broadcastId);
     }
 }
-
 
 function cmd_sair ($ig,$ig_username) {
     logM("\nDeseja sair do InstaLive Gold Trial ou iniciar uma nova transmissão? \"SAIR\" \ \"NOVA LIVE\"");
@@ -347,10 +364,15 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         foreach ($live->getViewerList($broadcastId)->getUsers() as &$cuser) {
             logM("@".$cuser->getUsername()." (".$cuser->getFullName().")");
         }
-    } elseif ($line == 'limpar' || $line == 'LIMPAR' || $line == '8') {
+    } elseif ($line == 'limpar' || $line == 'LIMPAR' || $line == '1') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-    } elseif ($line == 'ajuda' || $line == 'AJUDA' || $line == '1') {
+    } elseif ($line == 'comentarios' || $line == 'COMENTARIOS' || $line == '8') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        logM("\nAbrindo janela de comentários...");
+        open_coments($ig_username);
+        sleep(3);
+        corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        logM("\nJanela de comentários iniciada! Faça login com esta conta.");
     } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         contato();        

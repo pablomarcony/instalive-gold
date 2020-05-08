@@ -124,7 +124,7 @@ function comandos() {
     |  \"1\" ou \"LIMPAR\" - Limpa a tela do sistema          \"2\" ou \"INFO\" - Mostra informações da transmissão  |
     |  \"3\" ou \"URL\" - Mostra a URL da transmissão         \"4\" ou \"CHAVE\" - Mostra a chave da transmissão     |
     |  \"5\" ou \"DESATIVAR C\" - Desativa os comentários     \"6\" ou \"ATIVAR C\" - Ativa os comentários           |
-    |  \"7\" ou \"VIEWERS\" - Espectadores atuais             \"8\" ou \"COMENTARIOS\" - Abre janela da transmissão  |
+    |  \"7\" ou \"VIEWERS\" - Espectadores atuais             \"8\" ou \"COMENTARIOS\" - Abre janela da comentários  |
     |  \"9\" ou \"PARAR\" - Interrompe a transmissão          \"10\" ou \"CONTATO\" - Contato dos desenvolvedores    |
     #--------------------------------------------------------------------------------------------------------#");
 }
@@ -263,7 +263,7 @@ function new_tunel($ig, $ig_username) {
     $hora_inicio = date("d/m/Y H:i:s");
     $hora_fim = date('d/m/Y H:i:s', strtotime('+1 Hours'));
     title();
-    logM("Túnel de transmissão iniciado!");
+    logM("\nTúnel de transmissão iniciado!");
     $status_live = "ativada";
     $status_cmts = "Ativados";
     logM("\nUsuário: ". $ig_username);
@@ -281,6 +281,7 @@ function new_tunel($ig, $ig_username) {
     $ig->live->end($broadcastId);
     return $status_live;
 }
+
 function logado($ig,$ig_username) {
     try {
         if (!$ig->isMaybeLoggedIn) {
@@ -290,7 +291,7 @@ function logado($ig,$ig_username) {
         
         $data = date("d/m/Y H:i:s");
         title();
-        logM("Login efetuado com sucesso!");
+        logM("\nLogin efetuado com sucesso!");
         logM("\nUsuário: ". $ig_username);
         logM("Acesso: ". $data);
     
@@ -309,7 +310,7 @@ function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live
         logM("\nInicio: ". $hora_inicio);
         logM("Fim: ". $hora_final_live);
     }else{
-        logM("Túnel de transmissão em andamento!");
+        logM("\nTúnel de transmissão em andamento!");
         logM("\nUsuário: ". $ig_username);
         logM("Inicio: ". $hora_inicio);
         logM("Limite do Instagram: ". $hora_fim);
