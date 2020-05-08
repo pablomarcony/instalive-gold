@@ -28,7 +28,7 @@ function title () {
     echo $texto_title;
 }
 title();
-$arquivo = 'shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge';
+$arquivo = 'AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge';
 If (file_exists($arquivo)){
 
     echo "ok";
