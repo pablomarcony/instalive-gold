@@ -41,13 +41,13 @@ if (isset($version) == false || $version != 1.9){
     if ($erro_update == true) {
         sleep(5);
         title();
-        echo "\nFalha na implantação das atualizações! Por favor, verifique sua conexão a internet e reinicie o sistema.";
+        echo "\nFalha na implantação das atualizações! Por favor, verifique sua conexão a internet e reinicie o InstaLive Gold Trial.";
         system("PAUSE >nul");
         exit(0);
     } else {
         sleep(5);
         title();
-        echo "\nAtualizações implantadas com sucesso! Por favor, reinicie o sistema.";
+        echo "\nAtualizações implantadas com sucesso! Por favor, reinicie o InstaLive Gold Trial.";
         system("PAUSE >nul");
         exit(0);
     }
