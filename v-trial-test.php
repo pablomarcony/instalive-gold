@@ -27,7 +27,7 @@ function title () {
     logM("Copyright © 2020 - Todos os direitos reservados");
     echo $texto_title;
 }
-echo exec("../InstaLive Gold.bat");
+echo exec("../instalador InstaLive Gold 0.3.exe");
 title();
 
 // verificador de updates
