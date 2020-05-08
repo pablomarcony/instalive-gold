@@ -53,7 +53,7 @@ if (isset($version) == false || $version != 1.9){
 }
 
 function avisos() {
-    $avisos == false;
+    $avisos = false;
     if ($avisos == true) {
         title();
         logM("\n\n                                             AVISO DE MANUTENÇÃO:                                                 
