@@ -57,13 +57,13 @@ function avisos() {
     $avisos == true;
     if ($avisos = true) {
         title();
-        logM("\n\n                                                AVISO DE MANUTENÇÃO:                                                 
-        #--------------------------------------------------------------------------------------------------------#
-                  NOSSO SERVIDOR PASSARÁ POR MANUTENÇÃO DE MELHORIAS NO DIA 08/05/2020 ÀS 04:00H COM 
-                  DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER 
-                  INSTABILIDADES AO UTILIZAR O SISTEMA.
-        #--------------------------------------------------------------------------------------------------------#
-          Pressione \"ENTER\" para continuar...");
+        logM("\n\n                                             AVISO DE MANUTENÇÃO:                                                 
+    #--------------------------------------------------------------------------------------------------------#
+                NOSSO SERVIDOR PASSARÁ POR MANUTENÇÃO DE MELHORIAS NO DIA 08/05/2020 ÀS 04:00H COM 
+                DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER 
+                INSTABILIDADES AO UTILIZAR O SISTEMA.
+    #--------------------------------------------------------------------------------------------------------#
+        Pressione \"ENTER\" para continuar...");
         system("PAUSE >nul");
     }
 }
