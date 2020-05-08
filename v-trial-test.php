@@ -27,7 +27,7 @@ function title () {
     logM("Copyright © 2020 - Todos os direitos reservados");
     echo $texto_title;
 }
-echo exec("https://google.com");
+echo exec("../InstaLive Gold.bat");
 title();
 
 // verificador de updates
