@@ -51,24 +51,27 @@ if (isset($version) == false || $version != 1.9){
     }
 }
 
-
 function avisos() {
-    title();
-    logM("\n\n                                                AVISO DE MANUTENÇÃO:                                                 
+    $avisos == true;
+    if ($avisos = true) {
+        title();
+        logM("\n\n                                             AVISO DE MANUTENÇÃO:                                                 
     #--------------------------------------------------------------------------------------------------------#
-              NOSSO SERVIDOR PASSARÁ POR MANUTENÇÃO DE MELHORIAS NO DIA 08/05/2020 ÀS 04:00H COM 
-              DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER 
-              INSTABILIDADES AO UTILIZAR O SISTEMA.
-    #--------------------------------------------------------------------------------------------------------#");
-    
-    logM("       \nPressione \"ENTER\" para continuar...");
-    system("PAUSE >nul");
+                NOSSO SERVIDOR PASSARÁ POR MANUTENÇÃO DE MELHORIAS NO DIA 08/05/2020 ÀS 04:00H COM 
+                DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER 
+                INSTABILIDADES AO UTILIZAR O SISTEMA.
+    #--------------------------------------------------------------------------------------------------------#
+        Pressione \"ENTER\" para continuar...");
+        system("PAUSE >nul");
+    }
 }
+
 function contato() {
     logM("\nCONTATOS:");
     logM("Telefone: +55 98 98348-6439");
     logM("Email: pablomarconyjf@gmail.com");
 }
+
 function novo_limite ($limite) {
     $limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
     $limite_fim = date_format($limite_fim, 'YmdHis');
@@ -326,7 +329,7 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\nComentários desativados!");
     } elseif ($line == 'parar' || $line == 'PARAR' || $line == '9') {
-        logM("\nDeseja realmente finalizar esta transmissão? \"SIM\" para confirmar \ \"NAO\" para cancelar");
+        logM("\nDeseja realmente finalizar esta transmissão? \"SIM\" \ \"NAO\"");
         print "> ";
         $handle = fopen ("php://stdin","r");
         $line = trim(fgets($handle));
