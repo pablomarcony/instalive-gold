@@ -28,16 +28,6 @@ function title () {
     echo $texto_title;
 }
 title();
-$arquivo = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe';
-If (file_exists($arquivo)){
-
-    echo "ok";
-
-} else {
-
-    echo "!ok";
-
-}
 
 
 // verificador de updates
@@ -328,6 +318,23 @@ function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live
     }
 }
 
+function open_coments($ig_username) {
+    $chrome = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe';
+    $edge = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe';
+    $firefox = 'C:\Program Files\Mozilla Firefox\firefox.exe';
+    $iexplore = 'C:\Program Files\Internet Explorer\iexplore.exe';
+    If (file_exists($chrome)){
+        shell_exec("start chrome /incognito --app=https://instagram.com/". $ig_username ."/live");
+    } elseif (file_exists($edge)) {
+        shell_exec("start shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge -private https://instagram.com/".$ig_username."/live");
+    } elseif (file_exists($firefox)) {
+        shell_exec("start firefox -private-window https://instagram.com/". $ig_username ."/live");
+    } elseif (file_exists($iexplore)) {
+        shell_exec("start iexplore -private https://instagram.com/". $ig_username ."/live");
+    }else {
+        shell_exec("start https://instagram.com/". $ig_username ."/live");
+    }
+}
 
 function save_live($live, $broadcastId) {
     logM("\nDeseja manter a transmissão arquivada por 24 horas? \"SIM\" \ \"NAO\"");
@@ -344,7 +351,6 @@ function save_live($live, $broadcastId) {
         save_live($live, $broadcastId);
     }
 }
-
 
 function cmd_sair ($ig,$ig_username) {
     logM("\nDeseja sair do InstaLive Gold Trial ou iniciar uma nova transmissão? \"SAIR\" \ \"NOVA LIVE\"");
@@ -424,9 +430,9 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
     } elseif ($line == 'comentarios' || $line == 'COMENTARIOS' || $line == '8') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\nAbrindo janela da transmissão...\r");
+        open_coments();
         sleep(3);
-        shell_exec("start shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge -private https://instagram.com/".$ig_username."/live");
-        logM("\nJanela de transmissão foi aberta!\r");
+        logM("\nJanela de transmissão foi aberta! Faça login com esta conta.");
     } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         contato();        
