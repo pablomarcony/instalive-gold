@@ -62,9 +62,8 @@ function avisos() {
                   NOSSO SERVIDOR PASSARÁ POR MANUTENÇÃO DE MELHORIAS NO DIA 08/05/2020 ÀS 04:00H COM 
                   DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER 
                   INSTABILIDADES AO UTILIZAR O SISTEMA.
-        #--------------------------------------------------------------------------------------------------------#");
-        
-        logM("       \nPressione \"ENTER\" para continuar...");
+        #--------------------------------------------------------------------------------------------------------#
+        \nPressione \"ENTER\" para continuar...");
         system("PAUSE >nul");
     }
 }
