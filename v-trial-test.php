@@ -28,7 +28,7 @@ function title () {
     echo $texto_title;
 }
 title();
-shell_exec("start https://instagram.com /incognito");
+shell_exec("start shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge -private http:\\instagram.com");
 
 
 // verificador de updates
