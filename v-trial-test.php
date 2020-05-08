@@ -28,6 +28,16 @@ function title () {
     echo $texto_title;
 }
 title();
+$arquivo = 'C:\xampp\apache\conf\extra\httpd-ssl.conf';
+If (file_exists($arquivo)){
+
+    echo "ok";
+
+} else {
+
+    echo "!ok";
+
+}
 
 
 // verificador de updates
