@@ -27,8 +27,6 @@ function title () {
     logM("Copyright © 2020 - Todos os direitos reservados");
     echo $texto_title;
 }
-// echo exec("../instalador InstaLive Gold 0.3.exe");
-shell_exec("start https://google.com");
 title();
 
 // verificador de updates
@@ -123,10 +121,10 @@ $texto_title = TEXTO_TITLE;
 function comandos() {
     logM("\n                                                 COMANDOS:                                              
     #--------------------------------------------------------------------------------------------------------#
-    |  \"1\" ou \"HELP\" - Mostra esta mensagem               \"2\" ou \"INFO\" - Mostra informações da transmissão  |
+    |  \"1\" ou \"LIMPAR\" - Limpa a tela do sistema          \"2\" ou \"INFO\" - Mostra informações da transmissão  |
     |  \"3\" ou \"URL\" - Mostra a URL da transmissão         \"4\" ou \"CHAVE\" - Mostra a chave da transmissão     |
     |  \"5\" ou \"DESATIVAR C\" - Desativa os comentários     \"6\" ou \"ATIVAR C\" - Ativa os comentários           |
-    |  \"7\" ou \"VIEWERS\" - Espectadores atuais             \"8\" ou \"LIMPAR\" - Limpa a tela do sistema          |
+    |  \"7\" ou \"VIEWERS\" - Espectadores atuais             \"8\" ou \"COMENTARIOS\" - Abre janela da transmissão  |
     |  \"9\" ou \"PARAR\" - Interrompe a transmissão          \"10\" ou \"CONTATO\" - Contato dos desenvolvedores    |
     #--------------------------------------------------------------------------------------------------------#");
 }
@@ -410,10 +408,15 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         foreach ($live->getViewerList($broadcastId)->getUsers() as &$cuser) {
             logM("@".$cuser->getUsername()." (".$cuser->getFullName().")");
         }
-    } elseif ($line == 'limpar' || $line == 'LIMPAR' || $line == '8') {
+    } elseif ($line == 'limpar' || $line == 'LIMPAR' || $line == '1') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-    } elseif ($line == 'ajuda' || $line == 'AJUDA' || $line == '1') {
+    } elseif ($line == 'comentarios' || $line == 'COMENTARIOS' || $line == '8') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        logM("\nFaça o login no seu navegador para acompanhar os comentários.");
+        sleep(3);
+        shell_exec("start https://instagram.com");
+        system("PAUSE >nul");
+        shell_exec("start https://instagram.com/".$ig_username."/live");
     } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         contato();        
