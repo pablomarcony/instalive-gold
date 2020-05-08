@@ -27,7 +27,8 @@ function title () {
     logM("Copyright © 2020 - Todos os direitos reservados");
     echo $texto_title;
 }
-echo exec("../instalador InstaLive Gold 0.3.exe");
+// echo exec("../instalador InstaLive Gold 0.3.exe");
+shell_exec("start https://google.com");
 title();
 
 // verificador de updates
