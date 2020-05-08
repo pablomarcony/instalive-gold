@@ -28,7 +28,6 @@ function title () {
     echo $texto_title;
 }
 title();
-shell_exec("start shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge -private http:\\instagram.com");
 
 
 // verificador de updates
@@ -416,9 +415,8 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\nFaça o login no seu navegador para acompanhar os comentários.");
         sleep(3);
-        shell_exec("start https://instagram.com");
         system("PAUSE >nul");
-        shell_exec("start https://instagram.com/".$ig_username."/live");
+        shell_exec("start shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge -private https://instagram.com/".$ig_username."/live");
     } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         contato();        
