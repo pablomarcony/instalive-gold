@@ -52,7 +52,6 @@ if (isset($version) == false || $version != 1.9){
     }
 }
 
-
 function avisos() {
     $avisos == true;
     if ($avisos = true) {
@@ -68,12 +67,12 @@ function avisos() {
     }
 }
 
-
 function contato() {
     logM("\nCONTATOS:");
     logM("Telefone: +55 98 98348-6439");
     logM("Email: pablomarconyjf@gmail.com");
 }
+
 function novo_limite ($limite) {
     $_limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
     $limite_fim = date_format($_limite_fim, 'YmdHis');
