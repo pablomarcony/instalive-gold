@@ -27,6 +27,15 @@ switch ($code) {
         $limite = "12/05/2020 23:59:59";
         $limite_fim = novo_limite($limite);
     break;
+    case "#d8m56855":
+
+        // Usuário: Gabriel Jung
+        // Contato: 51 98431 6855 
+        // Limite: 5 dias (05/05/2020)  
+
+        $limite = "13/05/2020 23:59:59";
+        $limite_fim = novo_limite($limite);
+    break;
     default:
         $limite = "c-invalido";
     break;
