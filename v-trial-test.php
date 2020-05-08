@@ -429,7 +429,7 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
     } elseif ($line == 'comentarios' || $line == 'COMENTARIOS' || $line == '8') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\nAbrindo janela da transmissão...\r");
-        open_coments();
+        open_coments($ig_username);
         sleep(3);
         logM("\nJanela de transmissão foi aberta! Faça login com esta conta.");
     } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
