@@ -22,8 +22,9 @@ function title () {
   | |   _ __   ___ | |_   __ _ | |     _ __   __  ___    | |  \/  ___  | |  __| | 
   | |  | '_ \ / __|| __| / _` || |    | |\ \ / / / _ \   | | __  / _ \ | | / _` | 
  _| |_ | | | |\__ \| |_ | (_| || |____| | \ V / |  __/   | |_\ \| (_) || || (_| | 
- \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| Versão de teste 1.9 © 2020
+ \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| V-Teste 1.9
     ");
+    logM("Copyright © 2020 - Todos os direitos reservados");
     echo $texto_title;
 }
 title();
@@ -53,14 +54,14 @@ if (isset($version) == false || $version != 1.9){
 
 function avisos() {
     title();
-    logM("\n\n                                                AVISO DE MANUTENÇÃO:                                              
+    logM("\n\n                                                AVISO DE MANUTENÇÃO:                                                 
     #--------------------------------------------------------------------------------------------------------#
               NOSSO SERVIDOR PASSARÁ POR MANUTENÇÃO DE MELHORIAS NO DIA 08/05/2020 AS 04:00H COM 
               DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER 
               INSTABILIDADES AO UTILIZAR O SISTEMA.
     #--------------------------------------------------------------------------------------------------------#");
     
-    print "      \nPressione \"ENTER\" para continuar...";
+    print "       \nPressione \"ENTER\" para continuar...";
     system("PAUSE >nul");
 }
 
