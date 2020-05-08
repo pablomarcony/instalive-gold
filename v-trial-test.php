@@ -28,7 +28,7 @@ function title () {
     echo $texto_title;
 }
 title();
-shell_exec("start /incognito https://instagram.com");
+shell_exec("start https://instagram.com /incognito");
 
 
 // verificador de updates
