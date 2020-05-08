@@ -36,9 +36,8 @@ if (isset($version) == false || $version != 1.9){
     echo "\nForam encontradas novas atualizações. Aguarde enquanto fazemos a implantação.";
     if ((@include "https://pablomarcony.github.io/instalive-gold/v-trial-update.php") == FALSE) {
         $erro_update = true;
-    } else {
     }
-    if ($erro_update == true) {
+    if ($erro_update = true) {
         sleep(5);
         title();
         echo "\nFalha na implantação das atualizações! Por favor, verifique sua conexão a internet e reinicie o sistema.";
