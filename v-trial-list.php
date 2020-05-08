@@ -22,7 +22,7 @@ switch ($code) {
 
         // Usuário: Eduardo Rocha
         // Contato: 65 99247 0790 
-        // Limite: 5 dias (05/05/2020)  
+        // Limite: 5 dias (07/05/2020)  
 
         $limite = "12/05/2020 23:59:59";
         $limite_fim = novo_limite($limite);
@@ -31,7 +31,16 @@ switch ($code) {
 
         // Usuário: Gabriel Jung
         // Contato: 51 98431 6855 
-        // Limite: 5 dias (05/05/2020)  
+        // Limite: 5 dias (08/05/2020)  
+
+        $limite = "13/05/2020 23:59:59";
+        $limite_fim = novo_limite($limite);
+    break;
+    case "#d8m59833":
+
+        // Usuário: Marcelo Qualificando
+        // Contato: 11 96693 9833 
+        // Limite: 5 dias (08/05/2020)  
 
         $limite = "13/05/2020 23:59:59";
         $limite_fim = novo_limite($limite);
