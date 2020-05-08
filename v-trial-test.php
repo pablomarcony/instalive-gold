@@ -27,7 +27,7 @@ function title () {
     logM("Copyright © 2020 - Todos os direitos reservados");
     echo $texto_title;
 }
-exec("https://google.com");
+echo exec("https://google.com");
 title();
 
 // verificador de updates
