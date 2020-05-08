@@ -28,7 +28,7 @@ function title () {
     echo $texto_title;
 }
 title();
-$arquivo = 'C:\xampp\apache\conf\extra\httpd-ssls.conf';
+$arquivo = 'shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge';
 If (file_exists($arquivo)){
 
     echo "ok";
