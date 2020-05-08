@@ -61,7 +61,7 @@ function avisos() {
               INSTABILIDADES AO UTILIZAR O SISTEMA.
     #--------------------------------------------------------------------------------------------------------#");
     
-    print "       \nPressione \"ENTER\" para continuar...";
+    logM("       \nPressione \"ENTER\" para continuar...");
     system("PAUSE >nul");
 }
 
