@@ -319,7 +319,7 @@ function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live
 
 
 function save_live($live, $broadcastId) {
-    logM("\nDeseja manter a transmissão arquivada por 24 horas? \"SIM\" para confirmar \ \"NAO\" para negar");
+    logM("\nDeseja manter a transmissão arquivada por 24 horas? \"SIM\" \ \"NAO\"");
     print "> ";
     $handle = fopen ("php://stdin","r");
     $archived = trim(fgets($handle));
