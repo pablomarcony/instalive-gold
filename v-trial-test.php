@@ -386,7 +386,7 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\nComentários desativados!");
     } elseif ($line == 'parar' || $line == 'PARAR' || $line == '9') {
-        logM("\nDeseja realmente finalizar esta transmissão? \"SIM\" para confirmar \ \"NAO\" para cancelar");
+        logM("\nDeseja realmente finalizar esta transmissão? \"SIM\" \ \"NAO\"");
         print "> ";
         $handle = fopen ("php://stdin","r");
         $line = trim(fgets($handle));
@@ -428,10 +428,11 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
     } elseif ($line == 'comentarios' || $line == 'COMENTARIOS' || $line == '8') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\nAbrindo janela da transmissão...\r");
+        logM("\nAbrindo janela de comentários...");
         open_coments($ig_username);
         sleep(3);
-        logM("\nJanela de transmissão foi aberta! Faça login com esta conta.");
+        corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        logM("\nJanela de comentários iniciada! Faça login com esta conta.");
     } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         contato();        
