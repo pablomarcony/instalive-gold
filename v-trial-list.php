@@ -45,6 +45,15 @@ switch ($code) {
         $limite = "13/05/2020 23:59:59";
         $limite_fim = novo_limite($limite);
     break;
+    case "#d8m56213":
+
+        // Usuário: Barulhista
+        // Contato: 11 99429 6213 
+        // Limite: 5 dias (08/05/2020)  
+
+        $limite = "13/05/2020 23:59:59";
+        $limite_fim = novo_limite($limite);
+    break;
     default:
         $limite = "c-invalido";
     break;
