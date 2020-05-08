@@ -63,7 +63,7 @@ function avisos() {
                   DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER 
                   INSTABILIDADES AO UTILIZAR O SISTEMA.
         #--------------------------------------------------------------------------------------------------------#
-        \nPressione \"ENTER\" para continuar.");
+          Pressione \"ENTER\" para continuar...");
         system("PAUSE >nul");
     }
 }
