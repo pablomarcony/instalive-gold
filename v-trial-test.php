@@ -28,7 +28,7 @@ function title () {
     echo $texto_title;
 }
 title();
-$arquivo = 'C:\xampp\apache\conf\extra\httpd-ssl.conf';
+$arquivo = 'C:\xampp\apache\conf\extra\httpd-ssls.conf';
 If (file_exists($arquivo)){
 
     echo "ok";
