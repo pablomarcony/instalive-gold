@@ -28,7 +28,7 @@ function title () {
     echo $texto_title;
 }
 title();
-$arquivo = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe';
+$arquivo = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedsge.exe';
 If (file_exists($arquivo)){
 
     echo "ok";
