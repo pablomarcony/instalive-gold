@@ -86,7 +86,7 @@ function date_teste() {
     $limite = null;
     $date = date("YmdHis");
 
-    include 'https://pablomarcony.github.io/instalive-gold/trial-list.php';
+    include 'https://pablomarcony.github.io/instalive-gold/v-trial-list.php';
     if ($limite == null){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o InstaLive Gold Trial. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();

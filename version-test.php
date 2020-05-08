@@ -72,7 +72,7 @@ function date_teste() {
     $code = trim(fgets($handle));
     $limite = null;
     $date = date("YmdHis");
-    include 'https://pablomarcony.github.io/instalive-gold/test-list.php';
+    include 'https://pablomarcony.github.io/instalive-gold/v-test-list.php';
     if ($limite == null){
         logM("\nPor favor, verifique sua conexão a internet para utilizar o sistema. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
         contato();
