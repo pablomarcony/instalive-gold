@@ -28,7 +28,7 @@ function title () {
     echo $texto_title;
 }
 title();
-$arquivo = 'C:\xampp\apache\conf\extra\httpd-ssl.conf';
+$arquivo = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe';
 If (file_exists($arquivo)){
 
     echo "ok";
