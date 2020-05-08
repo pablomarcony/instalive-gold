@@ -28,7 +28,7 @@ function title () {
     echo $texto_title;
 }
 title();
-shell_exec("start crhome /incognito");
+shell_exec("start chrome /incognito https://google.com");
 
 
 // verificador de updates
