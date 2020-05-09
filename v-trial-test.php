@@ -143,21 +143,20 @@ $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
 
 function login($ig) {
-    echo "
-    Digite os dados de acesso a conta no instagram.
-    ┌──────────┬────────────────────────
-    │ USUÁRIO: │ ";
+    print "\n ■ EFETUE O LOGIN NO INSTAGRAM.
+┌──────────┬────────────────────────
+│ USUÁRIO: │ ";
     $handle = fopen ("php://stdin","r");
     $ig_username = trim(fgets($handle));
-    echo "\r└──────────┴────────────────────────";
-    echo "
-    ┌──────────┬────────────────────────
-    │  SENHA:  │ ";
+    print "└──────────┴────────────────────────";
+    print "
+┌──────────┬────────────────────────
+│  SENHA:  │ ";
     $handle = fopen ("php://stdin","r");
     $ig_password = trim(fgets($handle));
-    echo "└──────────┴────────────────────────";
+    print "└──────────┴────────────────────────";
 
-    echo "\nFazendo login...\r";
+    print "\nFazendo login...\r";
     try {
         $loginResponse = $ig->login($ig_username, $ig_password);
 
@@ -273,20 +272,23 @@ function new_tunel($ig, $ig_username) {
     $hora_inicio = date("d/m/Y H:i:s");
     $hora_fim = date('d/m/Y H:i:s', strtotime('+1 Hours'));
     title();
-    logM("\nTúnel de transmissão iniciado!");
     $status_live = "ativada";
     $status_cmts = "Ativados";
-    logM("\nUsuário: ". $ig_username);
-    logM("Inicio: ". $hora_inicio);
-    logM("Limite do Instagram: ". $hora_fim);
+    print "\n ■ TRANSMISSÃO INICIADA";
+    print "\n
+┌──────────┬────────────────────────┐
+│ USUÁRIO: │ ". $ig_username."
+├──────────┼────────────────────────┤
+│ ACESSO:  │ ". $hora_inicio."
+└──────────┴────────────────────────┘";
     echo "
-         ╭────────────────────╮
-─────────┘ URL DE TRANSMISSÃO └───────────────────────────────────────────────────────────
+         ╭────────────────────────╮
+─────────┘ ■ URL DE TRANSMISSÃO ■ └───────────────────────────────────────────────────────
 .$streamUrl.
 ──────────────────────────────────────────────────────────────────────────────────────────";
     echo "
-        ╭──────────────────────╮
-────────┘ CHAVE DE TRANSMISSÃO └──────────────────────────────────────────────────────────
+        ╭──────────────────────────╮
+────────┘ ■ CHAVE DE TRANSMISSÃO ■ └──────────────────────────────────────────────────────
 .$streamKey.
 ──────────────────────────────────────────────────────────────────────────────────────────";
     comandos();
@@ -308,11 +310,11 @@ function logado($ig,$ig_username) {
         title();
         print "\n ■ LOGIN EFETUADO COM SUCESSO";
         print "\n
-        ┌──────────┬────────────────────────┐
-        │ USUÁRIO: │ ". $ig_username."
-        ├──────────┼────────────────────────┤
-        │ ACESSO:  │ ". $data."
-        └──────────┴────────────────────────┘";
+┌──────────┬────────────────────────┐
+│ USUÁRIO: │ ". $ig_username."
+├──────────┼────────────────────────┤
+│ ACESSO:  │ ". $data."
+└──────────┴────────────────────────┘";
     
         print "\nPressione qualquer tecla para iniciar a transmissão.";
         system("PAUSE >nul");
@@ -327,19 +329,19 @@ function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live
     if ($status_live == "desativada") {
         print "\n ■ TRANSMISSÃO FINALIZADA";
         print "\n
-        ┌─────────┬────────────────────────┐
-        │ INICIO: │ ". $hora_inicio."
-        ├─────────┼────────────────────────┤
-        │ FIM:    │ ". $hora_final_live."
-        └─────────┴────────────────────────┘";
+┌─────────┬────────────────────────┐
+│ INICIO: │ ". $hora_inicio."
+├─────────┼────────────────────────┤
+│ FIM:    │ ". $hora_final_live."
+└─────────┴────────────────────────┘";
     }else{
         print "\n ■ TRANSMISSÃO EM ANDAMENTO";
         print "\n
-        ┌──────────┬────────────────────────┐
-        │ USUÁRIO: │ ". $ig_username."
-        ├──────────┼────────────────────────┤
-        │ INICIO:  │ ". $hora_inicio."
-        └──────────┴────────────────────────┘";
+┌──────────┬────────────────────────┐
+│ USUÁRIO: │ ". $ig_username."
+├──────────┼────────────────────────┤
+│ INICIO:  │ ". $hora_inicio."
+└──────────┴────────────────────────┘";
         comandos();
     }
 }
@@ -429,20 +431,20 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
             cmd_sair($ig,$ig_username);
         } else {
             corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-            logM("\nTransmissão não finalizada.");
+            logM("\nTRANSMISSÃO NÃO FINALIZADA");
         }
     } elseif ($line == 'url' || $line == 'URL' || $line == '3') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         echo "
-             ╭────────────────────╮
-    ─────────┘ URL DE TRANSMISSÃO └───────────────────────────────────────────────────────────
+             ╭────────────────────────╮
+    ─────────┘ ■ URL DE TRANSMISSÃO ■ └───────────────────────────────────────────────────────
     .$streamUrl.
     ──────────────────────────────────────────────────────────────────────────────────────────";
     } elseif ($line == 'key' || $line == 'KEY' || $line == '4') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         echo "
-            ╭──────────────────────╮
-    ────────┘ CHAVE DE TRANSMISSÃO └──────────────────────────────────────────────────────────
+            ╭──────────────────────────╮
+    ────────┘ ■ CHAVE DE TRANSMISSÃO ■ └──────────────────────────────────────────────────────
     .$streamKey.
     ──────────────────────────────────────────────────────────────────────────────────────────";
     } elseif ($line == 'info' || $line == 'INFO' || $line == '2') {
