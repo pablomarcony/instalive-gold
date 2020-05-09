@@ -15,7 +15,7 @@ if (php_sapi_name() !== "cli") {
 $texto_title = "";
 function title () {
     global $texto_title;
-    echo "\e[H\e[J";
+    shell_exec("cls");
     logM("Bem vindo(a) ao");
     logM(" _____              _           _      _                  _____         _      _  
 |_   _|            | |         | |    (_)                |  __ \       | |    | | 
