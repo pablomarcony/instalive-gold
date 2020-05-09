@@ -53,7 +53,7 @@ if (isset($version) == false || $version != 1.9){
 }
 
 function avisos() {
-    $avisos = false;
+    $avisos = true;
     if ($avisos == true) {
         title();
         echo "\n                                             
@@ -62,15 +62,24 @@ function avisos() {
         ║    SERVIDOR EM MANUTENÇÃO DE MELHORIAS COM DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE     ║
         ║    PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER INSTABILIDADES AO UTILIZAR O SISTEMA.          ║
         ╚══════════════════════════════════════════════════════════════════════════════════════════╝
-          Pressione \"ENTER\" para continuar...";
+          Pressione qualquer tecla para continuar. . .";
         system("PAUSE >nul");
     }
 }
 
 function contato() {
-    logM("\nCONTATOS:");
-    logM("Telefone: +55 98 98348-6439");
-    logM("Email: pablomarconyjf@gmail.com");
+    print "\n ■ CONTATOS";
+    print "
+    ┌───────────┬─────────────────────────────────────────────────────┐
+    │ TELEFONE: │ +55 98 98348 6439                                   │
+    ├───────────┼─────────────────────────────────────────────────────┤
+    │ E-MAIL:   │ grupoinovarcontato@gmail.com                        │
+    ├───┬───────┴────────────┬───┬──────────────────┬───┬─────────────┤
+    │ 1 │ ● ENVIAR MENSAGEM  │ 2 │ ● ENVIAR E-MAIL  │ 3 │ ● CANCELAR  │
+    └───┴────────────────────┴───┴──────────────────┴───┴─────────────┘";
+    print "\n ▌ ";
+    $handle = fopen ("php://stdin","r");
+    $archived = trim(fgets($handle));
 }
 
 function novo_limite ($limite) {
@@ -79,10 +88,12 @@ function novo_limite ($limite) {
     return $limite_fim;
 }
 
-logM("\nEsta é uma versão de teste! Por favor, digite sua chave de acesso:");
+print "\n
+┌─────────────────────────────────────────────────────────────────────────┐
+│ ● Esta é uma versão de teste! Por favor, digite sua chave de acesso:    │
+└─────────────────────────────────────────────────────────────────────────┘";
 function date_teste() {
-    print "> ";
-    
+    print "\n ▌ ";
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
     $limite = null;
@@ -90,17 +101,20 @@ function date_teste() {
     
     include 'https://pablomarcony.github.io/instalive-gold/v-trial-list.php';
     if ($limite == null){
-        logM("\nPor favor, verifique sua conexão a internet para utilizar o InstaLive Gold Trial. \nCaso o erro persista, entre em contato com dos desenvolvedores.");
+        print "\n ▲ POR FAVOR, VERIFIQUE SUA CONEXÃO A INTERNET PARA UTILIZAR O INSTALIVE GOLD TRIAL. \NCASO O ERRO PERSISTA, ENTRE EM CONTATO COM DOS DESENVOLVEDORES.\r";
         contato();
         system("PAUSE >nul");
         exit(0);
     } elseif ($limite == "c-invalido"){
         title();
-        logM("\nChave de acesso invalida. Por favor, Tente novamente.");
+        print "\n
+┌─────────────────────────────────────────────────────────────────────────┐
+│ ● Esta é uma versão de teste! Por favor, digite sua chave de acesso:    │
+└─────────────────────────────────────────────────────────────────────────┘";
         date_teste();
     } elseif ($limite_fim <= $date){
         title();
-        logM("\nEsta versão de teste expirou! Por favor, adquira uma nova versão com os desenvolvedores.");
+        print "\n ■ ESTA VERSÃO EXPIROU! POR FAVOR, ADQUIRA UMA NOVA VERSÃO COM OS DESENVOLVEDORES.";
         contato();
         system("PAUSE >nul");
         exit(0);
@@ -237,9 +251,12 @@ function login($ig) {
                 }
             }
         } catch (LazyJsonMapperException $mapperException) {
-            echo 'Falha no login. Verifique suas credenciais.';
-            logM("\nDeseja tentar novamente? \"SIM\" \ \"NAO\"");
-            print "> ";
+            logM("\n ▲ FALHA NO LOGIN. VERIFIQUE SUAS CREDENCIAIS.");
+            print "\n
+┌───────────────────────────────┬───────┬───────┐
+│ ● Deseja tentar novamente?    │  SIM  │  NÃO  │
+└───────────────────────────────┴───────┴───────┘";
+            print "\n ▌ ";
             $handle = fopen ("php://stdin","r");
             $line = trim(fgets($handle));
             if ($line == "sim" || $line == "SIM") {
@@ -256,7 +273,7 @@ login($ig);
 
 // Bloco responsável por criar a transmissão ao vivo.
 function new_tunel($ig, $ig_username) {
-    logM("\nGerando túnel...");
+    logM("\n ▲ GERANDO TÚNEL...");
     $stream = $ig->live->create();
     $broadcastId = $stream->getBroadcastId();
     $ig->live->start($broadcastId);
@@ -292,7 +309,7 @@ $streamKey
 ────────────────────────────────────────────────────────────────────────────────────────────────";
     comandos();
     newCommand($ig->live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_username,$hora_inicio,$hora_fim,$status_live,$status_cmts);
-    logM("Algo deu super errado! Tentativa de pelo menos limpar!");
+    logM("\n ▲ ALGO DEU SUPER ERRADO! TENTANDO CORRIGIR!");
     $ig->live->getFinalViewerList($broadcastId);
     $ig->live->end($broadcastId);
     return $status_live;
@@ -301,7 +318,7 @@ $streamKey
 function logado($ig,$ig_username) {
     try {
         if (!$ig->isMaybeLoggedIn) {
-            logM("Não foi possível entrar! Saindo...");
+            logM("\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...");
             exit();
         }
         
@@ -315,11 +332,11 @@ function logado($ig,$ig_username) {
 │ ACESSO:  │ ". $data."
 └──────────┴────────────────────────┘";
     
-        print "\nPressione qualquer tecla para iniciar a transmissão.";
-        system("PAUSE >nul");
+        print "\n";
+        system("PAUSE");
         new_tunel($ig, $ig_username);
     } catch (\Exception $e) {
-        echo 'Erro ao criar transmissão ao vivo: '.$e->getMessage()."\n";
+        logM("\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...".$e->getMessage()."\n");
     }
 }
 
@@ -440,7 +457,7 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
             cmd_sair($ig,$ig_username);
         } else {
             corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-            logM("\n ▲ TRANSMISSÃO NÃO FINALIZADA");
+            logM("\n\n ▲ TRANSMISSÃO NÃO FINALIZADA");
         }
     } elseif ($line == 'url' || $line == 'URL' || $line == '3') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
@@ -462,19 +479,32 @@ $streamKey
         $muted = var_export($info->is_Messages(), true);
         $count = $info->getViewerCount();
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\n● INFORMAÇÕES DA TRANSMISSÃO:\n\nStatus: $status\nComentários: $status_cmts\nVisualizações: $count");
+        print "\n ● INFORMAÇÕES DA TRANSMISSÃO:";
+        print "\n
+        ┌─────────────────┬───────────────────────────────┐
+        │ STATUS:         │ ". $status."
+        ├─────────────────┼───────────────────────────────┤
+        │ COMENTÁRIOS:    │ ". $status_cmts."
+        ├─────────────────┼───────────────────────────────┤
+        │ VISUALIZAÇÕES:  │ ". $count."
+        └─────────────────┴───────────────────────────────┘";
     } elseif ($line == 'viewers' || $line == 'VIEWERS' || $line == '7') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\n● VISUALIZADORES:");
+        logM("\n\n ● VISUALIZADORES:");
         $live->getInfo($broadcastId);
+        print "\n
+┌────────────────────────────────────────────────────────────────┐";
         foreach ($live->getViewerList($broadcastId)->getUsers() as &$cuser) {
-            logM("@".$cuser->getUsername()." (".$cuser->getFullName().")");
+            print "
+│ @".$cuser->getUsername()."  │  ".$cuser->getFullName();
         }
+        print "\n
+└────────────────────────────────────────────────────────────────┘";
     } elseif ($line == 'limpar' || $line == 'LIMPAR' || $line == '1') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
     } elseif ($line == 'comentarios' || $line == 'COMENTARIOS' || $line == '8') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\n ▲ ABRINDO JANELA DE COMENTÁRIOS...\r");
+        logM("\n\n ▲ ABRINDO JANELA DE COMENTÁRIOS...");
         open_coments($ig_username);
         sleep(5);
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
