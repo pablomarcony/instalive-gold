@@ -144,19 +144,17 @@ $ig = new Instagram($debug, $truncatedDebug);
 
 function login($ig) {
     print "\n ■ EFETUE O LOGIN NO INSTAGRAM.
-┌──────────┬────────────────────────
+┌──────────┬────────────────────────┐
 │ USUÁRIO: │ ";
     $handle = fopen ("php://stdin","r");
     $ig_username = trim(fgets($handle));
-    print "└──────────┴────────────────────────";
-    print "
-┌──────────┬────────────────────────
+    print "├──────────┼────────────────────────┤
 │  SENHA:  │ ";
     $handle = fopen ("php://stdin","r");
     $ig_password = trim(fgets($handle));
-    print "└──────────┴────────────────────────";
+    print "└──────────┴────────────────────────┘";
 
-    print "\nFazendo login...\r";
+    print "\nConectando...\r";
     try {
         $loginResponse = $ig->login($ig_username, $ig_password);
 
@@ -284,12 +282,12 @@ function new_tunel($ig, $ig_username) {
     echo "
          ╭────────────────────────╮
 ─────────┘ ■ URL DE TRANSMISSÃO ■ └───────────────────────────────────────────────────────
-.$streamUrl.
+$streamUrl
 ──────────────────────────────────────────────────────────────────────────────────────────";
     echo "
         ╭──────────────────────────╮
 ────────┘ ■ CHAVE DE TRANSMISSÃO ■ └──────────────────────────────────────────────────────
-.$streamKey.
+$streamKey
 ──────────────────────────────────────────────────────────────────────────────────────────";
     comandos();
     newCommand($ig->live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_username,$hora_inicio,$hora_fim,$status_live,$status_cmts);
@@ -329,11 +327,11 @@ function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live
     if ($status_live == "desativada") {
         print "\n ■ TRANSMISSÃO FINALIZADA";
         print "\n
-┌─────────┬────────────────────────┐
+┌─────────┬─────────────────────────┐
 │ INICIO: │ ". $hora_inicio."
-├─────────┼────────────────────────┤
+├─────────┼─────────────────────────┤
 │ FIM:    │ ". $hora_final_live."
-└─────────┴────────────────────────┘";
+└─────────┴─────────────────────────┘";
     }else{
         print "\n ■ TRANSMISSÃO EM ANDAMENTO";
         print "\n
@@ -365,8 +363,8 @@ function open_coments($ig_username) {
 }
 
 function save_live($live, $broadcastId) {
-    logM("\nDeseja manter a transmissão arquivada por 24 horas? \"SIM\" \ \"NAO\"");
-    print "> ";
+    logM("\n\nDeseja manter a transmissão arquivada por 24 horas? \"SIM\" \ \"NAO\"");
+    print " ▌ ";
     $handle = fopen ("php://stdin","r");
     $archived = trim(fgets($handle));
     if ($archived == 'sim' || $archived == 'SIM') {
@@ -382,7 +380,7 @@ function save_live($live, $broadcastId) {
 
 function cmd_sair ($ig,$ig_username) {
     logM("\nDeseja sair do InstaLive Gold Trial ou iniciar uma nova transmissão? \"SAIR\" \ \"NOVA LIVE\"");
-    print "> ";
+    print " ▌ ";
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if ($line == "sair" || $line == "SAIR") {
@@ -401,22 +399,22 @@ function cmd_sair ($ig,$ig_username) {
  * O manipulador para interpretar os comandos transmitidos pela linha de comando.
  */
 function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_username,$hora_inicio,$hora_fim,$status_live,$status_cmts) {
-    print "\n> ";
+    print "\n ▌ ";
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if($line == 'ativar c' || $line == 'ATIVAR C' || $line == '6') {
         $live->enableComments($broadcastId);
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\nComentários ativados!");
+        logM("\n\nComentários ativados!");
         $status_cmts = "Ativados";
     } elseif ($line == 'desativar c' || $line == 'DESATIVAR C' || $line == '5') {
         $live->disableComments($broadcastId);
         $status_cmts = "Desativados";
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\nComentários desativados!");
+        logM("\n\nComentários desativados!");
     } elseif ($line == 'parar' || $line == 'PARAR' || $line == '9') {
-        logM("\nDeseja realmente finalizar esta transmissão? \"SIM\" \ \"NAO\"");
-        print "> ";
+        logM("\n\nDeseja realmente finalizar esta transmissão? \"SIM\" \ \"NAO\"");
+        print " ▌ ";
         $handle = fopen ("php://stdin","r");
         $line = trim(fgets($handle));
         if ($line == 'sim' || $line == 'SIM') {
@@ -436,27 +434,27 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
     } elseif ($line == 'url' || $line == 'URL' || $line == '3') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         echo "
-             ╭────────────────────────╮
-    ─────────┘ ■ URL DE TRANSMISSÃO ■ └───────────────────────────────────────────────────────
-    .$streamUrl.
-    ──────────────────────────────────────────────────────────────────────────────────────────";
+         ╭────────────────────────╮
+─────────┘ ■ URL DE TRANSMISSÃO ■ └───────────────────────────────────────────────────────
+$streamUrl
+──────────────────────────────────────────────────────────────────────────────────────────";
     } elseif ($line == 'key' || $line == 'KEY' || $line == '4') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         echo "
-            ╭──────────────────────────╮
-    ────────┘ ■ CHAVE DE TRANSMISSÃO ■ └──────────────────────────────────────────────────────
-    .$streamKey.
-    ──────────────────────────────────────────────────────────────────────────────────────────";
+        ╭──────────────────────────╮
+────────┘ ■ CHAVE DE TRANSMISSÃO ■ └──────────────────────────────────────────────────────
+$streamKey
+──────────────────────────────────────────────────────────────────────────────────────────";
     } elseif ($line == 'info' || $line == 'INFO' || $line == '2') {
         $info = $live->getInfo($broadcastId);
         $status = $info->getStatus();
         $muted = var_export($info->is_Messages(), true);
         $count = $info->getViewerCount();
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\nInformações da Transmissão:\n\nStatus: $status\nComentários: $status_cmts\nVisualizações: $count");
+        logM("\n\nInformações da Transmissão:\n\nStatus: $status\nComentários: $status_cmts\nVisualizações: $count");
     } elseif ($line == 'viewers' || $line == 'VIEWERS' || $line == '7') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\nVisualizadores:");
+        logM("\n\nVisualizadores:");
         $live->getInfo($broadcastId);
         foreach ($live->getViewerList($broadcastId)->getUsers() as &$cuser) {
             logM("@".$cuser->getUsername()." (".$cuser->getFullName().")");
@@ -465,17 +463,17 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
     } elseif ($line == 'comentarios' || $line == 'COMENTARIOS' || $line == '8') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\nAbrindo janela de comentários...");
+        logM("\n\nAbrindo janela de comentários...");
         open_coments($ig_username);
-        sleep(3);
+        sleep(5);
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\nJanela de comentários iniciada! Faça login com esta conta.");
+        logM("\n\nJanela de comentários iniciada! Faça login com esta conta.");
     } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         contato();        
     } else {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\nComando inválido. Digite \"AJUDA\" para obter ajuda!");
+        logM("\n\nComando inválido. Digite \"AJUDA\" para obter ajuda!");
     }
     fclose($handle);
     newCommand($ig->live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_username,$hora_inicio,$hora_fim,$status_live,$status_cmts);
