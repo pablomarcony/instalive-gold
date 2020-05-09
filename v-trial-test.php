@@ -12,7 +12,7 @@ if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP!");
 }
 
-$texto_title = "";
+$texto_title = "Trial";
 function title () {
     global $texto_title;
     pclose (popen('cls', 'w'));
@@ -22,10 +22,9 @@ function title () {
   | |   _ __   ___ | |_   __ _ | |     _ __   __  ___    | |  \/  ___  | |  __| | 
   | |  | '_ \ / __|| __| / _` || |    | |\ \ / / / _ \   | | __  / _ \ | | / _` | 
  _| |_ | | | |\__ \| |_ | (_| || |____| | \ V / |  __/   | |_\ \| (_) || || (_| | 
- \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| V-Teste 1.9
+ \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| ".$texto_title."
     ");
     logM("Copyright © 2020 - Todos os direitos reservados");
-    echo $texto_title;
 }
 title();
 
@@ -57,12 +56,12 @@ function avisos() {
     if ($avisos == true) {
         title();
         echo "\n                                             
-        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ AVISOS ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-        ╔══════════════════════════════════════════════════════════════════════════════════════════╗
-        ║    SERVIDOR EM MANUTENÇÃO DE MELHORIAS COM DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE     ║
-        ║    PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER INSTABILIDADES AO UTILIZAR O SISTEMA.          ║
-        ╚══════════════════════════════════════════════════════════════════════════════════════════╝
-          Pressione qualquer tecla para continuar. . .";
+    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ AVISOS ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+    ╔══════════════════════════════════════════════════════════════════════════════════════════╗
+    ║    SERVIDOR EM MANUTENÇÃO DE MELHORIAS COM DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE     ║
+    ║    PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER INSTABILIDADES AO UTILIZAR O SISTEMA.          ║
+    ╚══════════════════════════════════════════════════════════════════════════════════════════╝
+      Pressione qualquer tecla para continuar. . .";
         system("PAUSE >nul");
     }
 }
@@ -92,7 +91,7 @@ print "\n
 ┌─────────────────────────────────────────────────────────────────────────┐
 │ ● Esta é uma versão de teste! Por favor, digite sua chave de acesso:    │
 └─────────────────────────────────────────────────────────────────────────┘";
-function date_teste() {
+function date_limite() {
     print "\n ▌ ";
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
@@ -108,10 +107,10 @@ function date_teste() {
     } elseif ($limite == "c-invalido"){
         title();
         print "\n
-┌─────────────────────────────────────────────────────────────────────────┐
-│ ● Esta é uma versão de teste! Por favor, digite sua chave de acesso:    │
-└─────────────────────────────────────────────────────────────────────────┘";
-        date_teste();
+┌────────────────────────────────────────────────────────────┐
+│ ● Chave de acesso invalida. Por favor, Tente novamente.    │
+└────────────────────────────────────────────────────────────┘";
+        date_limite();
     } elseif ($limite_fim <= $date){
         title();
         print "\n ■ ESTA VERSÃO EXPIROU! POR FAVOR, ADQUIRA UMA NOVA VERSÃO COM OS DESENVOLVEDORES.";
@@ -122,15 +121,13 @@ function date_teste() {
         $_date = strtotime(date("d-m-Y"));
         $_limite = strtotime(date_format(DateTime::createFromFormat('d/m/Y H:i:s', $limite), 'd-m-Y'));
         $dias_left = (($_date - $_limite) /86400) *-1;
-        $texto_title = "ESTA É UMA VERSÃO TRIAL. VOCÊ TEM ". $dias_left ." DIAS RESTANTES.\n";
+        $texto_title = $dias_left ." DIAS RESTANTES";
+        return $texto_title;
         avisos();
         title();
-        echo $texto_title;
-        define("TEXTO_TITLE", $texto_title);
     }
 }
-date_teste();
-$texto_title = TEXTO_TITLE;
+date_limite();
 function comandos() {
     echo "                                                
                                                                                  ╭────────────╮
