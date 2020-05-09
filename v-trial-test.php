@@ -87,7 +87,7 @@ function novo_limite ($limite) {
     return $limite_fim;
 }
 
-print "\n
+print "
 ┌─────────────────────────────────────────────────────────────────────────┐
 │ ● Esta é uma versão de teste! Por favor, digite sua chave de acesso:    │
 └─────────────────────────────────────────────────────────────────────────┘";
@@ -106,7 +106,7 @@ function date_limite() {
         exit(0);
     } elseif ($limite == "c-invalido"){
         title();
-        print "\n
+        print "
 ┌────────────────────────────────────────────────────────────┐
 │ ● Chave de acesso invalida. Por favor, Tente novamente.    │
 └────────────────────────────────────────────────────────────┘";
@@ -127,7 +127,7 @@ function date_limite() {
         return $texto_title;
     }
 }
-date_limite();
+$texto_title = date_limite();
 function comandos() {
     echo "                                                
                                                                                  ╭────────────╮
