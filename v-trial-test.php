@@ -196,7 +196,8 @@ function login($ig) {
                 } elseif ($choice === "email" || $choice === "EMAIL") {
                     $verification_method = 1;
                 } else {
-                    logM("Saindo!");
+                    logM("\n ▲ SAINDO...");
+                    sleep(2);
                     exit(1);
                 }
 
@@ -260,6 +261,8 @@ function login($ig) {
                 title();
                 login($ig);
             } else {
+                logM("\n ▲ SAINDO...");
+                sleep(2);
                 exit(1);
             }
         }
@@ -315,7 +318,7 @@ $streamKey
 function logado($ig,$ig_username) {
     try {
         if (!$ig->isMaybeLoggedIn) {
-            logM("\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...");
+            print "\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...";
             exit();
         }
         
