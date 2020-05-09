@@ -67,7 +67,7 @@ function avisos() {
 }
 
 function contato() {
-    print "\n ● CONTATOS:";
+    print "\n\n ● CONTATOS:";
     print "
 ┌───────────┬─────────────────────────────────────────────────────┐
 │ TELEFONE: │ +55 98 98348 6439                                   │
@@ -122,9 +122,9 @@ function date_limite() {
         $_limite = strtotime(date_format(DateTime::createFromFormat('d/m/Y H:i:s', $limite), 'd-m-Y'));
         $dias_left = (($_date - $_limite) /86400) *-1;
         $texto_title = $dias_left ." DIAS RESTANTES";
-        return $texto_title;
         avisos();
         title();
+        return $texto_title;
     }
 }
 date_limite();
@@ -286,7 +286,7 @@ function new_tunel($ig, $ig_username) {
     $hora_fim = date('d/m/Y H:i:s', strtotime('+1 Hours'));
     title();
     $status_live = "ativada";
-    $status_cmts = "Ativados";
+    $status_cmts = "ATIVADOS";
     print "\n ■ TRANSMISSÃO INICIADA";
     print "\n
 ┌──────────┬────────────────────────┐
@@ -329,7 +329,7 @@ function logado($ig,$ig_username) {
 │ ACESSO:  │ ". $data."
 └──────────┴────────────────────────┘";
 logM("\n ▲ PRESSIONE QUALQUER TECLA PARA INICIAR A TRANSMISSÃO...");
-        system("PAUSE");
+        system("PAUSE >nul");
         new_tunel($ig, $ig_username);
     } catch (\Exception $e) {
         logM("\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...".$e->getMessage()."\n");
