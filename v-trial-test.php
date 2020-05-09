@@ -56,12 +56,13 @@ function avisos() {
     $avisos = false;
     if ($avisos == true) {
         title();
-        logM("\n\n                                             AVISO DE MANUTENÇÃO:                                                 
-    #--------------------------------------------------------------------------------------------------------#
-                SERVIDOR EM MANUTENÇÃO DE MELHORIAS COM DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE 
-                PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER INSTABILIDADES AO UTILIZAR O SISTEMA.
-    #--------------------------------------------------------------------------------------------------------#
-        Pressione \"ENTER\" para continuar...");
+        echo "\n                                             
+        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ AVISOS ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+        ╔══════════════════════════════════════════════════════════════════════════════════════════╗
+        ║    SERVIDOR EM MANUTENÇÃO DE MELHORIAS COM DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE     ║
+        ║    PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER INSTABILIDADES AO UTILIZAR O SISTEMA.          ║
+        ╚══════════════════════════════════════════════════════════════════════════════════════════╝
+          Pressione \"ENTER\" para continuar...";
         system("PAUSE >nul");
     }
 }
@@ -117,14 +118,20 @@ function date_teste() {
 date_teste();
 $texto_title = TEXTO_TITLE;
 function comandos() {
-    logM("\n                                                 COMANDOS:                                              
-    #--------------------------------------------------------------------------------------------------------#
-    |  \"1\" ou \"LIMPAR\" - Limpa a tela do sistema          \"2\" ou \"INFO\" - Mostra informações da transmissão  |
-    |  \"3\" ou \"URL\" - Mostra a URL da transmissão         \"4\" ou \"CHAVE\" - Mostra a chave da transmissão     |
-    |  \"5\" ou \"DESATIVAR C\" - Desativa os comentários     \"6\" ou \"ATIVAR C\" - Ativa os comentários           |
-    |  \"7\" ou \"VIEWERS\" - Espectadores atuais             \"8\" ou \"COMENTARIOS\" - Abre janela da comentários  |
-    |  \"9\" ou \"PARAR\" - Interrompe a transmissão          \"10\" ou \"CONTATO\" - Contato dos desenvolvedores    |
-    #--------------------------------------------------------------------------------------------------------#");
+    echo "\n                                                
+                                                                                 ╭────────────╮
+                                                                                 │  COMANDOS  │
+    ╭───┬───┬──────────────────────────────────┬───┬───┬─────────────────────────┴──────────┬─┴─╮
+    │   │ 1 │ ● Limpar tela do sistema         │   │ 2 │ ● Informações da transmissão       │   │
+    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
+    │   │ 3 │ ● URL de transmissão             │   │ 4 │ ● Chave de transmissão             │   │
+    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
+    │   │ 5 │ ● Desativar comentários          │   │ 6 │ ● Ativar comentários               │   │
+    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
+    │   │ 7 │ ● Espectadores atuais            │   │ 8 │ ● Janela de comentários            │   │
+    │   ├───┼──────────────────────────────────┤   ├───┴┬───────────────────────────────────┤   │
+    │   │ 9 │ ● Parar transmissão              │   │ 10 │● Contato dos desenvolvedores      │   │
+    ╰───┴───┴──────────────────────────────────┴───┴────┴───────────────────────────────────┴───╯";
 }
 
 use InstagramAPI\Exception\ChallengeRequiredException;
