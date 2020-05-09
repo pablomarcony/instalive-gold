@@ -373,11 +373,11 @@ function save_live($live, $broadcastId) {
     $archived = trim(fgets($handle));
     if ($archived == 'sim' || $archived == 'SIM') {
         $live->addToPostLive($broadcastId);
-        logM(" ▲ TRANSMISSÃO AO VIVO SALVA!");
+        logM("\n ▲ TRANSMISSÃO AO VIVO SALVA!");
     } elseif ($archived == 'nao' || $archived == 'NAO' || $archived == 'não' || $archived == 'NÃO') {
-        logM(" ▲ TRANSMISSÃO AO VIVO NÃO FOI SALVA!");
+        logM("\n ▲ TRANSMISSÃO AO VIVO NÃO FOI SALVA!");
     } else {
-        logM(" ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
+        logM("\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
         save_live($live, $broadcastId);
     }
 }
@@ -397,7 +397,7 @@ function cmd_sair ($ig,$ig_username) {
     } elseif ($line == "nova live" || $line == "NOVA LIvE") {
         new_tunel($ig, $ig_username);
     }else {
-        logM(" ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
+        logM("\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
         cmd_sair($ig,$ig_username);
     }
 }
@@ -462,10 +462,10 @@ $streamKey
         $muted = var_export($info->is_Messages(), true);
         $count = $info->getViewerCount();
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\n ▲ INFORMAÇÕES DA TRANSMISSÃO:\n\nStatus: $status\nComentários: $status_cmts\nVisualizações: $count");
+        logM("\n\n● INFORMAÇÕES DA TRANSMISSÃO:\n\nStatus: $status\nComentários: $status_cmts\nVisualizações: $count");
     } elseif ($line == 'viewers' || $line == 'VIEWERS' || $line == '7') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\n ▲ VISUALIZADORES:");
+        logM("\n\n● VISUALIZADORES:");
         $live->getInfo($broadcastId);
         foreach ($live->getViewerList($broadcastId)->getUsers() as &$cuser) {
             logM("@".$cuser->getUsername()." (".$cuser->getFullName().")");
