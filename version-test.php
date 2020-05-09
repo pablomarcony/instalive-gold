@@ -7,7 +7,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 system('title InstaLive Gold Trial');
 system('break off');
-echo "\e[H\e[J";
+pclose (popen('cls', 'w'));
 if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP!");
 }
@@ -15,7 +15,7 @@ if (php_sapi_name() !== "cli") {
 $texto_title = "";
 function title () {
     global $texto_title;
-    echo "\e[H\e[J";
+    pclose (popen('cls', 'w'));
     logM("Bem vindo(a) ao");
     logM(" _____              _           _      _                  _____         _      _  
 |_   _|            | |         | |    (_)                |  __ \       | |    | | 
