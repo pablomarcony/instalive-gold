@@ -143,7 +143,8 @@ $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
 
 function login($ig) {
-    print "\n ■ EFETUE O LOGIN NO INSTAGRAM.
+    print "\n ■ EFETUE O LOGIN NO INSTAGRAM";
+    print "\n
 ┌──────────┬────────────────────────┐
 │ USUÁRIO: │ ";
     $handle = fopen ("php://stdin","r");
@@ -154,7 +155,7 @@ function login($ig) {
     $ig_password = trim(fgets($handle));
     print "└──────────┴────────────────────────┘";
 
-    print "\nConectando...\r";
+    print "\n ▲ CONECTANDO...\r";
     try {
         $loginResponse = $ig->login($ig_username, $ig_password);
 
@@ -281,14 +282,14 @@ function new_tunel($ig, $ig_username) {
 └──────────┴────────────────────────┘";
     echo "
          ╭────────────────────────╮
-─────────┘ ■ URL DE TRANSMISSÃO ■ └───────────────────────────────────────────────────────
+─────────┘ ■ URL DE TRANSMISSÃO ■ └─────────────────────────────────────────────────────────────
 $streamUrl
-──────────────────────────────────────────────────────────────────────────────────────────";
+────────────────────────────────────────────────────────────────────────────────────────────────";
     echo "
         ╭──────────────────────────╮
-────────┘ ■ CHAVE DE TRANSMISSÃO ■ └──────────────────────────────────────────────────────
+────────┘ ■ CHAVE DE TRANSMISSÃO ■ └────────────────────────────────────────────────────────────
 $streamKey
-──────────────────────────────────────────────────────────────────────────────────────────";
+────────────────────────────────────────────────────────────────────────────────────────────────";
     comandos();
     newCommand($ig->live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_username,$hora_inicio,$hora_fim,$status_live,$status_cmts);
     logM("Algo deu super errado! Tentativa de pelo menos limpar!");
@@ -363,34 +364,40 @@ function open_coments($ig_username) {
 }
 
 function save_live($live, $broadcastId) {
-    logM("\n\nDeseja manter a transmissão arquivada por 24 horas? \"SIM\" \ \"NAO\"");
+    print "\n
+    ┌──────────────────────────────────────────────────────────┬───────┬───────┐
+    │ ● Deseja manter a transmissão arquivada por 24 horas?    │  SIM  │  NÃO  │
+    └──────────────────────────────────────────────────────────┴───────┴───────┘";
     print " ▌ ";
     $handle = fopen ("php://stdin","r");
     $archived = trim(fgets($handle));
     if ($archived == 'sim' || $archived == 'SIM') {
         $live->addToPostLive($broadcastId);
-        logM("Transmissão ao vivo salva!");
+        logM(" ▲ TRANSMISSÃO AO VIVO SALVA!");
     } elseif ($archived == 'nao' || $archived == 'NAO' || $archived == 'não' || $archived == 'NÃO') {
-        logM("Transmissão ao vivo não foi salva!");
+        logM(" ▲ TRANSMISSÃO AO VIVO NÃO FOI SALVA!");
     } else {
-        logM("Comando inválido. Por favor, digite novamente!");
+        logM(" ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
         save_live($live, $broadcastId);
     }
 }
 
 function cmd_sair ($ig,$ig_username) {
-    logM("\nDeseja sair do InstaLive Gold Trial ou iniciar uma nova transmissão? \"SAIR\" \ \"NOVA LIVE\"");
+    print "\n
+    ┌───────────────────────────────────────────────────────────────────────────┬────────┬─────────────┐
+    │ ● Deseja sair do InstaLive Gold Trial ou iniciar uma nova transmissão?    │  SAIR  │  NOVA LIVE  │
+    └───────────────────────────────────────────────────────────────────────────┴────────┴─────────────┘";
     print " ▌ ";
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if ($line == "sair" || $line == "SAIR") {
-        logM("\nSaindo...");
+        logM("\n ▲ SAINDO...");
         sleep(2);
         exit(0);
     } elseif ($line == "nova live" || $line == "NOVA LIvE") {
         new_tunel($ig, $ig_username);
     }else {
-        logM("Comando inválido. Por favor, digite novamente!");
+        logM(" ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
         cmd_sair($ig,$ig_username);
     }
 }
@@ -405,15 +412,19 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
     if($line == 'ativar c' || $line == 'ATIVAR C' || $line == '6') {
         $live->enableComments($broadcastId);
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\nComentários ativados!");
+        logM("\n\n ▲ COMENTÁRIOS ATIVADOS!");
         $status_cmts = "Ativados";
     } elseif ($line == 'desativar c' || $line == 'DESATIVAR C' || $line == '5') {
         $live->disableComments($broadcastId);
         $status_cmts = "Desativados";
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\nComentários desativados!");
+        logM("\n\n ▲ COMENTÁRIOS DESATIVADOS!");
     } elseif ($line == 'parar' || $line == 'PARAR' || $line == '9') {
-        logM("\n\nDeseja realmente finalizar esta transmissão? \"SIM\" \ \"NAO\"");
+        corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        print "\n
+        ┌───────────────────────────────────────────────────┬───────┬───────┐
+        │ ● Deseja realmente finalizar esta transmissão?    │  SIM  │  NAO  │
+        └───────────────────────────────────────────────────┴───────┴───────┘";
         print " ▌ ";
         $handle = fopen ("php://stdin","r");
         $line = trim(fgets($handle));
@@ -429,32 +440,32 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
             cmd_sair($ig,$ig_username);
         } else {
             corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-            logM("\nTRANSMISSÃO NÃO FINALIZADA");
+            logM("\n ▲ TRANSMISSÃO NÃO FINALIZADA");
         }
     } elseif ($line == 'url' || $line == 'URL' || $line == '3') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         echo "
          ╭────────────────────────╮
-─────────┘ ■ URL DE TRANSMISSÃO ■ └───────────────────────────────────────────────────────
+─────────┘ ■ URL DE TRANSMISSÃO ■ └─────────────────────────────────────────────────────────────
 $streamUrl
-──────────────────────────────────────────────────────────────────────────────────────────";
+────────────────────────────────────────────────────────────────────────────────────────────────";
     } elseif ($line == 'key' || $line == 'KEY' || $line == '4') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         echo "
         ╭──────────────────────────╮
-────────┘ ■ CHAVE DE TRANSMISSÃO ■ └──────────────────────────────────────────────────────
+────────┘ ■ CHAVE DE TRANSMISSÃO ■ └────────────────────────────────────────────────────────────
 $streamKey
-──────────────────────────────────────────────────────────────────────────────────────────";
+────────────────────────────────────────────────────────────────────────────────────────────────";
     } elseif ($line == 'info' || $line == 'INFO' || $line == '2') {
         $info = $live->getInfo($broadcastId);
         $status = $info->getStatus();
         $muted = var_export($info->is_Messages(), true);
         $count = $info->getViewerCount();
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\nInformações da Transmissão:\n\nStatus: $status\nComentários: $status_cmts\nVisualizações: $count");
+        logM("\n\n ▲ INFORMAÇÕES DA TRANSMISSÃO:\n\nStatus: $status\nComentários: $status_cmts\nVisualizações: $count");
     } elseif ($line == 'viewers' || $line == 'VIEWERS' || $line == '7') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\nVisualizadores:");
+        logM("\n\n ▲ VISUALIZADORES:");
         $live->getInfo($broadcastId);
         foreach ($live->getViewerList($broadcastId)->getUsers() as &$cuser) {
             logM("@".$cuser->getUsername()." (".$cuser->getFullName().")");
@@ -463,17 +474,16 @@ $streamKey
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
     } elseif ($line == 'comentarios' || $line == 'COMENTARIOS' || $line == '8') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\nAbrindo janela de comentários...");
+        logM("\n\n ▲ ABRINDO JANELA DE COMENTÁRIOS...\r");
         open_coments($ig_username);
         sleep(5);
-        corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\nJanela de comentários iniciada! Faça login com esta conta.");
+        logM(" ▲ JANELA DE COMENTÁRIOS INICIADA! FAÇA LOGIN COM ESTA CONTA.");
     } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         contato();        
     } else {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\nComando inválido. Digite \"AJUDA\" para obter ajuda!");
+        logM("\n\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
     }
     fclose($handle);
     newCommand($ig->live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_username,$hora_inicio,$hora_fim,$status_live,$status_cmts);
