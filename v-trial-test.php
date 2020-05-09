@@ -118,7 +118,7 @@ function date_teste() {
 date_teste();
 $texto_title = TEXTO_TITLE;
 function comandos() {
-    echo "\n                                                
+    echo "                                                
                                                                                  ╭────────────╮
                                                                                  │  COMANDOS  │
     ╭───┬───┬──────────────────────────────────┬───┬───┬─────────────────────────┴──────────┬─┴─╮
@@ -365,10 +365,10 @@ function open_coments($ig_username) {
 
 function save_live($live, $broadcastId) {
     print "\n
-    ┌──────────────────────────────────────────────────────────┬───────┬───────┐
-    │ ● Deseja manter a transmissão arquivada por 24 horas?    │  SIM  │  NÃO  │
-    └──────────────────────────────────────────────────────────┴───────┴───────┘";
-    print " ▌ ";
+┌──────────────────────────────────────────────────────────┬───────┬───────┐
+│ ● Deseja manter a transmissão arquivada por 24 horas?    │  SIM  │  NÃO  │
+└──────────────────────────────────────────────────────────┴───────┴───────┘";
+    print "\n ▌ ";
     $handle = fopen ("php://stdin","r");
     $archived = trim(fgets($handle));
     if ($archived == 'sim' || $archived == 'SIM') {
@@ -383,11 +383,11 @@ function save_live($live, $broadcastId) {
 }
 
 function cmd_sair ($ig,$ig_username) {
-    print "\n
-    ┌───────────────────────────────────────────────────────────────────────────┬────────┬─────────────┐
-    │ ● Deseja sair do InstaLive Gold Trial ou iniciar uma nova transmissão?    │  SAIR  │  NOVA LIVE  │
-    └───────────────────────────────────────────────────────────────────────────┴────────┴─────────────┘";
-    print " ▌ ";
+    print "
+┌───────────────────────────────────────────────────────────────────────────┬────────┬─────────────┐
+│ ● Deseja sair do InstaLive Gold Trial ou iniciar uma nova transmissão?    │  SAIR  │  NOVA LIVE  │
+└───────────────────────────────────────────────────────────────────────────┴────────┴─────────────┘";
+    print "\n ▌ ";
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if ($line == "sair" || $line == "SAIR") {
@@ -422,10 +422,10 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
     } elseif ($line == 'parar' || $line == 'PARAR' || $line == '9') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         print "\n
-        ┌───────────────────────────────────────────────────┬───────┬───────┐
-        │ ● Deseja realmente finalizar esta transmissão?    │  SIM  │  NAO  │
-        └───────────────────────────────────────────────────┴───────┴───────┘";
-        print " ▌ ";
+┌───────────────────────────────────────────────────┬───────┬───────┐
+│ ● Deseja realmente finalizar esta transmissão?    │  SIM  │  NAO  │
+└───────────────────────────────────────────────────┴───────┴───────┘";
+        print "\n ▌ ";
         $handle = fopen ("php://stdin","r");
         $line = trim(fgets($handle));
         if ($line == 'sim' || $line == 'SIM') {
@@ -477,7 +477,8 @@ $streamKey
         logM("\n\n ▲ ABRINDO JANELA DE COMENTÁRIOS...\r");
         open_coments($ig_username);
         sleep(5);
-        logM(" ▲ JANELA DE COMENTÁRIOS INICIADA! FAÇA LOGIN COM ESTA CONTA.");
+        corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        logM("\n\n ▲ JANELA DE COMENTÁRIOS INICIADA! FAÇA LOGIN COM ESTA CONTA.");
     } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         contato();        
