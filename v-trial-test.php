@@ -24,7 +24,7 @@ function title () {
   | |  | '_ \ / __|| __| / _` || |    | |\ \ / / / _ \   | | __  / _ \ | | / _` | 
  _| |_ | | | |\__ \| |_ | (_| || |____| | \ V / |  __/   | |_\ \| (_) || || (_| | 
  \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| ".$texto_title;
-    logM("Copyright © 2020 - Todos os direitos reservados");
+    logM("\nCopyright © 2020 - Todos os direitos reservados");
 }
 title();
 
