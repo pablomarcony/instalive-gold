@@ -68,15 +68,15 @@ function avisos() {
 }
 
 function contato() {
-    print "\n ■ CONTATOS";
+    print "\n ● CONTATOS:";
     print "
-    ┌───────────┬─────────────────────────────────────────────────────┐
-    │ TELEFONE: │ +55 98 98348 6439                                   │
-    ├───────────┼─────────────────────────────────────────────────────┤
-    │ E-MAIL:   │ grupoinovarcontato@gmail.com                        │
-    ├───┬───────┴────────────┬───┬──────────────────┬───┬─────────────┤
-    │ 1 │ ● ENVIAR MENSAGEM  │ 2 │ ● ENVIAR E-MAIL  │ 3 │ ● CANCELAR  │
-    └───┴────────────────────┴───┴──────────────────┴───┴─────────────┘";
+┌───────────┬─────────────────────────────────────────────────────┐
+│ TELEFONE: │ +55 98 98348 6439                                   │
+├───────────┼─────────────────────────────────────────────────────┤
+│ E-MAIL:   │ grupoinovarcontato@gmail.com                        │
+├───┬───────┴────────────┬───┬──────────────────┬───┬─────────────┤
+│ 1 │ ● ENVIAR MENSAGEM  │ 2 │ ● ENVIAR E-MAIL  │ 3 │ ● CANCELAR  │
+└───┴────────────────────┴───┴──────────────────┴───┴─────────────┘";
     print "\n ▌ ";
     $handle = fopen ("php://stdin","r");
     $archived = trim(fgets($handle));
@@ -299,14 +299,14 @@ function new_tunel($ig, $ig_username) {
 └──────────┴────────────────────────┘";
     echo "
          ╭────────────────────────╮
-─────────┘ ■ URL DE TRANSMISSÃO ■ └─────────────────────────────────────────────────────────────
+─────────┘ ■ URL DE TRANSMISSÃO ■ └──────────────────────────────────────────────────────────────
 $streamUrl
-────────────────────────────────────────────────────────────────────────────────────────────────";
+─────────────────────────────────────────────────────────────────────────────────────────────────";
     echo "
         ╭──────────────────────────╮
-────────┘ ■ CHAVE DE TRANSMISSÃO ■ └────────────────────────────────────────────────────────────
+────────┘ ■ CHAVE DE TRANSMISSÃO ■ └─────────────────────────────────────────────────────────────
 $streamKey
-────────────────────────────────────────────────────────────────────────────────────────────────";
+─────────────────────────────────────────────────────────────────────────────────────────────────";
     comandos();
     newCommand($ig->live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_username,$hora_inicio,$hora_fim,$status_live,$status_cmts);
     logM("\n ▲ ALGO DEU SUPER ERRADO! TENTANDO CORRIGIR!");
@@ -331,8 +331,7 @@ function logado($ig,$ig_username) {
 ├──────────┼────────────────────────┤
 │ ACESSO:  │ ". $data."
 └──────────┴────────────────────────┘";
-    
-        print "\n";
+logM("\n ▲ PRESSIONE QUALQUER TECLA PARA INICIAR A TRANSMISSÃO...");
         system("PAUSE");
         new_tunel($ig, $ig_username);
     } catch (\Exception $e) {
@@ -411,7 +410,7 @@ function cmd_sair ($ig,$ig_username) {
         logM("\n ▲ SAINDO...");
         sleep(2);
         exit(0);
-    } elseif ($line == "nova live" || $line == "NOVA LIvE") {
+    } elseif ($line == "nova live" || $line == "NOVA LIVE") {
         new_tunel($ig, $ig_username);
     }else {
         logM("\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
@@ -430,10 +429,10 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         $live->enableComments($broadcastId);
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\n\n ▲ COMENTÁRIOS ATIVADOS!");
-        $status_cmts = "Ativados";
+        $status_cmts = "ATIVADOS";
     } elseif ($line == 'desativar c' || $line == 'DESATIVAR C' || $line == '5') {
         $live->disableComments($broadcastId);
-        $status_cmts = "Desativados";
+        $status_cmts = "DESATIVADOS";
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\n\n ▲ COMENTÁRIOS DESATIVADOS!");
     } elseif ($line == 'parar' || $line == 'PARAR' || $line == '9') {
@@ -463,36 +462,36 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         echo "
          ╭────────────────────────╮
-─────────┘ ■ URL DE TRANSMISSÃO ■ └─────────────────────────────────────────────────────────────
+─────────┘ ■ URL DE TRANSMISSÃO ■ └──────────────────────────────────────────────────────────────
 $streamUrl
-────────────────────────────────────────────────────────────────────────────────────────────────";
+─────────────────────────────────────────────────────────────────────────────────────────────────";
     } elseif ($line == 'key' || $line == 'KEY' || $line == '4') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         echo "
         ╭──────────────────────────╮
-────────┘ ■ CHAVE DE TRANSMISSÃO ■ └────────────────────────────────────────────────────────────
+────────┘ ■ CHAVE DE TRANSMISSÃO ■ └─────────────────────────────────────────────────────────────
 $streamKey
-────────────────────────────────────────────────────────────────────────────────────────────────";
+─────────────────────────────────────────────────────────────────────────────────────────────────";
     } elseif ($line == 'info' || $line == 'INFO' || $line == '2') {
         $info = $live->getInfo($broadcastId);
         $status = $info->getStatus();
         $muted = var_export($info->is_Messages(), true);
         $count = $info->getViewerCount();
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        print "\n ● INFORMAÇÕES DA TRANSMISSÃO:";
-        print "\n
-        ┌─────────────────┬───────────────────────────────┐
-        │ STATUS:         │ ". $status."
-        ├─────────────────┼───────────────────────────────┤
-        │ COMENTÁRIOS:    │ ". $status_cmts."
-        ├─────────────────┼───────────────────────────────┤
-        │ VISUALIZAÇÕES:  │ ". $count."
-        └─────────────────┴───────────────────────────────┘";
+        print "\n\n ● INFORMAÇÕES DA TRANSMISSÃO:";
+        print "
+┌─────────────────┬───────────────────────────────┐
+│ STATUS:         │ ". $status."
+├─────────────────┼───────────────────────────────┤
+│ COMENTÁRIOS:    │ ". $status_cmts."
+├─────────────────┼───────────────────────────────┤
+│ VISUALIZAÇÕES:  │ ". $count."
+└─────────────────┴───────────────────────────────┘";
     } elseif ($line == 'viewers' || $line == 'VIEWERS' || $line == '7') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        logM("\n\n ● VISUALIZADORES:");
         $live->getInfo($broadcastId);
-        print "\n
+        print "\n\n ● VISUALIZADORES:";
+        print "
 ┌────────────────────────────────────────────────────────────────┐";
         foreach ($live->getViewerList($broadcastId)->getUsers() as &$cuser) {
             print "
