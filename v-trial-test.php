@@ -20,10 +20,10 @@ function title () {
     } elseif ($texto_title[0] <= 1){
         $texto_title[1] = "DIA";
         $texto_title[2] = "RESTANTE";
-    } else (
+    } else {
         $texto_title[1] = null;
         $texto_title[2] = "TRIAL";
-    )
+    }
     pclose (popen('cls', 'w'));
     print "Bem vindo(a) ao";
     print "
