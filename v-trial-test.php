@@ -21,6 +21,7 @@ function title () {
         $texto_title[1] = "DIA";
         $texto_title[2] = "RESTANTE";
     } else {
+        $texto_title[0] = null;
         $texto_title[1] = null;
         $texto_title[2] = "TRIAL";
     }
