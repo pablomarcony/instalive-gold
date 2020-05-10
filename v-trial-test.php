@@ -17,7 +17,7 @@ function title () {
     if ($texto_title[0] > 1) {
         $texto_title[1] = "DIAS";
         $texto_title[2] = "RESTANTES";
-    } elseif ($texto_title[0] =< 1){
+    } elseif ($texto_title[0] <= 1){
         $texto_title[1] = "DIA";
         $texto_title[2] = "RESTANTE";
     } else (
