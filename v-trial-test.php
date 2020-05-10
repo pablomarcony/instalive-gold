@@ -86,7 +86,10 @@ function date_limite() {
     include 'https://pablomarcony.github.io/instalive-gold/v-trial-list.php';
     if ($limite == null){
         print "\n ▲ POR FAVOR, VERIFIQUE SUA CONEXÃO A INTERNET PARA UTILIZAR O INSTALIVE GOLD TRIAL. \NCASO O ERRO PERSISTA, ENTRE EM CONTATO COM DOS DESENVOLVEDORES.\r";
-        contato();
+        $rsp_contato = contato();
+        if ($rsp_contato != false) {
+            echo $rsp_contato;
+        }    
         system("PAUSE >nul");
         exit(0);
     } elseif ($limite == "c-invalido"){
@@ -347,9 +350,9 @@ function input_contato() {
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
-        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DA MENSAGEM SERÁ INICIADA."; 
+        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DA MENSAGEM SERÁ INICIADA.\n"; 
     } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
-        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DO E-MAIL SERÁ INICIADA."; 
+        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DO E-MAIL SERÁ INICIADA.\n"; 
     } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
         $rsp_contato = false; 
     } else {
