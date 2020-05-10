@@ -11,19 +11,28 @@ echo "\e[H\e[J";
 if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP!");
 }
-
-$texto_title = "Trial";
+$texto_title[0] = null;
 function title () {
     global $texto_title;
+    if ($texto_title[0] > 1) {
+        $texto_title[1] = "DIAS";
+        $texto_title[2] = "RESTANTES";
+    } elseif ($texto_title[0] =< 1){
+        $texto_title[1] = "DIA";
+        $texto_title[2] = "RESTANTE";
+    } else (
+        $texto_title[1] = null;
+        $texto_title[2] = "TRIAL";
+    )
     pclose (popen('cls', 'w'));
     print "Bem vindo(a) ao";
     print "
  _____              _           _      _                  _____         _      _  
 |_   _|            | |         | |    (_)                |  __ \       | |    | | 
   | |   _ __   ___ | |_   __ _ | |     _ __   __  ___    | |  \/  ___  | |  __| | 
-  | |  | '_ \ / __|| __| / _` || |    | |\ \ / / / _ \   | | __  / _ \ | | / _` | ".$texto_title."
- _| |_ | | | |\__ \| |_ | (_| || |____| | \ V / |  __/   | |_\ \| (_) || || (_| | DIAS
- \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| RESTANTES";
+  | |  | '_ \ / __|| __| / _` || |    | |\ \ / / / _ \   | | __  / _ \ | | / _` | ".$texto_title[0]."
+ _| |_ | | | |\__ \| |_ | (_| || |____| | \ V / |  __/   | |_\ \| (_) || || (_| | ".$texto_title[1]."
+ \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| ".$texto_title[2];
     logM("\nCopyright © 2020 - Todos os direitos reservados");
 }
 title();
@@ -100,7 +109,7 @@ function date_limite() {
         return $dias_left = (($_date - $_limite) /86400) *-1;
     }
 }
-$texto_title = date_limite();
+$texto_title[0] = date_limite();
 
 
 function avisos() {
