@@ -339,23 +339,24 @@ function contato() {
 ├───┬───────┴────────────┬───┬──────────────────┬───┬─────────────┤
 │ 1 │ ● ENVIAR MENSAGEM  │ 2 │ ● ENVIAR E-MAIL  │ 3 │ ● CANCELAR  │
 └───┴────────────────────┴───┴──────────────────┴───┴─────────────┘";
-    function input_contato() {
-        print "\n ▌ ";
-        $handle = fopen ("php://stdin","r");
-        $line = trim(fgets($handle));
-        if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
-            $rsp_contato = "msg"; 
-        } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
-            $rsp_contato = "email"; 
-        } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
-            $rsp_contato = false; 
-        } else {
-            print "\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!";
-            input_contato();
-        }
-        return $rsp_contato;        
-    }
     return $rsp_contato = input_contato();
+}
+
+function input_contato() {
+    print "\n ▌ ";
+    $handle = fopen ("php://stdin","r");
+    $line = trim(fgets($handle));
+    if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
+        $rsp_contato = "msg"; 
+    } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
+        $rsp_contato = "email"; 
+    } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
+        $rsp_contato = false; 
+    } else {
+        print "\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!";
+        input_contato();
+    }
+    return $rsp_contato;        
 }
 
 function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live) {
