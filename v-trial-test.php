@@ -355,8 +355,7 @@ function contato() {
         }
         return $rsp_contato;        
     }
-    $rsp_contato = input_contato();
-    return $rsp_contato;
+    return $rsp_contato = input_contato();
 }
 
 function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live) {
