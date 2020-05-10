@@ -321,7 +321,7 @@ function logado($ig,$ig_username) {
 ├──────────┼────────────────────────┤
 │ ACESSO:  │ ". $data."
 └──────────┴────────────────────────┘";
-logM("\n ▲ PRESSIONE QUALQUER TECLA PARA INICIAR A TRANSMISSÃO...");
+        logM("\n ▲ PRESSIONE QUALQUER TECLA PARA INICIAR A TRANSMISSÃO...");
         system("PAUSE >nul");
         new_tunel($ig, $ig_username);
     } catch (\Exception $e) {
