@@ -263,7 +263,7 @@ login($ig);
 
 // Bloco responsável por criar a transmissão ao vivo.
 function new_tunel($ig, $ig_username) {
-    logM("\n ▲ GERANDO TÚNEL...");
+    logM(" ▲ GERANDO TÚNEL...");
     $stream = $ig->live->create();
     $broadcastId = $stream->getBroadcastId();
     $ig->live->start($broadcastId);
