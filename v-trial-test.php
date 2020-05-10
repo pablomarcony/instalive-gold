@@ -58,8 +58,10 @@ function avisos() {
         echo "\n                                             
     ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ AVISOS ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     ╔══════════════════════════════════════════════════════════════════════════════════════════╗
+    ║                                                                                          ║
     ║    SERVIDOR EM MANUTENÇÃO DE MELHORIAS COM DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE     ║
     ║    PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER INSTABILIDADES AO UTILIZAR O SISTEMA.          ║
+    ║                                                                                          ║
     ╚══════════════════════════════════════════════════════════════════════════════════════════╝
       Pressione qualquer tecla para continuar. . .";
         system("PAUSE >nul");
