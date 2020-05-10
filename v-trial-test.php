@@ -11,7 +11,7 @@ echo "\e[H\e[J";
 if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP!");
 }
-$texto_title[0] = null;
+$texto_title[0] = false;
 function title () {
     global $texto_title;
     if ($texto_title[0] > 1) {
