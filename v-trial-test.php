@@ -118,7 +118,6 @@ function avisos() {
     ╚══════════════════════════════════════════════════════════════════════════════════════════╝
       Pressione qualquer tecla para continuar. . .";
         system("PAUSE >nul");
-        title();
     }
 }
 avisos();
@@ -132,6 +131,7 @@ $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
 
 function login($ig) {
+    title();
     print "\n ■ EFETUE O LOGIN NO INSTAGRAM";
     print "\n
 ┌──────────┬────────────────────────┐
