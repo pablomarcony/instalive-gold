@@ -347,9 +347,9 @@ function input_contato() {
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
-        $rsp_contato = "msg"; 
+        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DA MENSAGEM SERÁ INICIADA."; 
     } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
-        $rsp_contato = "email"; 
+        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DO E-MAIL SERÁ INICIADA."; 
     } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
         $rsp_contato = false; 
     } else {
@@ -533,7 +533,7 @@ $streamKey
         $rsp_contato = contato();
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         if ($rsp_contato != false) {
-            echo $rsp_contato;
+            print $rsp_contato;
         }        
     } else {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
