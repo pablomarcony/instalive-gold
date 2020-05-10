@@ -16,7 +16,7 @@ $texto_title = "Trial";
 function title () {
     global $texto_title;
     pclose (popen('cls', 'w'));
-    logM("Bem vindo(a) ao");
+    print "Bem vindo(a) ao";
     print "
  _____              _           _      _                  _____         _      _  
 |_   _|            | |         | |    (_)                |  __ \       | |    | | 
@@ -122,12 +122,12 @@ function date_limite() {
         $_limite = strtotime(date_format(DateTime::createFromFormat('d/m/Y H:i:s', $limite), 'd-m-Y'));
         $dias_left = (($_date - $_limite) /86400) *-1;
         $texto_title = $dias_left ." DIAS RESTANTES";
+        define("TEXTO_TITLE", $texto_title);
         avisos();
         title();
-        return $texto_title;
     }
 }
-$texto_title = date_limite();
+$texto_title = TEXTO_TITLE;
 function comandos() {
     echo "                                                
                                                                                  ╭────────────╮
