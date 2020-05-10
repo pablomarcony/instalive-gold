@@ -180,8 +180,7 @@ function login($ig) {
             title();
             login($ig);
         }
-        logM("\n ▲ FALHA NO LOGIN. VERIFIQUE SUAS CREDENCIAIS.");
-        print "\n
+        print " ▲ FALHA NO LOGIN. VERIFIQUE SUAS CREDENCIAIS.
 ┌───────────────────────────────┬───────┬───────┐
 │ ● Deseja tentar novamente?    │  SIM  │  NÃO  │
 └───────────────────────────────┴───────┴───────┘";

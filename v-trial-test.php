@@ -236,8 +236,7 @@ function login($ig) {
                 }
             }
         } catch (LazyJsonMapperException $mapperException) {
-            logM("\n ▲ FALHA NO LOGIN. VERIFIQUE SUAS CREDENCIAIS.");
-            print "\n
+            print " ▲ FALHA NO LOGIN. VERIFIQUE SUAS CREDENCIAIS.
 ┌───────────────────────────────┬───────┬───────┐
 │ ● Deseja tentar novamente?    │  SIM  │  NÃO  │
 └───────────────────────────────┴───────┴───────┘";
