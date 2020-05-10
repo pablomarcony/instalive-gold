@@ -142,6 +142,7 @@ function date_limite() {
         title();
     }
 }
+date_teste();
 $texto_title = TEXTO_TITLE;
 function comandos() {
     echo "                                                
