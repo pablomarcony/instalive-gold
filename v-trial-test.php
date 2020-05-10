@@ -352,7 +352,8 @@ function contato() {
         } else {
             print "\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!";
             input_contato();
-        }        
+        }
+        return $rsp_contato;        
     }
     $rsp_contato = input_contato();
     return $rsp_contato;
