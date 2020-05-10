@@ -11,13 +11,13 @@ echo "\e[H\e[J";
 if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP!");
 }
-$texto_title[0] = " ";
+$texto_title[0] = -1;
 function title () {
     global $texto_title;
     if ($texto_title[0] > 1) {
         $texto_title[1] = "DIAS";
         $texto_title[2] = "RESTANTES";
-    } elseif ($texto_title[0] <= 1){
+    } elseif ($texto_title[0] >= 0){
         $texto_title[1] = "DIA";
         $texto_title[2] = "RESTANTE";
     } else {
