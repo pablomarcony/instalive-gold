@@ -531,8 +531,8 @@ $streamKey
 └─────────────────┴───────────────────────────────┘";
     } elseif ($line == 'viewers' || $line == 'VIEWERS' || $line == '7') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        $live->getInfo($broadcastId);
         print "\n\n ● VISUALIZADORES:";
+        $live->getInfo($broadcastId);
         print "
 ┌────────────────────────────────────────────────────────────────┐";
         foreach ($live->getViewerList($broadcastId)->getUsers() as &$cuser) {
