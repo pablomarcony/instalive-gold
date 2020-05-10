@@ -66,7 +66,7 @@ function avisos() {
     }
 }
 
-function contato() {
+function contato($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live) {
     print "\n\n ● CONTATOS:";
     print "
 ┌───────────┬─────────────────────────────────────────────────────┐
@@ -76,9 +76,23 @@ function contato() {
 ├───┬───────┴────────────┬───┬──────────────────┬───┬─────────────┤
 │ 1 │ ● ENVIAR MENSAGEM  │ 2 │ ● ENVIAR E-MAIL  │ 3 │ ● CANCELAR  │
 └───┴────────────────────┴───┴──────────────────┴───┴─────────────┘";
-    print "\n ▌ ";
-    $handle = fopen ("php://stdin","r");
-    $archived = trim(fgets($handle));
+    function input_contato() {
+        print "\n ▌ ";
+        $handle = fopen ("php://stdin","r");
+        $line = trim(fgets($handle));
+        if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
+            $rsp_contato = "msg"; 
+        } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
+            $rsp_contato = "email"; 
+        } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
+            $rsp_contato = false; 
+        } else {
+            print "\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!";
+            input_contato();
+        }        
+    }
+    $rsp_contato = input_contato();
+    return $rsp_contato;
 }
 
 function novo_limite ($limite) {
@@ -115,7 +129,8 @@ function date_limite() {
         title();
         print "\n ■ ESTA VERSÃO EXPIROU! POR FAVOR, ADQUIRA UMA NOVA VERSÃO COM OS DESENVOLVEDORES.";
         contato();
-        system("PAUSE >nul");
+        logM("\n ▲ SAINDO...");
+        sleep(2);
         exit(0);
     } else {
         $_date = strtotime(date("d-m-Y"));
@@ -510,7 +525,11 @@ $streamKey
         logM("\n\n ▲ JANELA DE COMENTÁRIOS INICIADA! FAÇA LOGIN COM ESTA CONTA.");
     } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
-        contato();        
+        $rsp_contato = contato();
+        corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        if ($rsp_contato != false) {
+            echo $rsp_contato;
+        }        
     } else {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\n\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
