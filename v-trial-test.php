@@ -364,12 +364,11 @@ function input_contato() {
         open_link($link_msg);
     } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
         $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DO E-MAIL SERÁ INICIADA.\n"; 
-        $link_email = "mailto:grupoinovarcontato@gmail.com?Subject=SUPORTE%20INSTALIVE%20GOLD%20TRIAL";
-        open_link($link_email);
+        shell_exec('start outlook.exe /c ipm.note /m "grupoinovarcontato@gmail.com&subject=SUPORTE%20INSTALIVE%20GOLD%20TRIAL&body="');
     } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
         $rsp_contato = false; 
     } else {
-        print "\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!";
+        print "\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!\n";
         return $rsp_contato = input_contato();
     }
     return $rsp_contato;        
