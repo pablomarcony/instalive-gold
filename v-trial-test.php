@@ -66,35 +66,6 @@ function avisos() {
     }
 }
 
-function contato() {
-    print "\n\n ● CONTATOS:";
-    print "
-┌───────────┬─────────────────────────────────────────────────────┐
-│ TELEFONE: │ +55 98 98348 6439                                   │
-├───────────┼─────────────────────────────────────────────────────┤
-│ E-MAIL:   │ grupoinovarcontato@gmail.com                        │
-├───┬───────┴────────────┬───┬──────────────────┬───┬─────────────┤
-│ 1 │ ● ENVIAR MENSAGEM  │ 2 │ ● ENVIAR E-MAIL  │ 3 │ ● CANCELAR  │
-└───┴────────────────────┴───┴──────────────────┴───┴─────────────┘";
-    function input_contato() {
-        print "\n ▌ ";
-        $handle = fopen ("php://stdin","r");
-        $line = trim(fgets($handle));
-        if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
-            $rsp_contato = "msg"; 
-        } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
-            $rsp_contato = "email"; 
-        } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
-            $rsp_contato = false; 
-        } else {
-            print "\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!";
-            input_contato();
-        }        
-    }
-    $rsp_contato = input_contato();
-    return $rsp_contato;
-}
-
 function novo_limite ($limite) {
     $_limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
     $limite_fim = date_format($_limite_fim, 'YmdHis');
@@ -356,6 +327,35 @@ logM("\n ▲ PRESSIONE QUALQUER TECLA PARA INICIAR A TRANSMISSÃO...");
     } catch (\Exception $e) {
         logM("\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...".$e->getMessage()."\n");
     }
+}
+
+function contato() {
+    print "\n\n ● CONTATOS:";
+    print "
+┌───────────┬─────────────────────────────────────────────────────┐
+│ TELEFONE: │ +55 98 98348 6439                                   │
+├───────────┼─────────────────────────────────────────────────────┤
+│ E-MAIL:   │ grupoinovarcontato@gmail.com                        │
+├───┬───────┴────────────┬───┬──────────────────┬───┬─────────────┤
+│ 1 │ ● ENVIAR MENSAGEM  │ 2 │ ● ENVIAR E-MAIL  │ 3 │ ● CANCELAR  │
+└───┴────────────────────┴───┴──────────────────┴───┴─────────────┘";
+    function input_contato() {
+        print "\n ▌ ";
+        $handle = fopen ("php://stdin","r");
+        $line = trim(fgets($handle));
+        if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
+            $rsp_contato = "msg"; 
+        } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
+            $rsp_contato = "email"; 
+        } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
+            $rsp_contato = false; 
+        } else {
+            print "\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!";
+            input_contato();
+        }        
+    }
+    $rsp_contato = input_contato();
+    return $rsp_contato;
 }
 
 function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live) {
