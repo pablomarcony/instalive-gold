@@ -66,7 +66,7 @@ function avisos() {
     }
 }
 
-function contato($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live) {
+function contato() {
     print "\n\n ● CONTATOS:";
     print "
 ┌───────────┬─────────────────────────────────────────────────────┐
