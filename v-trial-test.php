@@ -405,7 +405,7 @@ function open_link($link) {
     If (file_exists($chrome)){
         shell_exec("start chrome /incognito --app=". $link);
     } elseif (file_exists($edge)) {
-        shell_exec("start shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge -private ". $link;
+        shell_exec("start shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge -private ". $link);
     } elseif (file_exists($firefox)) {
         shell_exec("start firefox -private-window ". $link);
     } elseif (file_exists($iexplore)) {
