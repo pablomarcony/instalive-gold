@@ -128,7 +128,10 @@ function date_limite() {
     } elseif ($limite_fim <= $date){
         title();
         print "\n ■ ESTA VERSÃO EXPIROU! POR FAVOR, ADQUIRA UMA NOVA VERSÃO COM OS DESENVOLVEDORES.";
-        contato();
+        $rsp_contato = contato();
+        if ($rsp_contato != false) {
+            echo $rsp_contato;
+        }    
         logM("\n ▲ SAINDO...");
         sleep(2);
         exit(0);
@@ -142,7 +145,7 @@ function date_limite() {
         title();
     }
 }
-date_teste();
+date_limite();
 $texto_title = TEXTO_TITLE;
 function comandos() {
     echo "                                                
