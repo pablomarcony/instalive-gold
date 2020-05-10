@@ -442,6 +442,7 @@ function cmd_sair ($ig,$ig_username) {
 ┌───────────────────────────────────────────────────────────────────────────┬────────┬─────────────┐
 │ ● Deseja sair do InstaLive Gold Trial ou iniciar uma nova transmissão?    │  SAIR  │  NOVA LIVE  │
 └───────────────────────────────────────────────────────────────────────────┴────────┴─────────────┘";
+    input_cmd_sair($ig,$ig_username);
 }
 function input_cmd_sair($ig,$ig_username) {
     print "\n ▌ ";
