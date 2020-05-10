@@ -303,8 +303,7 @@ function input_contato() {
     $line = trim(fgets($handle));
     if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
         $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DA MENSAGEM SERÁ INICIADA.\n";
-        $link_msg = "https://api.whatsapp.com/send?phone=5598983486439&text=Ol%C3%A1%2C%20sou%20o%20usu%C3%A1rio%20do%20INSTALIVE%20GOLD%20Trial%20e%20preciso%20de%20um%20suporte."; 
-        open_link($link_msg);
+        shell_exec("start https://api.whatsapp.com/send?phone=5598983486439&text=Ol%C3%A1%2C%20sou%20o%20usu%C3%A1rio%20do%20INSTALIVE%20GOLD%20Trial%20e%20preciso%20de%20um%20suporte."); 
     } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
         $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DO E-MAIL SERÁ INICIADA.\n"; 
         shell_exec('start outlook.exe /c ipm.note /m "grupoinovarcontato@gmail.com&subject=SUPORTE%20INSTALIVE%20GOLD%20TRIAL&body="');
