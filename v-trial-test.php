@@ -359,9 +359,13 @@ function input_contato() {
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
     if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
-        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DA MENSAGEM SERÁ INICIADA.\n"; 
+        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DA MENSAGEM SERÁ INICIADA.\n";
+        $link_msg = "https://api.whatsapp.com/send?phone=5598983486439&text=Ol%C3%A1%2C%20sou%20o%20usu%C3%A1rio%20do%20INSTALIVE%20GOLD%20Trial%20e%20preciso%20de%20um%20suporte."; 
+        open_link($link_msg);
     } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
         $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DO E-MAIL SERÁ INICIADA.\n"; 
+        $link_email = "mailto:grupoinovarcontato@gmail.com?Subject=SUPORTE%20INSTALIVE%20GOLD%20TRIAL";
+        open_link($link_email);
     } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
         $rsp_contato = false; 
     } else {
@@ -393,21 +397,21 @@ function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live
     }
 }
 
-function open_coments($ig_username) {
+function open_link($link) {
     $chrome = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe';
     $edge = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe';
     $firefox = 'C:\Program Files\Mozilla Firefox\firefox.exe';
     $iexplore = 'C:\Program Files\Internet Explorer\iexplore.exe';
     If (file_exists($chrome)){
-        shell_exec("start chrome /incognito --app=https://instagram.com/". $ig_username ."/live");
+        shell_exec("start chrome /incognito --app=". $link);
     } elseif (file_exists($edge)) {
-        shell_exec("start shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge -private https://instagram.com/".$ig_username."/live");
+        shell_exec("start shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge -private ". $link;
     } elseif (file_exists($firefox)) {
-        shell_exec("start firefox -private-window https://instagram.com/". $ig_username ."/live");
+        shell_exec("start firefox -private-window ". $link);
     } elseif (file_exists($iexplore)) {
-        shell_exec("start iexplore -private https://instagram.com/". $ig_username ."/live");
+        shell_exec("start iexplore -private ". $link);
     }else {
-        shell_exec("start https://instagram.com/". $ig_username ."/live");
+        shell_exec("start ". $link);
     }
 }
 
@@ -536,7 +540,8 @@ $streamKey
     } elseif ($line == 'comentarios' || $line == 'COMENTARIOS' || $line == '8') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\n\n ▲ ABRINDO JANELA DE COMENTÁRIOS...");
-        open_coments($ig_username);
+        $link_coments = "https://instagram.com/". $ig_username ."/live";
+        open_link($link_coments);
         sleep(5);
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\n\n ▲ JANELA DE COMENTÁRIOS INICIADA! FAÇA LOGIN COM ESTA CONTA.");
