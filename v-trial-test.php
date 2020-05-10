@@ -11,6 +11,7 @@ echo "\e[H\e[J";
 if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP!");
 }
+
 $texto_title[0] = false;
 function title () {
     global $texto_title;
@@ -111,7 +112,6 @@ function date_limite() {
     }
 }
 $texto_title[0] = date_limite();
-
 
 function avisos() {
     $avisos = false;
@@ -420,18 +420,21 @@ function save_live($live, $broadcastId) {
 ┌──────────────────────────────────────────────────────────┬───────┬───────┐
 │ ● Deseja manter a transmissão arquivada por 24 horas?    │  SIM  │  NÃO  │
 └──────────────────────────────────────────────────────────┴───────┴───────┘";
+    input_save_live($live, $broadcastId);
+}
+function input_save_live($live, $broadcastId) {
     print "\n ▌ ";
     $handle = fopen ("php://stdin","r");
     $archived = trim(fgets($handle));
     if ($archived == 'sim' || $archived == 'SIM') {
         $live->addToPostLive($broadcastId);
-        logM("\n ▲ TRANSMISSÃO AO VIVO SALVA!");
+        logM("\n\n ▲ TRANSMISSÃO AO VIVO SALVA!");
     } elseif ($archived == 'nao' || $archived == 'NAO' || $archived == 'não' || $archived == 'NÃO') {
-        logM("\n ▲ TRANSMISSÃO AO VIVO NÃO FOI SALVA!");
+        logM("\n\n ▲ TRANSMISSÃO AO VIVO NÃO FOI SALVA!");
     } else {
         logM("\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
-        save_live($live, $broadcastId);
-    }
+        input_save_live($live, $broadcastId);
+    }      
 }
 
 function cmd_sair ($ig,$ig_username) {
@@ -439,6 +442,8 @@ function cmd_sair ($ig,$ig_username) {
 ┌───────────────────────────────────────────────────────────────────────────┬────────┬─────────────┐
 │ ● Deseja sair do InstaLive Gold Trial ou iniciar uma nova transmissão?    │  SAIR  │  NOVA LIVE  │
 └───────────────────────────────────────────────────────────────────────────┴────────┴─────────────┘";
+}
+function input_cmd_sair($ig,$ig_username) {
     print "\n ▌ ";
     $handle = fopen ("php://stdin","r");
     $line = trim(fgets($handle));
@@ -450,7 +455,7 @@ function cmd_sair ($ig,$ig_username) {
         new_tunel($ig, $ig_username);
     }else {
         logM("\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
-        cmd_sair($ig,$ig_username);
+        input_cmd_sair($ig,$ig_username);
     }
 }
 
