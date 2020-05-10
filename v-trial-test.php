@@ -51,23 +51,6 @@ if (isset($version) == false || $version != 1.9){
     }
 }
 
-function avisos() {
-    $avisos = true;
-    if ($avisos == true) {
-        title();
-        echo "\n                                             
-    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ AVISOS ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-    ╔══════════════════════════════════════════════════════════════════════════════════════════╗
-    ║                                                                                          ║
-    ║    SERVIDOR EM MANUTENÇÃO DE MELHORIAS COM DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE     ║
-    ║    PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER INSTABILIDADES AO UTILIZAR O SISTEMA.          ║
-    ║                                                                                          ║
-    ╚══════════════════════════════════════════════════════════════════════════════════════════╝
-      Pressione qualquer tecla para continuar. . .";
-        system("PAUSE >nul");
-    }
-}
-
 function novo_limite ($limite) {
     $_limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
     $limite_fim = date_format($_limite_fim, 'YmdHis');
@@ -115,30 +98,30 @@ function date_limite() {
         $_date = strtotime(date("d-m-Y"));
         $_limite = strtotime(date_format(DateTime::createFromFormat('d/m/Y H:i:s', $limite), 'd-m-Y'));
         $dias_left = (($_date - $_limite) /86400) *-1;
-        $texto_title = $dias_left ." DIAS RESTANTES";
-        define("TEXTO_TITLE", $texto_title);
-        avisos();
+        return $texto_title = $dias_left ." DIAS RESTANTES";
+    }
+}
+$texto_title = date_limite();
+
+
+function avisos() {
+    $avisos = false;
+    if ($avisos == true) {
+        title();
+        echo "\n                                             
+    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ AVISOS ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+    ╔══════════════════════════════════════════════════════════════════════════════════════════╗
+    ║                                                                                          ║
+    ║    SERVIDOR EM MANUTENÇÃO DE MELHORIAS COM DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE     ║
+    ║    PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER INSTABILIDADES AO UTILIZAR O SISTEMA.          ║
+    ║                                                                                          ║
+    ╚══════════════════════════════════════════════════════════════════════════════════════════╝
+      Pressione qualquer tecla para continuar. . .";
+        system("PAUSE >nul");
         title();
     }
 }
-date_limite();
-$texto_title = TEXTO_TITLE;
-function comandos() {
-    echo "                                                
-                                                                                 ╭────────────╮
-                                                                                 │  COMANDOS  │
-    ╭───┬───┬──────────────────────────────────┬───┬───┬─────────────────────────┴──────────┬─┴─╮
-    │   │ 1 │ ● Limpar tela do sistema         │   │ 2 │ ● Informações da transmissão       │   │
-    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
-    │   │ 3 │ ● URL de transmissão             │   │ 4 │ ● Chave de transmissão             │   │
-    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
-    │   │ 5 │ ● Desativar comentários          │   │ 6 │ ● Ativar comentários               │   │
-    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
-    │   │ 7 │ ● Espectadores atuais            │   │ 8 │ ● Janela de comentários            │   │
-    │   ├───┼──────────────────────────────────┤   ├───┴┬───────────────────────────────────┤   │
-    │   │ 9 │ ● Parar transmissão              │   │ 10 │● Contato dos desenvolvedores      │   │
-    ╰───┴───┴──────────────────────────────────┴───┴────┴───────────────────────────────────┴───╯";
-}
+avisos();
 
 use InstagramAPI\Exception\ChallengeRequiredException;
 use InstagramAPI\Instagram;
@@ -266,6 +249,29 @@ function login($ig) {
 }
 login($ig);
 
+function logado($ig,$ig_username) {
+    try {
+        if (!$ig->isMaybeLoggedIn) {
+            print "\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...";
+            exit();
+        }
+        
+        $data = date("d/m/Y H:i:s");
+        title();
+        print "\n ■ LOGIN EFETUADO COM SUCESSO";
+        print "\n
+┌──────────┬────────────────────────┐
+│ USUÁRIO: │ ". $ig_username."
+├──────────┼────────────────────────┤
+│ ACESSO:  │ ". $data."
+└──────────┴────────────────────────┘";
+        logM("\n ▲ PRESSIONE QUALQUER TECLA PARA INICIAR A TRANSMISSÃO...");
+        system("PAUSE >nul");
+        new_tunel($ig, $ig_username);
+    } catch (\Exception $e) {
+        logM("\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...".$e->getMessage()."\n");
+    }
+}
 // Bloco responsável por criar a transmissão ao vivo.
 function new_tunel($ig, $ig_username) {
     logM(" ▲ GERANDO TÚNEL...");
@@ -310,28 +316,21 @@ $streamKey
     return $status_live;
 }
 
-function logado($ig,$ig_username) {
-    try {
-        if (!$ig->isMaybeLoggedIn) {
-            print "\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...";
-            exit();
-        }
-        
-        $data = date("d/m/Y H:i:s");
-        title();
-        print "\n ■ LOGIN EFETUADO COM SUCESSO";
-        print "\n
-┌──────────┬────────────────────────┐
-│ USUÁRIO: │ ". $ig_username."
-├──────────┼────────────────────────┤
-│ ACESSO:  │ ". $data."
-└──────────┴────────────────────────┘";
-        logM("\n ▲ PRESSIONE QUALQUER TECLA PARA INICIAR A TRANSMISSÃO...");
-        system("PAUSE >nul");
-        new_tunel($ig, $ig_username);
-    } catch (\Exception $e) {
-        logM("\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...".$e->getMessage()."\n");
-    }
+function comandos() {
+    echo "                                                
+                                                                                 ╭────────────╮
+                                                                                 │  COMANDOS  │
+    ╭───┬───┬──────────────────────────────────┬───┬───┬─────────────────────────┴──────────┬─┴─╮
+    │   │ 1 │ ● Limpar tela do sistema         │   │ 2 │ ● Informações da transmissão       │   │
+    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
+    │   │ 3 │ ● URL de transmissão             │   │ 4 │ ● Chave de transmissão             │   │
+    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
+    │   │ 5 │ ● Desativar comentários          │   │ 6 │ ● Ativar comentários               │   │
+    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
+    │   │ 7 │ ● Espectadores atuais            │   │ 8 │ ● Janela de comentários            │   │
+    │   ├───┼──────────────────────────────────┤   ├───┴┬───────────────────────────────────┤   │
+    │   │ 9 │ ● Parar transmissão              │   │ 10 │● Contato dos desenvolvedores      │   │
+    ╰───┴───┴──────────────────────────────────┴───┴────┴───────────────────────────────────┴───╯";
 }
 
 function contato() {
@@ -346,7 +345,6 @@ function contato() {
 └───┴────────────────────┴───┴──────────────────┴───┴─────────────┘";
     return $rsp_contato = input_contato();
 }
-
 function input_contato() {
     print "\n ▌ ";
     $handle = fopen ("php://stdin","r");
@@ -457,9 +455,9 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         $status_cmts = "ATIVADOS";
     } elseif ($line == 'desativar c' || $line == 'DESATIVAR C' || $line == '5') {
         $live->disableComments($broadcastId);
-        $status_cmts = "DESATIVADOS";
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\n\n ▲ COMENTÁRIOS DESATIVADOS!");
+        $status_cmts = "DESATIVADOS";
     } elseif ($line == 'parar' || $line == 'PARAR' || $line == '9') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         print "\n
