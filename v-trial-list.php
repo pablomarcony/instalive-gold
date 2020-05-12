@@ -54,6 +54,15 @@ switch ($code) {
         $limite = "13/05/2020 23:59:59";
         $limite_fim = novo_limite($limite);
     break;
+    case "#d11m50059":
+
+        // Usuário: Sidney Araujo
+        // Contato: 79 9195 0059 
+        // Limite: 5 dias (08/05/2020)  
+
+        $limite = "16/05/2020 23:59:59";
+        $limite_fim = novo_limite($limite);
+    break;
     default:
         $limite = "c-invalido";
     break;
