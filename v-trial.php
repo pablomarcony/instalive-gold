@@ -269,50 +269,19 @@ $streamKey
 
 function comandos() {
     echo "                                                
-                                                                                 ╭────────────╮
-                                                                                 │  COMANDOS  │
-    ╭───┬───┬──────────────────────────────────┬───┬───┬─────────────────────────┴──────────┬─┴─╮
-    │   │ 1 │ ● Limpar tela do sistema         │   │ 2 │ ● Informações da transmissão       │   │
-    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
-    │   │ 3 │ ● URL de transmissão             │   │ 4 │ ● Chave de transmissão             │   │
-    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
-    │   │ 5 │ ● Desativar comentários          │   │ 6 │ ● Ativar comentários               │   │
-    │   ├───┼──────────────────────────────────┤   ├───┼────────────────────────────────────┤   │
-    │   │ 7 │ ● Espectadores atuais            │   │ 8 │ ● Janela de comentários            │   │
-    │   ├───┼──────────────────────────────────┤   ├───┴┬───────────────────────────────────┤   │
-    │   │ 9 │ ● Parar transmissão              │   │ 10 │● Contato dos desenvolvedores      │   │
-    ╰───┴───┴──────────────────────────────────┴───┴────┴───────────────────────────────────┴───╯";
-}
-
-function contato() {
-    print "\n\n ● CONTATOS:";
-    print "
-┌───────────┬─────────────────────────────────────────────────────┐
-│ TELEFONE: │ +55 98 98348 6439                                   │
-├───────────┼─────────────────────────────────────────────────────┤
-│ E-MAIL:   │ grupoinovarcontato@gmail.com                        │
-├───┬───────┴────────────┬───┬──────────────────┬───┬─────────────┤
-│ 1 │ ● ENVIAR MENSAGEM  │ 2 │ ● ENVIAR E-MAIL  │ 3 │ ● CANCELAR  │
-└───┴────────────────────┴───┴──────────────────┴───┴─────────────┘";
-    return $rsp_contato = input_contato();
-}
-function input_contato() {
-    print "\n ▌ ";
-    $handle = fopen ("php://stdin","r");
-    $line = trim(fgets($handle));
-    if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
-        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DA MENSAGEM SERÁ INICIADA.\n";
-        shell_exec("start https://api.whatsapp.com/send?phone=5598983486439&text=Ol%C3%A1%2C%20sou%20o%20usu%C3%A1rio%20do%20INSTALIVE%20GOLD%20Trial%20e%20preciso%20de%20um%20suporte."); 
-    } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
-        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DO E-MAIL SERÁ INICIADA.\n"; 
-        shell_exec('start outlook.exe /c ipm.note /m "grupoinovarcontato@gmail.com&subject=SUPORTE%20INSTALIVE%20GOLD%20TRIAL&body="');
-    } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
-        $rsp_contato = false; 
-    } else {
-        print "\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!\n";
-        return $rsp_contato = input_contato();
-    }
-    return $rsp_contato;        
+                                                                                             ╭────────────╮
+                                                                                             │  COMANDOS  │
+    ╭───┬───┬────────────────────────────────────────┬───┬───┬───────────────────────────────┴──────────┬─┴─╮
+    │   │'1'│ ● Limpar tela do sistema               │   │'2'│ ● Informações da transmissão             │   │
+    │   ├───┼────────────────────────────────────────┤   ├───┼──────────────────────────────────────────┤   │
+    │   │'3'│ ● Mostrar/Copiar URL de transmissão    │   │'4'│ ● Mostrar/Copiar Chave de transmissão    │   │
+    │   ├───┼────────────────────────────────────────┤   ├───┼──────────────────────────────────────────┤   │
+    │   │'5'│ ● Desativar comentários                │   │'6'│ ● Ativar comentários                     │   │
+    │   ├───┼────────────────────────────────────────┤   ├───┼──────────────────────────────────────────┤   │
+    │   │'7'│ ● Espectadores atuais                  │   │'8'│ ● Janela de comentários                  │   │
+    │   ├───┼────────────────────────────────────────┤   ├───┴┬─────────────────────────────────────────┤   │
+    │   │'9'│ ● Parar transmissão                    │   │'10'│● Contato dos desenvolvedores            │   │
+    ╰───┴───┴────────────────────────────────────────┴───┴────┴─────────────────────────────────────────┴───╯";
 }
 
 function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live) {
@@ -353,6 +322,41 @@ function open_link($link) {
     }else {
         shell_exec("start ". $link);
     }
+}
+
+function new_streamKey($streamKey): string{
+    return str_replace("&", "^^^&", $streamKey);
+}
+
+function contato() {
+    print "\n\n ● CONTATOS:";
+    print "
+┌───────────┬─────────────────────────────────────────────────────┐
+│ TELEFONE: │ +55 98 98348 6439                                   │
+├───────────┼─────────────────────────────────────────────────────┤
+│ E-MAIL:   │ grupoinovarcontato@gmail.com                        │
+├───┬───────┴────────────┬───┬──────────────────┬───┬─────────────┤
+│ 1 │ ● ENVIAR MENSAGEM  │ 2 │ ● ENVIAR E-MAIL  │ 3 │ ● CANCELAR  │
+└───┴────────────────────┴───┴──────────────────┴───┴─────────────┘";
+    return $rsp_contato = input_contato();
+}
+function input_contato() {
+    print "\n ▌ ";
+    $handle = fopen ("php://stdin","r");
+    $line = trim(fgets($handle));
+    if ($line == "1" || $line == "ENVIAR MENSAGEM" || $line == "enviar mensagem") {
+        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DA MENSAGEM SERÁ INICIADA.\n";
+        shell_exec("start https://api.whatsapp.com/send?phone=5598983486439&text=Ol%C3%A1%2C%20sou%20o%20usu%C3%A1rio%20do%20INSTALIVE%20GOLD%20Trial%20e%20preciso%20de%20um%20suporte."); 
+    } elseif ($line == "2" || $line == "ENVIAR E-MAIL" || $line == "enviar e-mail") {
+        $rsp_contato = "\n\n ▲ JANELA PARA ENVIO DO E-MAIL SERÁ INICIADA.\n"; 
+        shell_exec('start outlook.exe /c ipm.note /m "grupoinovarcontato@gmail.com&subject=SUPORTE%20INSTALIVE%20GOLD%20TRIAL&body="');
+    } elseif ($line == "3" || $line == "CANCELAR" || $line == "cancelar") {
+        $rsp_contato = false; 
+    } else {
+        print "\n ▲ COMANDO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!\n";
+        return $rsp_contato = input_contato();
+    }
+    return $rsp_contato;        
 }
 
 function save_live($live, $broadcastId) {
@@ -442,18 +446,22 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         }
     } elseif ($line == 'url' || $line == 'URL' || $line == '3') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        shell_exec("echo " . $streamUrl . " | clip");
         echo "
          ╭────────────────────────╮
 ─────────┘ ■ URL DE TRANSMISSÃO ■ └──────────────────────────────────────────────────────────────
 $streamUrl
 ─────────────────────────────────────────────────────────────────────────────────────────────────";
+    logM("\n ▲ A URL FOI COPIADA. COLE-A EM SEU PROGRAMA DE TRANSMISSÃO.");
     } elseif ($line == 'key' || $line == 'KEY' || $line == '4') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        shell_exec("echo " . new_streamKey($streamKey) . " | clip");
         echo "
         ╭──────────────────────────╮
 ────────┘ ■ CHAVE DE TRANSMISSÃO ■ └─────────────────────────────────────────────────────────────
 $streamKey
 ─────────────────────────────────────────────────────────────────────────────────────────────────";
+    logM("\n ▲ A CHAVE FOI COPIADA. COLE-A NO SEU PROGRAMA DE TRANSMISSÃO.");
     } elseif ($line == 'info' || $line == 'INFO' || $line == '2') {
         $info = $live->getInfo($broadcastId);
         $status = $info->getStatus();
@@ -479,7 +487,7 @@ $streamKey
             print "
 │ @".$cuser->getUsername()."  │  ".$cuser->getFullName();
         }
-        print "\n
+        print "
 └────────────────────────────────────────────────────────────────┘";
     } elseif ($line == 'limpar' || $line == 'LIMPAR' || $line == '1') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
