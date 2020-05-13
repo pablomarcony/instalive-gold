@@ -13,6 +13,7 @@ if (php_sapi_name() !== "cli") {
 }
 
 $texto_title[0] = false;
+echo "\033[1m";
 function title () {
     global $texto_title;
     if ($texto_title[0] > 1) {
@@ -29,13 +30,14 @@ function title () {
     pclose (popen('cls', 'w'));
     print "Bem vindo(a) ao";
     print "
- _____              _           _      _                  _____         _      _  
-|_   _|            | |         | |    (_)                |  __ \       | |    | | 
-  | |   _ __   ___ | |_   __ _ | |     _ __   __  ___    | |  \/  ___  | |  __| | 
-  | |  | '_ \ / __|| __| / _` || |    | |\ \ / / / _ \   | | __  / _ \ | | / _` | ".$texto_title[0]."
- _| |_ | | | |\__ \| |_ | (_| || |____| | \ V / |  __/   | |_\ \| (_) || || (_| | ".$texto_title[1]."
- \___/ |_| |_||___/\___|\___,_|\_____/|_|  \_/  \____|   \_____/\_____/|_|\___,_| ".$texto_title[2];
+┏━━━━━┓            ┏━┓         ┏━┓                       ┏━━━━━┓       ┏━┓    ┏━┓  
+┗━┓ ┏━┛            ┃ ┃         ┃ ┃    ┏━┓                ┃ ┏━┓ ┃       ┃ ┃    ┃ ┃ 
+  ┃ ┃  ┏━┓━━━┓┏━━━┓┃ ┗━┓┏━━━━━┓┃ ┃    ┏━┓┏━┓ ┏━┓┏━━━━┓   ┃ ┃ ┗━┛┏━━━━━┓┃ ┃┏━━━┛ ┃ 
+  ┃ ┃  ┃ ┃━┓ ┃┃ ━━┛┃ ┏━┛┃ ┏━┓ ┃┃ ┃    ┃ ┃┃ ┃ ┃ ┃┃  ━ ┃   ┃ ┃━━━┓┃ ┏━┓ ┃┃ ┃┃ ┏━┓ ┃ ".$texto_title[0]."\033[0m
+┏━┛ ┗━┓┃ ┃ ┃ ┃┏━━ ┃┃ ┗━┓┃ ┗━┃ ┃┃ ┗━━━┓┃ ┃┃ ┗━┛ ┃┃  ━━┓   ┃ ┗━┛ ┃┃ ┗━┛ ┃┃ ┃┃ ┗━┃ ┃ \033[1m".$texto_title[1]."\033[0m
+┗━━━━━┛┗━┛ ┗━┛┗━━━┛┗━━━┛┗━━━┗━┛┗━━━━━┛┗━┛┗━━━━━┛┗━━━━┛   ┗━━━━━┛┗━━━━━┛┗━┛┗━━━┗━┛ \033[1m".$texto_title[2]."\033[0m";
     logM("\nCopyright © 2020 - Todos os direitos reservados");
+    echo "\033[1m";
 }
 title();
 
@@ -131,8 +133,11 @@ function avisos() {
 }
 avisos();
 
+use InstagramAPI\Exception\ChallengeRequiredException;
 use InstagramAPI\Instagram;
 use InstagramAPI\Request\Live;
+use LazyJsonMapper\Exception\LazyJsonMapperException;
+use InstagramAPI\Response\Model\Comment;
 $debug = false;
 $truncatedDebug = false;
 $ig = new Instagram($debug, $truncatedDebug);
@@ -142,13 +147,12 @@ function login($ig) {
     print "\n ■ EFETUE O LOGIN NO INSTAGRAM";
     print "\n
 ┌──────────┬────────────────────────┐
-│ USUÁRIO: │ ";
+│ USUÁRIO: │\033[35m @\033[0m\033[1m";
     $handle = fopen ("php://stdin","r");
     $ig_username = trim(fgets($handle));
     print "├──────────┼────────────────────────┤
 │  SENHA:  │ ";
-    $handle = fopen ("php://stdin","r");
-    $ig_password = trim(fgets($handle));
+    $ig_password = input_password();
     print "└──────────┴────────────────────────┘";
 
     print "\n ▲ CONECTANDO...\r";
@@ -200,6 +204,14 @@ function login($ig) {
 }
 login($ig);
 
+function input_password(){
+	echo "\033[0;0m";  // retorna a cor padrão
+    echo "\033[30;40m"; // mudar a cor dos textos para preto
+    $handle = readline();
+	echo "\033[0m\033[1m";  // retorna a cor padrão
+    return $handle;
+}
+
 function logado($ig,$ig_username) {
     try {
         if (!$ig->isMaybeLoggedIn) {
@@ -212,7 +224,7 @@ function logado($ig,$ig_username) {
         print "\n ■ LOGIN EFETUADO COM SUCESSO";
         print "\n
 ┌──────────┬────────────────────────┐
-│ USUÁRIO: │ ". $ig_username."
+│ USUÁRIO: │ @". $ig_username."
 ├──────────┼────────────────────────┤
 │ ACESSO:  │ ". $data."
 └──────────┴────────────────────────┘";
@@ -245,7 +257,7 @@ function new_tunel($ig, $ig_username) {
     print "\n ■ TRANSMISSÃO INICIADA";
     print "\n
 ┌──────────┬────────────────────────┐
-│ USUÁRIO: │ ". $ig_username."
+│ USUÁRIO: │ @". $ig_username."
 ├──────────┼────────────────────────┤
 │ ACESSO:  │ ". $hora_inicio."
 └──────────┴────────────────────────┘";
@@ -268,20 +280,22 @@ $streamKey
 }
 
 function comandos() {
-    echo "                                                
+    echo '                                                
                                                                                              ╭────────────╮
                                                                                              │  COMANDOS  │
     ╭───┬───┬────────────────────────────────────────┬───┬───┬───────────────────────────────┴──────────┬─┴─╮
-    │   │'1'│ ● Limpar tela do sistema               │   │'2'│ ● Informações da transmissão             │   │
+    │   │"1"│ ● Limpar tela do sistema               │   │"2"│ ● Informações da transmissão             │   │
     │   ├───┼────────────────────────────────────────┤   ├───┼──────────────────────────────────────────┤   │
-    │   │'3'│ ● Mostrar/Copiar URL de transmissão    │   │'4'│ ● Mostrar/Copiar Chave de transmissão    │   │
+    │   │"3"│ ● Mostrar/Copiar URL de transmissão    │   │"4"│ ● Mostrar/Copiar Chave de transmissão    │   │
     │   ├───┼────────────────────────────────────────┤   ├───┼──────────────────────────────────────────┤   │
-    │   │'5'│ ● Desativar comentários                │   │'6'│ ● Ativar comentários                     │   │
+    │   │"5"│ ● Desativar comentários                │   │"6"│ ● Ativar comentários                     │   │
     │   ├───┼────────────────────────────────────────┤   ├───┼──────────────────────────────────────────┤   │
-    │   │'7'│ ● Espectadores atuais                  │   │'8'│ ● Janela de comentários                  │   │
+    │   │"7"│ ● Fixar comentário                     │   │"8"│ ● Janela de comentários                  │   │
     │   ├───┼────────────────────────────────────────┤   ├───┴┬─────────────────────────────────────────┤   │
-    │   │'9'│ ● Parar transmissão                    │   │'10'│● Contato dos desenvolvedores            │   │
-    ╰───┴───┴────────────────────────────────────────┴───┴────┴─────────────────────────────────────────┴───╯";
+    │   │"9"│ ● Espectadores atuais                  │   │"10"│● Parar transmissão                      │   │
+    │   ├───┴┬───────────────────────────────────────┤   ├────┼─────────────────────────────────────────┤   │
+    │   │"11"│● Contato dos desenvolvedores          │   │    │                                         │   │
+    ╰───┴────┴───────────────────────────────────────┴───┴────┴─────────────────────────────────────────┴───╯';
 }
 
 function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live) {
@@ -298,7 +312,7 @@ function corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live
         print "\n ■ TRANSMISSÃO EM ANDAMENTO";
         print "\n
 ┌──────────┬────────────────────────┐
-│ USUÁRIO: │ ". $ig_username."
+│ USUÁRIO: │ @". $ig_username."
 ├──────────┼────────────────────────┤
 │ INICIO:  │ ". $hora_inicio."
 └──────────┴────────────────────────┘";
@@ -357,6 +371,29 @@ function input_contato() {
         return $rsp_contato = input_contato();
     }
     return $rsp_contato;        
+}
+
+function fix_comments($ig,$broadcastId,$status_cmts) {
+    if ($status_cmts != "DESATIVADOS") {
+        print "\n
+┌──────────────────────────────────────────────────────┐
+│ ● Digite abaixo o comentário que deseja fixar:       │
+└──────────────────────────────────────────────────────┘";
+        return input_fix_comments($ig, $broadcastId);
+    } else {
+        return $resp_fix_comments = "\n\n ▲ NÃO É POSSÍVEL FIXAR ENQUANTO OS COMENTÁRIOS ESTIVEREM DESATIVADOS.\n";
+    }
+}
+function input_fix_comments($ig, $broadcastId) {
+    print "\n ▌ ";
+    $comments = readline();
+    if ($comments !== "") {
+        $ig->live->pinComment($broadcastId, $ig->live->comment($broadcastId, $comments)->getComment()->getPk());
+        return $resp_fix_comments = "\n\n ▲ COMENTÁRIO FIXADO!\n";
+    } else {
+        logM("\n ▲ COMENTÁRIO INVALIDO. POR FAVOR, DIGITE NOVAMENTE!");
+        return input_fix_comments($ig, $broadcastId);
+    }
 }
 
 function save_live($live, $broadcastId) {
@@ -421,7 +458,7 @@ function newCommand(Live $live, $broadcastId, $streamUrl, $streamKey,$ig,$ig_use
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\n\n ▲ COMENTÁRIOS DESATIVADOS!");
         $status_cmts = "DESATIVADOS";
-    } elseif ($line == 'parar' || $line == 'PARAR' || $line == '9') {
+    } elseif ($line == 'parar' || $line == 'PARAR' || $line == '10') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         print "\n
 ┌───────────────────────────────────────────────────┬───────┬───────┐
@@ -464,33 +501,45 @@ $streamKey
     logM("\n ▲ A CHAVE FOI COPIADA. COLE-A NO SEU PROGRAMA DE TRANSMISSÃO.");
     } elseif ($line == 'info' || $line == 'INFO' || $line == '2') {
         $info = $live->getInfo($broadcastId);
+        $info_ = $ig->live->getHeartbeatAndViewerCount($broadcastId);
         $status = $info->getStatus();
         $muted = var_export($info->is_Messages(), true);
         $count = $info->getViewerCount();
+        $total = $info_->getTotalUniqueViewerCount();
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         print "\n\n ● INFORMAÇÕES DA TRANSMISSÃO:";
         print "
 ┌─────────────────┬───────────────────────────────┐
-│ STATUS:         │ ". $status."
+│ STATUS:         │ ". strtoupper($status) ."
 ├─────────────────┼───────────────────────────────┤
 │ COMENTÁRIOS:    │ ". $status_cmts."
 ├─────────────────┼───────────────────────────────┤
-│ VISUALIZAÇÕES:  │ ". $count."
+│ ESPECTADORES:   │ ". $count."
+├─────────────────┼───────────────────────────────┤
+│ VISUALIZAÇÕES:  │ ". $total."
 └─────────────────┴───────────────────────────────┘";
-    } elseif ($line == 'viewers' || $line == 'VIEWERS' || $line == '7') {
+    } elseif ($line == 'viewers' || $line == 'VIEWERS' || $line == '9') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         print "\n\n ● VISUALIZADORES:";
         $live->getInfo($broadcastId);
+        $count_espec = 0;
         print "
 ┌────────────────────────────────────────────────────────────────┐";
         foreach ($live->getViewerList($broadcastId)->getUsers() as &$cuser) {
             print "
 │ @".$cuser->getUsername()."  │  ".$cuser->getFullName();
+        $count_espec ++;
         }
-        print "
+        print "                                         
+│                                                   TOTAL: $count_espec
 └────────────────────────────────────────────────────────────────┘";
     } elseif ($line == 'limpar' || $line == 'LIMPAR' || $line == '1') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+    } elseif ($line == 'fixar c' || $line == 'FIXAR C' || $line == '7') {
+        corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        $resp_fix_comments = fix_comments($ig,$broadcastId,$status_cmts);
+        corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
+        echo $resp_fix_comments;
     } elseif ($line == 'comentarios' || $line == 'COMENTARIOS' || $line == '8') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\n\n ▲ ABRINDO JANELA DE COMENTÁRIOS...");
@@ -499,7 +548,7 @@ $streamKey
         sleep(5);
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         logM("\n\n ▲ JANELA DE COMENTÁRIOS INICIADA! FAÇA LOGIN COM ESTA CONTA.");
-    } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '10') {
+    } elseif ($line == 'contato' || $line == 'CONTATO' || $line == '11') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
         $rsp_contato = contato();
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
