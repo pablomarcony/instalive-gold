@@ -587,7 +587,7 @@ $streamKey
         $count_espec ++;
         }
         print "                                         
-│                                                   TOTAL: $count_espec
+│  ──────────────────────────────────────────────── TOTAL: $count_espec
 └────────────────────────────────────────────────────────────────┘";
     } elseif ($line == 'limpar' || $line == 'LIMPAR' || $line == '1') {
         corpo($ig_username,$hora_inicio,$hora_fim,$status_live,$hora_final_live);
