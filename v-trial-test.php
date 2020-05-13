@@ -115,15 +115,18 @@ function date_limite() {
 $texto_title[0] = date_limite();
 
 function avisos() {
-    $avisos = false;
+    $avisos = true;
     if ($avisos == true) {
         title();
         echo "\n                                             
     ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ AVISOS ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
     ╔══════════════════════════════════════════════════════════════════════════════════════════╗
     ║                                                                                          ║
-    ║    SERVIDOR EM MANUTENÇÃO DE MELHORIAS COM DURAÇÃO MÉDIA DE 10 MINUTOS. DURANTE ESTE     ║
-    ║    PERÍODO ALGUNS USUÁRIOS PODERÃO SOFRER INSTABILIDADES AO UTILIZAR O SISTEMA.          ║
+    ║               FORAM ADICIONADAS NOVAS FUNCIONALIDADES NO MENU DE COMANDOS:               ║
+    ║               1 - FIXAR COMENTÁRIO;                                                      ║
+    ║               2 - JANELA DE COMENTÁRIOS;                                                 ║
+    ║               3 - MOSTRAR/COPIAR URL DE TRANSMISSÃO;                                     ║
+    ║               4 - MOSTRAR/COPIAR CHAVE DE TRANSMISSÃO.                                   ║
     ║                                                                                          ║
     ╚══════════════════════════════════════════════════════════════════════════════════════════╝
       Pressione qualquer tecla para continuar. . .";
