@@ -72,6 +72,24 @@ switch ($code) {
         $limite = "18/05/2020 23:59:59";
         $limite_fim = novo_limite($limite);
     break;
+    case "#d16m59263":
+
+        // Usuário: Mateus
+        // Contato: 69 9928 9263 
+        // Limite: 5 dias (18/05/2020)  
+
+        $limite = "21/05/2020 23:59:59";
+        $limite_fim = novo_limite($limite);
+    break;
+    case "#d16m59989":
+
+        // Usuário: Undefined
+        // Contato: 88 9788 9989 
+        // Limite: 5 dias (18/05/2020)  
+
+        $limite = "21/05/2020 23:59:59";
+        $limite_fim = novo_limite($limite);
+    break;
     default:
         $limite = "c-invalido";
     break;
