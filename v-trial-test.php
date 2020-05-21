@@ -69,18 +69,21 @@ function novo_limite ($limite) {
     return $limite_fim;
 }
 
-print "
-┌─────────────────────────────────────────────────────────────────────────┐
-│ ● Esta é uma versão de teste! Por favor, digite sua chave de acesso:    │
-└─────────────────────────────────────────────────────────────────────────┘";
 function date_limite() {
+    print "
+    ┌─────────────────────────────────────────────────────────────────────────┐
+    │ ● Esta é uma versão de teste! Por favor, digite sua chave de acesso:    │
+    └─────────────────────────────────────────────────────────────────────────┘";
+    return input_date_limite();
+}
+function input_date_limite() {
     print "\n ▌ ";
     $handle = fopen ("php://stdin","r");
     $code = trim(fgets($handle));
     $limite = null;
     $date = date("YmdHis");
     
-    include 'https://pablomarcony.github.io/instalive-gold/v-trial-list.php';
+    include 'https://pablomarcony.github.io/instalive-gold/v-trial-list-test.php';
     if ($limite == null){
         print "\n ▲ POR FAVOR, VERIFIQUE SUA CONEXÃO A INTERNET PARA UTILIZAR O INSTALIVE GOLD TRIAL. \NCASO O ERRO PERSISTA, ENTRE EM CONTATO COM DOS DESENVOLVEDORES.\r";
         $rsp_contato = contato();
@@ -95,21 +98,26 @@ function date_limite() {
 ┌────────────────────────────────────────────────────────────┐
 │ ● Chave de acesso invalida. Por favor, Tente novamente.    │
 └────────────────────────────────────────────────────────────┘";
-        date_limite();
-    } elseif ($limite_fim <= $date){
-        title();
-        print "\n ■ ESTA VERSÃO EXPIROU! POR FAVOR, ADQUIRA UMA NOVA VERSÃO COM OS DESENVOLVEDORES.";
-        $rsp_contato = contato();
-        if ($rsp_contato != false) {
-            echo $rsp_contato;
-        }    
-        logM("\n ▲ SAINDO...");
-        sleep(2);
-        exit(0);
+        return input_date_limite();
     } else {
-        $_date = strtotime(date("d-m-Y"));
-        $_limite = strtotime(date_format(DateTime::createFromFormat('d/m/Y H:i:s', $limite), 'd-m-Y'));
-        return $dias_left = (($_date - $_limite) /86400) *-1;
+        $_limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
+        $limite_fim = date_format($_limite_fim, 'YmdHis');
+
+        if ($limite_fim <= $date){
+            title();
+            print "\n ■ ESTA VERSÃO EXPIROU! POR FAVOR, ADQUIRA UMA NOVA VERSÃO COM OS DESENVOLVEDORES.";
+            $rsp_contato = contato();
+            if ($rsp_contato != false) {
+                echo $rsp_contato;
+            }    
+            logM("\n ▲ SAINDO...");
+            sleep(2);
+            exit(0);
+        } else {
+            $_date = strtotime(date("d-m-Y"));
+            $_limite = strtotime(date_format(DateTime::createFromFormat('d/m/Y H:i:s', $limite), 'd-m-Y'));
+            return $dias_left = (($_date - $_limite) /86400) *-1;
+        }
     }
 }
 $texto_title[0] = date_limite();
