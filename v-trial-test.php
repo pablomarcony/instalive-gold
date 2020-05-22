@@ -63,12 +63,6 @@ if (isset($version) == false || $version != 1.9){
     }
 }
 
-function novo_limite ($limite) {
-    $_limite_fim = DateTime::createFromFormat('d/m/Y H:i:s', $limite);
-    $limite_fim = date_format($_limite_fim, 'YmdHis');
-    return $limite_fim;
-}
-
 function date_limite() {
     print "
     ┌─────────────────────────────────────────────────────────────────────────┐

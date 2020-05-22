@@ -7,7 +7,6 @@ switch ($code) {
         // Limite: Ilimitado    
 
         $limite = "02/05/2022 00:00:00";
-        $limite_fim = novo_limite($limite);
     break;
     case "#d5m5stage3":
 
@@ -16,7 +15,6 @@ switch ($code) {
         // Limite: 10 dias (05/05/2020)  
 
         $limite = "15/05/2020 00:00:00";
-        $limite_fim = novo_limite($limite);
     break;
     case "#d7m50790":
 
@@ -25,7 +23,6 @@ switch ($code) {
         // Limite: 5 dias (07/05/2020)  
 
         $limite = "12/05/2020 23:59:59";
-        $limite_fim = novo_limite($limite);
     break;
     case "#d8m56855":
 
@@ -34,7 +31,6 @@ switch ($code) {
         // Limite: 5 dias (08/05/2020)  
 
         $limite = "13/05/2020 23:59:59";
-        $limite_fim = novo_limite($limite);
     break;
     case "#d8m59833":
 
@@ -43,7 +39,6 @@ switch ($code) {
         // Limite: 5 dias (08/05/2020)  
 
         $limite = "13/05/2020 23:59:59";
-        $limite_fim = novo_limite($limite);
     break;
     case "#d8m56213":
 
@@ -52,7 +47,6 @@ switch ($code) {
         // Limite: 5 dias (08/05/2020)  
 
         $limite = "13/05/2020 23:59:59";
-        $limite_fim = novo_limite($limite);
     break;
     case "#d11m50059":
 
@@ -61,7 +55,6 @@ switch ($code) {
         // Limite: 5 dias (08/05/2020)  
 
         $limite = "16/05/2020 23:59:59";
-        $limite_fim = novo_limite($limite);
     break;
     case "#d13m55990":
 
@@ -70,7 +63,6 @@ switch ($code) {
         // Limite: 5 dias (13/05/2020)  
 
         $limite = "18/05/2020 23:59:59";
-        $limite_fim = novo_limite($limite);
     break;
     case "#d16m59263":
 
@@ -79,7 +71,6 @@ switch ($code) {
         // Limite: 5 dias (18/05/2020)  
 
         $limite = "21/05/2020 23:59:59";
-        $limite_fim = novo_limite($limite);
     break;
     case "#d16m59989":
 
@@ -88,7 +79,6 @@ switch ($code) {
         // Limite: 5 dias (18/05/2020)  
 
         $limite = "21/05/2020 23:59:59";
-        $limite_fim = novo_limite($limite);
     break;
     default:
         $limite = "c-invalido";
