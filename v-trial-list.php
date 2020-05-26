@@ -90,6 +90,42 @@ switch ($code) {
         $limite = "21/05/2020 23:59:59";
         $limite_fim = novo_limite($limite);
     break;
+    case "#d26m51780":
+
+        // Usuário: Murilo Freitas
+        // Contato: 48 9623 1780 
+        // Limite: 5 dias (26/05/2020)  
+
+        $limite = "31/05/2020 23:59:59";
+        $limite_fim = novo_limite($limite);
+    break;
+    case "#d26m51008":
+
+        // Usuário: Antonio Marcos Branco
+        // Contato: 18 99652 1008 
+        // Limite: 5 dias (26/05/2020)  
+
+        $limite = "31/05/2020 23:59:59";
+        $limite_fim = novo_limite($limite);
+    break;
+    case "#d26m53772":
+
+        // Usuário: Undefined
+        // Contato: 11 94771 3772 
+        // Limite: 5 dias (26/05/2020)  
+
+        $limite = "31/05/2020 23:59:59";
+        $limite_fim = novo_limite($limite);
+    break;
+    case "#d26m51450":
+
+        // Usuário: Mickey
+        // Contato: 47 9967 1450 
+        // Limite: 5 dias (26/05/2020)  
+
+        $limite = "31/05/2020 23:59:59";
+        $limite_fim = novo_limite($limite);
+    break;
     default:
         $limite = "c-invalido";
     break;
