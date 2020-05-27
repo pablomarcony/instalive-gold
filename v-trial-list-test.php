@@ -1,6 +1,6 @@
 <?php
 switch ($code) {
-    case "#Z319N5":
+    case "ASD":
         
         // Usuário: Pablo Marcony
         // Contato: ## ##### #### 
