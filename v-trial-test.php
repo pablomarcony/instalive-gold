@@ -8,6 +8,7 @@ date_default_timezone_set('America/Sao_Paulo');
 system('title InstaLive Gold Trial');
 system('break off');
 echo "\e[H\e[J";
+echo "\033[1m";
 if (php_sapi_name() !== "cli") {
     die("Você só pode executar isso dentro da linha de comando do PHP!");
 }
