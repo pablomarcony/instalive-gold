@@ -2,6 +2,8 @@
 class VTrial {
     var $ig_username;
     var $texto_title = null;
+    var $reso_largura = "720";
+    var $reso_altura = "1280";
     
 
 
@@ -369,7 +371,7 @@ class VTrial {
     public function pre_live(){
         print " ▲ GERANDO TÚNEL...\n";
         // Gera chave de transmissão
-        $this->stream = $this->ig->live->create('1080','1920');
+        $this->stream = $this->ig->live->create($this->reso_largura,$this->reso_altura);
         $this->broadcastId = $this->stream->getBroadcastId();
 
         // Alterne do URL de upload RTMPS para RTMP, pois o RTMPS não funciona bem.
@@ -526,7 +528,7 @@ class VTrial {
         print "\n\n ● CONFIGURAÇÕES RECOMENDADAS:";
         print "
 ┌─────────────────┬───────────────────────────────┐
-│ RESOLUÇÃO:      │ 1080x1920
+│ RESOLUÇÃO:      │ ".$this->reso_largura."x".$this->reso_altura."
 ├─────────────────┼───────────────────────────────┤
 │ TAXA DE BITS:   │ 3000
 ├─────────────────┼───────────────────────────────┤
