@@ -315,7 +315,7 @@ class VTrial {
 ┌─────────────────────────────────────────┐
 │ ● Digite o código de confirmação:       │
 └─────────────────────────────────────────┘";
-                $verificationCode = $this->input_password();
+                $verificationCode = readline();
                 print "\n ▲ REALIZANDO LOGIN COM O CÓDIGO DE CONFIRMAÇÃO...";
                 $this->ig->finishTwoFactorLogin($this->ig_username, $ig_password, $twoFactorIdentifier, $verificationCode);
             }
@@ -329,7 +329,7 @@ class VTrial {
                 \n 4 - Tente acessar novamente este sistema.\n";
                 system("PAUSE >nul");
                 $this->title();
-                login();
+                $this->login();
             }
             print " ▲ FALHA NO LOGIN. VERIFIQUE SUAS CREDENCIAIS.
 ┌───────────────────────────────┬───────┬───────┐
@@ -529,7 +529,7 @@ class VTrial {
 ┌─────────────┬───────────────────────────────┐
 │ RESOLUÇÃO:  │ ".$this->reso_largura."x".$this->reso_altura."
 ├─────────────┼───────────────────────────────┤
-│ VÍDEO:      │ H264  |  3000Kbps  |  30fps
+│ VÍDEO:      │ H264  |  2000Kbps  |  30fps
 ├─────────────┼───────────────────────────────┤
 │ ÁUDIO:      │ AAC   |  44.100hz  |  128kbps
 └─────────────┴───────────────────────────────┘\n";
