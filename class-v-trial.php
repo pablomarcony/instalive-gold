@@ -315,34 +315,87 @@ class VTrial {
 ┌─────────────────────────────────────────┐
 │ ● Digite o código de confirmação:       │
 └─────────────────────────────────────────┘";
-                $verificationCode = readline();
+                $verificationCode = $this->input_system();
                 print "\n ▲ REALIZANDO LOGIN COM O CÓDIGO DE CONFIRMAÇÃO...";
                 $this->ig->finishTwoFactorLogin($this->ig_username, $ig_password, $twoFactorIdentifier, $verificationCode);
             }
         } catch (\Exception $e) {
-            if (strpos($e->getMessage(), "Challenge") !== false) {
-                $this->title();
-                print "\n ■ CONTA SINALIZADA! SIGA OS SEGUINTES PASSOS:
-                \n 1 - Desconecte sua conta de todos os dispositivos;
-                \n 2 - Faça login no instagram.com neste computador;
-                \n 3 - Confirme sua atividade de acesso;
-                \n 4 - Tente acessar novamente este sistema.\n";
-                system("PAUSE >nul");
-                $this->title();
-                $this->login();
-            }
-            print " ▲ FALHA NO LOGIN. VERIFIQUE SUAS CREDENCIAIS.
-┌───────────────────────────────┬───────┬───────┐
-│ ● Deseja tentar novamente?    │  SIM  │  NÃO  │
-└───────────────────────────────┴───────┴───────┘";
+            try {
+                /** @noinspection PhpUndefinedMethodInspection */
+                if ($e instanceof ChallengeRequiredException && $e->getResponse()->getErrorType() === 'checkpoint_challenge_required') {
+                    $response = $e->getResponse();
+                    print "Conta sinalizada! selecione sua opção de verificação digitando \"SMS\" ou \"EMAIL\".";
+                    $choice = $this->input_system();
+                    if ($choice === "sms" || $choice === "SMS" ) {
+                        $verification_method = 0;
+                    } elseif ($choice === "email" || $choice === "EMAIL") {
+                        $verification_method = 1;
+                    } else {
+                        print "\n ▲ SAINDO...";
+                        sleep(2);
+                        exit(1);
+                    }
     
-            $resp = $this->input_system();
-            if ($resp == "sim" || $resp == "SIM") {
-                $this->login();
-            } else {
-                print "\n ▲ SAINDO...\n";
-                sleep(2);
-                exit(1);
+                    /** @noinspection PhpUndefinedMethodInspection */
+                    $checkApiPath = trim(substr($response->getChallenge()->getApiPath(), 1));
+                    $customResponse = $this->ig->request($checkApiPath)
+                        ->setNeedsAuth(false)
+                        ->addPost('choice', $verification_method)
+                        ->addPost('_uuid', $this->ig->uuid)
+                        ->addPost('guid', $this->ig->uuid)
+                        ->addPost('device_id', $this->ig->device_id)
+                        ->addPost('_uid', $this->ig->account_id)
+                        ->addPost('_csrftoken', $this->ig->client->getToken())
+                        ->getDecodedResponse();
+    
+                    try {
+                        if ($customResponse['status'] === 'ok' && isset($customResponse['action'])) {
+                            if ($customResponse['action'] === 'close') {
+                                print "Confirmação de conta bem-sucedido, execute novamente o script!";
+                                exit(1);
+                            }
+                        }
+    
+                        print "Digite o código que você recebeu via " . ($verification_method ? 'EMAIL' : 'SMS') . "...";
+                        $cCode = $this->input_system();
+                        $this->ig->login($this->ig_username, $ig_password);
+                        $customResponse = $this->ig->request($checkApiPath)
+                            ->setNeedsAuth(false)
+                            ->addPost('security_code', $cCode)
+                            ->addPost('_uuid', $this->ig->uuid)
+                            ->addPost('guid', $this->ig->uuid)
+                            ->addPost('device_id', $this->ig->device_id)
+                            ->addPost('_uid', $this->ig->account_id)
+                            ->addPost('_csrftoken', $this->ig->client->getToken())
+                            ->getDecodedResponse();
+    
+                        if (@$customResponse['status'] === 'ok' && @$customResponse['logged_in_user']['pk'] !== null) {
+                            print "Confirmação provavelmente realizada!";
+                            system("PAUSE >nul");
+                            $this->title();
+                            $this->login();
+                        }
+                    } catch (Exception $ex) {
+                        print "Falha na confirmação da conta. Por favor, tente novamente.";
+                        system("PAUSE >nul");
+                        $this->title();
+                        $this->login();
+                    }
+                }
+            } catch (LazyJsonMapperException $mapperException) {
+                print " ▲ FALHA NO LOGIN. VERIFIQUE SUAS CREDENCIAIS.
+    ┌───────────────────────────────┬───────┬───────┐
+    │ ● Deseja tentar novamente?    │  SIM  │  NÃO  │
+    └───────────────────────────────┴───────┴───────┘";
+        
+                $resp = $this->input_system();
+                if ($resp == "sim" || $resp == "SIM") {
+                    $this->login();
+                } else {
+                    print "\n ▲ SAINDO...\n";
+                    sleep(2);
+                    exit(1);
+                }
             }
         }
         $this->logado();
