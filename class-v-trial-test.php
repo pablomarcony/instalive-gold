@@ -401,15 +401,28 @@ class VTrial {
         }
         $this->logado();
     }
-
+    public function fail_login() {
+        print "\n ▲ OCORRERAM FALHAS NO LOGIN.
+┌───────────────────────────────┬───────┬───────┐
+│ ● Deseja tentar novamente?    │  SIM  │  NÃO  │
+└───────────────────────────────┴───────┴───────┘";
+            
+        $resp = $this->input_system();
+        if ($resp == "sim" || $resp == "SIM") {
+            $this->login();
+        } else {
+            print "\n ▲ SAINDO...\n";
+            sleep(2);
+            exit(1);
+        }
+    }
 
     
     public function logado() {
         try {
             if (!$this->ig->isMaybeLoggedIn) {
-                print "\n ▲ NÃO FOI POSSÍVEL ENTRAR! SAINDO...";
-                sleep(2);
-                exit();
+                print "\n ▲ NÃO FOI POSSÍVEL ENTRAR!";
+                $this->fail_login();
             }
             
             $this->time_login = date("d/m/Y H:i:s");
