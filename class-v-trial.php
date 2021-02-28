@@ -477,8 +477,8 @@ class VTrial {
         $this->ig->live->start($this->broadcastId);
         $this->live = $this->ig->live;
         $this->time_inicio = date("d/m/Y H:i:s");
-        $this->time_fim_ = date('YmdHis', strtotime('+1 Hours'));
-        $this->time_fim = date('d/m/Y H:i:s', strtotime('+1 Hours'));
+        $this->time_fim_ = date('YmdHis', strtotime('+4 Hours'));
+        $this->time_fim = date('d/m/Y H:i:s', strtotime('+4 Hours'));
         $this->status_live = "ativada";
         $this->status_cmts = "ATIVADOS";
         
