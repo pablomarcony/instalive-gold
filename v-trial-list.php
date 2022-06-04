@@ -6,7 +6,7 @@ switch ($code) {
         // Contato: ## ##### #### 
         // Limite: Ilimitado    
 
-        $limite = "02/05/2022 00:00:00";
+        $limite = "02/05/2026 00:00:00";
     break;
     case "#d5m5stage3":
 
